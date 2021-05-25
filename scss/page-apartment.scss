@@ -1,0 +1,163 @@
+.page-apartment {
+  .chart-basic {
+    .chart-block__bd {
+      padding: 24px 0 34px;
+    }
+    .list {
+      overflow: hidden;
+    }
+    .item {
+      width: 50%;
+      float: left;
+      position: relative;
+      padding-left: 52px;
+      font-size: 13px;
+      box-sizing: border-box;
+      &:nth-of-type(n + 3) {
+        margin-top: 30px;
+      }
+      &::before {
+        position: absolute;
+        content: '';
+        left: 0;
+        top: 6px;
+        width: 40px;
+        height: 40px;
+        background-repeat: no-repeat;
+      }
+      .count {
+        font-size: 20px;
+        font-weight: bold;
+      }
+      .caption {
+        margin-top: 4px;
+        font-size: 14px;
+        color: #7eadc0;
+      }
+    }
+
+    .item-dormitory {
+      &::before {
+        background-image: url('./../image/icon-dormitory.png');
+      }
+    }
+    .item-room {
+      &::before {
+        background-image: url('./../image/icon-room.png');
+      }
+    }
+    .item-bed {
+      &::before {
+        background-image: url('./../image/icon-bed.png');
+      }
+    }
+    .item-people {
+      &::before {
+        background-image: url('./../image/icon-people.png');
+      }
+    }
+  }
+
+  .chart-not-return {
+    .chart-block__bd {
+      padding: 16px 0 15px;
+    }
+  }
+
+  .chart-abnormal {
+  }
+
+  .chart-room-usage {
+    .chart-block__bd {
+      padding: 36px 0 40px 20px;
+      display: flex;
+      .left {
+        width: 112px;
+        height: 112px;
+      }
+
+      .right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        margin-left: 35px;
+        justify-content: center;
+      }
+
+      .item {
+        position: relative;
+        width: 100%;
+        height: 30px;
+        padding: 0 12px;
+        background: #0b1931;
+        border: 1px solid #1e2f3f;
+        color: #7eadc0;
+        font-size: 14px;
+        align-items: center;
+        display: flex;
+        box-sizing: border-box;
+        justify-content: space-between;
+        padding-left: 25px;
+        &::before {
+          width: 0;
+          height: 0;
+          border-width: 4px;
+          border-color: #228ae1 transparent transparent #228ae1;
+          border-style: solid;
+          content: " ";
+          position: absolute;
+          left: 1px;
+          top: 1px;
+        }
+        &::after {
+          width: 0;
+          height: 0;
+          border-width: 4px;
+          border-color: transparent #228ae1 #228ae1 transparent;
+          border-style: solid;
+          content: " ";
+          position: absolute;
+          right: 1px;
+          bottom: 1px;
+        }
+        .dot {
+          display: inline-block;
+          width: 10px;
+          height: 10px;
+          border-width: 2px;
+          border-style: solid;
+          border-radius: 50%;
+          box-sizing: border-box;
+          margin-right: 6px;
+          position: absolute;
+          left: 10px;
+          top: 10px;
+          border-color: #228ae1;
+        }
+        .mark {
+          font-size: 16px;
+          font-weight: bold;
+          color: #fff;
+        }
+        &:nth-of-type(n+2) {
+          margin-top: 12px;
+          &::before {
+            border-color: #2DE2E5 transparent transparent #2DE2E5;
+          }
+          &::after {
+            border-color: transparent #2DE2E5 #2DE2E5 transparent;
+          }
+          .dot {
+            border-color: #2DE2E5;
+          }
+        }
+      }
+    }
+  }
+
+  .chart-pass {
+  }
+
+  .chart-intercept {
+  }
+}

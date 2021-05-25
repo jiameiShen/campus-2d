@@ -1,0 +1,39 @@
+.g-header {
+  display: flex;
+  padding: 20px 30px 22px;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #fff;
+  .left {
+    font-size: 0;
+    .logo {
+      width: 125px;
+      height: 24px;
+      vertical-align: middle;
+    }
+    .name {
+      display: inline-block;
+      margin-left: 10px;
+      padding-left: 10px;
+      font-size: 18px;
+      line-height: 20px;
+      border-left: 1px solid #fff;
+      vertical-align: middle;
+    }
+  }
+  .full-screen {
+    margin-left: 20px;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-size: 100% 100%;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-image: url('./../image/full-screen.png');
+    vertical-align: -2px;
+    cursor: pointer;
+    &.full {
+      background-image: url('./../image/full-screen-close.png');
+    }
+  }
+}

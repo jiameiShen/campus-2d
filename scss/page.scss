@@ -1,3 +1,6 @@
+.page-container {
+  
+}
 .page-aside {
   width: 28%;
   min-width: 380px;
@@ -9,6 +12,9 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  z-index: 1;
+  color: #fff;
+
   * {
     box-sizing: border-box;
   }

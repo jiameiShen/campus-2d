@@ -11,15 +11,15 @@ $(function () {
   const TEXTCOLOR = '#7EADC0'
 
   /* 未归寝率排行 */
-  notReturnChart = echarts.init(document.getElementById('notReturnChart'), null, {devicePixelRatio: 2.5})
+  notReturnChart = window.echarts.init(document.getElementById('notReturnChart'), null, {devicePixelRatio: 2.5})
   renderNotReturnChart()
   /* 异常预警 */
-  abnormalWarningChart = echarts.init(document.getElementById('abnormalWarningChart'), null, {devicePixelRatio: 2.5})
+  abnormalWarningChart = window.echarts.init(document.getElementById('abnormalWarningChart'), null, {devicePixelRatio: 2.5})
   renderAbnormalWarningChart()
   
 
   /* 房间使用率 */
-  roomUsageChart = echarts.init(document.getElementById('roomUsageChart'), null, {devicePixelRatio: 2.5})
+  roomUsageChart = window.echarts.init(document.getElementById('roomUsageChart'), null, {devicePixelRatio: 2.5})
   const roomUsageData = {
     idle: 32629,
     total: 33487,
@@ -52,7 +52,7 @@ $(function () {
   const passTimeList = passInfo.data.map((item) => item.time)
   const passInList = passInfo.data.map((item) => item.in)
   const passOutList = passInfo.data.map((item) => item.out)
-  passChart = echarts.init(document.getElementById('passChart'), null, {devicePixelRatio: 2.5})
+  passChart = window.echarts.init(document.getElementById('passChart'), null, {devicePixelRatio: 2.5})
   renderPassChart(passTimeList, passInList, passOutList)
   /* 今日通行拦截 */
   const interceptInfo = {
@@ -64,7 +64,7 @@ $(function () {
     ],
     total: 94,
   }
-  interceptChart = echarts.init(document.getElementById('interceptChart'), null, {devicePixelRatio: 2.5})
+  interceptChart = window.echarts.init(document.getElementById('interceptChart'), null, {devicePixelRatio: 2.5})
   renderInterceptChart(interceptInfo.data)
 
   function renderNotReturnChart() {
@@ -124,7 +124,7 @@ $(function () {
       xAxis: {
         type: 'value',
         axisLabel: {
-          color: '#7EADC0',
+          color: TEXTCOLOR,
         },
         axisLine: {
           lineStyle: {
@@ -145,7 +145,7 @@ $(function () {
         },
         minInterval: 2,
         axisLabel: {
-          color: '#7EADC0',
+          color: TEXTCOLOR,
         },
         splitLine: {
           lineStyle: {
@@ -264,7 +264,7 @@ $(function () {
       yAxis: {
         type: 'value',
         axisLabel: {
-          color: '#7EADC0',
+          color: TEXTCOLOR,
         },
         axisLine: {
           lineStyle: {
@@ -285,7 +285,7 @@ $(function () {
         },
         minInterval: 2,
         axisLabel: {
-          color: '#7EADC0',
+          color: TEXTCOLOR,
           interval: 0,
         },
         splitLine: {
@@ -443,7 +443,7 @@ $(function () {
             },
           },
           axisLabel: {
-            color: '#7EADC0',
+            color: TEXTCOLOR,
             interval: 0,
             rotate: 45,
           },
@@ -459,7 +459,7 @@ $(function () {
           },
           minInterval: 1,
           axisLabel: {
-            color: '#7EADC0',
+            color: TEXTCOLOR,
           },
           splitLine: {
             lineStyle: {
@@ -479,7 +479,7 @@ $(function () {
           showSymbol: false,
           areaStyle: {
             opacity: 0.8,
-            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            color: new window.echarts.graphic.LinearGradient(0, 0, 0, 1, [
               {
                 offset: 0,
                 color: 'rgba(45,226,229,0.4)',
@@ -505,7 +505,7 @@ $(function () {
           showSymbol: false,
           areaStyle: {
             opacity: 0.8,
-            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            color: new window.echarts.graphic.LinearGradient(0, 0, 0, 1, [
               {
                 offset: 0,
                 color: 'rgba(146,150,238,0.4)',

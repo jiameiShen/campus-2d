@@ -92,6 +92,7 @@ $(function () {
       grid: {
         top: 26,
         left: 0,
+        right: 32,
         bottom: 0,
         containLabel: true,
       },
@@ -100,13 +101,8 @@ $(function () {
         axisPointer: {
           type: 'line',
         },
-        backgroundColor: '#0B1931',
-        borderColor: '#263752',
-        textStyle: {
-          color: '#fff',
-        },
         padding: 10,
-        className: 'echarts-tooltip echarts-tooltip-dark',
+        className: 'echarts-tooltip-dark',
         formatter: function (params) {
           return `<p class="caption">${params[0].name}</p>
             ${params
@@ -157,6 +153,18 @@ $(function () {
           },
         },
       },
+      dataZoom: [
+        {
+          type: 'inside',
+          // type: 'slider',
+          yAxisIndex: [0],
+          width: 20,
+          backgroundColor: '#1D2A42',
+          fillerColor: '#276B86',
+          minValueSpan: 1,
+          maxValueSpan: 4,
+        },
+      ],
       series: [
         {
           name: '当前在寝',
@@ -203,56 +211,124 @@ $(function () {
   }
 
   function renderAbnormalWarningChart() {
+    const inData = [320, 302, 301, 334, 390, 330, 320]
+    const outData = [120, 132, 101, 134, 90, 230, 210]
     const option = {
       backgroundColor: 'transparent',
+      color: BAR_CHART_COLORS,
+      barMaxWidth: 12,
+      legend: {
+        type: 'scroll',
+        pageIconColor: '#ddd',
+        pageIconInactiveColor: '#aaa',
+        pageTextStyle: {
+          color: '#ddd',
+        },
+        top: -2,
+        itemWidth: 14,
+        itemHeight: 4,
+        itemGap: 16,
+        textStyle: {
+          fontSize: 12,
+          lineHeight: 16,
+          color: '#fff',
+        },
+        data: ['昨日晚归', '昨日未归', '多天未出', '多天未归'],
+      },
+      grid: {
+        top: 26,
+        left: 0,
+        bottom: 40,
+        containLabel: true,
+      },
       tooltip: {
         trigger: 'axis',
         axisPointer: {
-          // Use axis to trigger tooltip
-          type: 'shadow', // 'shadow' as default; can also be 'line' or 'shadow'
+          type: 'line',
+        },
+        padding: 10,
+        className: 'echarts-tooltip-dark',
+        formatter: function (params) {
+          return `<p class="caption">${params[0].name}</p>
+            ${params
+              .map((item) => {
+                return `<p class="item ${item.name === 'rate' ? 'rate' : ''}">
+                  <span class="mark" style="background-color: ${item.color};"></span>
+                  <span class="name">${item.seriesName}</span>
+                  <span class="value">${item.value}</span>
+                </p>`
+              })
+              .join('')}`
         },
       },
-      color: BAR_CHART_COLORS,
-      legend: {
-        data: ['当前在寝', '当前未归'],
-      },
-      grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
-        containLabel: true,
+      yAxis: {
+        type: 'value',
+        axisLabel: {
+          color: '#7EADC0',
+        },
+        axisLine: {
+          lineStyle: {
+            color: '#3C415B',
+          },
+        },
+        splitLine: {
+          show: false,
+        },
       },
       xAxis: {
         type: 'category',
         data: ['管理学院', '计算机学院', '经济管理学院', '机电工程学院', '外语学院'],
+        axisLine: {
+          lineStyle: {
+            color: '#3C415B',
+          },
+        },
+        minInterval: 2,
+        axisLabel: {
+          color: '#7EADC0',
+          interval: 0,
+        },
+        splitLine: {
+          lineStyle: {
+            color: ['#3C415B'],
+          },
+        },
       },
-      yAxis: {
-        type: 'value',
-      },
+      dataZoom: [
+        {
+          type: 'slider',
+          height: 20,
+          backgroundColor: '#1D2A42',
+          fillerColor: '#276B86',
+          minValueSpan: 1,
+          maxValueSpan: 3,
+          bottom: 10,
+        },
+      ],
       series: [
         {
-          name: '当前在寝',
+          name: '昨日晚归',
           type: 'bar',
           stack: 'total',
-          label: {
-            show: true,
-          },
-          emphasis: {
-            focus: 'series',
-          },
-          data: [320, 302, 301, 334, 390, 330, 320],
+          data: inData,
         },
         {
-          name: '当前未归',
+          name: '昨日未归',
           type: 'bar',
           stack: 'total',
-          label: {
-            show: true,
-          },
-          emphasis: {
-            focus: 'series',
-          },
-          data: [120, 132, 101, 134, 90, 230, 210],
+          data: outData,
+        },
+        {
+          name: '多天未出',
+          type: 'bar',
+          stack: 'total',
+          data: inData,
+        },
+        {
+          name: '多天未归',
+          type: 'bar',
+          stack: 'total',
+          data: outData,
         },
       ],
     }
@@ -324,54 +400,36 @@ $(function () {
   function renderPassChart(timeList, inList, outList) {
     const option = {
       backgroundColor: 'transparent',
-      tooltip: {
-        trigger: 'axis',
-        axisPointer: {
-          type: 'line',
-          label: {
-            backgroundColor: '#31384D',
-          },
-        },
-        formatter(vals) {
-          return `<ul class="chart-pass-tooltip"><li>${vals[0].axisValueLabel}</li><li><span style="background:${vals[0].color}"></span>${vals[0].seriesName}: ${vals[0].value}人</li><li><span style="background:${vals[1].color}"></span>${vals[1].seriesName}: ${vals[1].value}人</li></ul>`
-        },
-      },
       color: LINE_CHART_COLORS,
       legend: {
         data: ['出', '入'],
         show: false,
       },
       grid: {
-        left: 60,
-        right: 24,
-        bottom: 34,
-        top: 12,
-        tooltip: {
-          axisPointer: {
-            label: {
-              show: false,
-            },
-            lineStyle: {
-              color: {
-                type: 'linear',
-                x: 0,
-                y: 0,
-                x2: 0,
-                y2: 1,
-                colorStops: [
-                  {
-                    offset: 0,
-                    color: '#19948C',
-                  },
-                  {
-                    offset: 1,
-                    color: '#FCE56A',
-                  },
-                ],
-                global: false,
-              },
-            },
-          },
+        top: 20,
+        left: 20,
+        right: 10,
+        bottom: 0,
+        containLabel: true,
+      },
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'line',
+        },
+        padding: 10,
+        className: 'echarts-tooltip-dark',
+        formatter: function (params) {
+          return `<p class="caption">${params[0].name}</p>
+            ${params
+              .map((item) => {
+                return `<p class="item">
+                  <span class="mark" style="background-color: ${item.color};"></span>
+                  <span class="name">${item.seriesName}</span>
+                  <span class="value">${item.value}</span>
+                </p>`
+              })
+              .join('')}`
         },
       },
       xAxis: [
@@ -469,25 +527,43 @@ $(function () {
   }
 
   function renderInterceptChart(dataList) {
+    const legendArr = dataList.map(item => {
+      return item.name
+    })
     const option = {
       backgroundColor: 'transparent',
-      tooltip: {
-        trigger: 'item',
-      },
       color: PIE_CHART_COLORS,
+      legend: {
+        orient: 'vertical',
+        right: 0,
+        bottom: 0,
+        itemWidth: 14,
+        itemHeight: 4,
+        itemGap: 16,
+        textStyle: {
+          fontSize: 12,
+          lineHeight: 16,
+          color: '#fff',
+        },
+        data: legendArr,
+      },
       series: [
         {
-          name: '访问来源',
+          name: '今日拦截通行',
           type: 'pie',
-          radius: '50%',
-          data: dataList,
-          emphasis: {
-            itemStyle: {
-              shadowBlur: 10,
-              shadowOffsetX: 0,
-              shadowColor: 'rgba(0, 0, 0, 0.5)',
+          radius: '65%',
+          right: '10%',
+          label: {
+            formatter: '{font|{b}}\n{font|{c}}',
+            rich: {
+              font: {
+                color: '#fff',
+                fontSize: 14,
+                lineHeight: 20,
+              },
             },
           },
+          data: dataList,
         },
       ],
     }

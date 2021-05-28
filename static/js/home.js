@@ -1,3 +1,33 @@
+(function ($) {
+  $.fn.numberRock = function (options) {
+    var defaults = {
+      lastNumber: 0,
+      duration: 2000,
+      easing: 'swing'  //swing(默认 : 缓冲 : 慢快慢)  linear(匀速的)
+    };
+    var opts = $.extend({}, defaults, options);
+    $(this).animate({
+      num: "numberRock",
+    }, {
+      duration: opts.duration,
+      easing: opts.easing,
+      complete: function () {},
+      step: function (a, b) {  //可以检测我们定时器的每一次变化
+        $(this).html(toThousands(parseInt(b.pos * opts.lastNumber)));
+      }
+    });
+  }
+
+  function toThousands(num) {
+    var num = (num || 0).toString(), result = '';
+    while (num.length > 3) {
+      result = ',' + num.slice(-3) + result;
+      num = num.slice(0, num.length - 3);
+    }
+    if (num) { result = num + result; }
+    return result;
+  }
+})(jQuery);
 $(function () {
   // 时间展示
   moment.locale('zh-cn')
@@ -22,5 +52,14 @@ $(function () {
 
     // 插入相应页面模板
     // 创建相应页面图表
+  })
+
+  // 数字滚动
+  $(".js-rock-number").each(function () {
+    $(this).numberRock({
+      lastNumber: parseInt($(this).text()),
+      duration: 800,
+      easing: 'swing',
+    });
   })
 })

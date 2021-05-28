@@ -1,9 +1,12 @@
+// ctrlGTabList  全局导航实例   
+// buildings     全局buildings 
+
 $(function () {
   // 添加顶部信息栏
   class CreatHeader {
     constructor() { }
     onAdd(app) {
-      var iframe = document.createElement('iframe')
+      let iframe = document.createElement('iframe')
       iframe.src =
         '/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/views/Header/index.html'
       iframe.width = '100%'
@@ -19,13 +22,22 @@ $(function () {
   var ctrlGTabList = app.addControl(new CreateGTabList())
   ctrlGTabList.showTab('Apartment')
 
+  $(document).on('click', '.js-tab-item', function () {
+    const pageId = $(this).data('id')
+    // 不是顶级 不允许切换tab且跳至顶级
+    if (!(app.level.current instanceof THING.Campus)) {
+      app.level.change(app.root.campuses[0])
+    }
+    ctrlGTabList.showTab(pageId)
+  })
+
   // 添加主页楼栋标注
   campus = app.query('.Campus')[0] // 获取园区对象
   createBoardHtml()
   var buildings = campus.buildings // 获取园区下的所有建筑，返回为 Selector 结构
   buildings.forEach(function (item) {
     // 创建标注
-    var ui = app.create({
+    let ui = app.create({
       type: 'UIAnchor',
       parent: item,
       element: cloneBoardElement('buildingMarker', item.id), // 此参数填写要添加的Dom元素
@@ -39,7 +51,7 @@ $(function () {
   buildings2.forEach(function (item) {
     if (item.name === '建筑') {
       // 创建标注
-      var ui = app.create({
+      let ui = app.create({
         type: 'UIAnchor',
         parent: item,
         element: cloneBoardElement('buildingMarker', item.id), // 此参数填写要添加的Dom元素
@@ -57,8 +69,7 @@ $(function () {
   // {THING.BaseObject} ev.previous 上一层级对象（离开的层级对象）
 
   app.on(THING.EventType.LevelChange, function (ev) {
-    var object = ev.current
-    console.log('ev.level', ev.level)
+    let object = ev.current
     if (object instanceof THING.Campus) {
       console.log('Campus: ' + object)
       $('.buildingMarker').show()
@@ -74,6 +85,12 @@ $(function () {
       })
       console.log('Building: ' + object)
     } else if (object instanceof THING.Floor) {
+      const previousObj = ev.previous
+      console.log(object.name)
+      ctrlGTabList.showTab(null, {
+        buildingName: previousObj.userData.name,
+        floorName: object.name
+      })
       console.log('Floor: ' + object)
     } else if (object instanceof THING.Thing) {
       console.log('Thing: ' + object)
@@ -83,7 +100,7 @@ $(function () {
 
   // 创建主页建筑面板marker
   function createBoardHtml() {
-    var html = `
+    let html = `
         <div id="buildingMarker" class="buildingMarker" style="position: absolute;">
             <div class="text" style="color: #FF0000;font-size: 12px;text-shadow: white  0px 2px, white  2px 0px, white  -2px 0px, white  0px -2px, white  -1.4px -1.4px, white  1.4px 1.4px, white  1.4px -1.4px, white  -1.4px 1.4px;margin-bottom: 5px;">
             </div>
@@ -98,8 +115,8 @@ $(function () {
    * 创建元素
    */
   function cloneBoardElement(name = 'buildingMarker', id) {
-    var srcElem = document.getElementById(name)
-    var newElem = srcElem.cloneNode(true)
+    let srcElem = document.getElementById(name)
+    let newElem = srcElem.cloneNode(true)
     newElem.style.display = 'block'
     newElem.setAttribute('id', `${name}${id}`)
     app.domElement.insertBefore(newElem, srcElem)

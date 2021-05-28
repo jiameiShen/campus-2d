@@ -10,10 +10,20 @@ THING.Utils.dynamicLoad([
 
 console.log('初始化：CreateGTabList')
 
+const G_TAbLIST_ARR = [
+  { name: '公寓管理', id: 'Apartment', func: CreatePageApartment, pageCtrl: null },
+  { name: '能耗管理', id: 'Energy', func: CreatePageApartment, pageCtrl: null },
+  { name: '资产管理', id: 'Asset', func: CreatePageApartment, pageCtrl: null },
+  { name: '运维管理', id: 'Operations', func: CreatePageApartment, pageCtrl: null },
+  { name: '安全管理', id: 'Security', func: CreatePageApartment, pageCtrl: null },
+]
+
 class CreateGTabList {
   id = 'gTabList'
-  currentTab = ''
+  currentIndex = 0
+  currentTab = 'Apartment'
   buildingName = ''
+  floorName = ''
 
   constructor() { }
 
@@ -28,81 +38,67 @@ class CreateGTabList {
    * 初始化面板
    */
   init() {
-    let _this = this;
-    let tabList = [
-      { name: '公寓管理', id: 'Apartment', func: CreatePageApartment, pageCtrl: null },
-      { name: '能耗管理', id: 'Energy', func: CreatePageApartment, pageCtrl: null },
-      { name: '资产管理', id: 'Asset', func: CreatePageApartment, pageCtrl: null },
-      { name: '运维管理', id: 'Operations', func: CreatePageApartment, pageCtrl: null },
-      { name: '安全管理', id: 'Security', func: CreatePageApartment, pageCtrl: null },
-    ]
-
     let template =
       `<ul class="g-tab-list" id="gTabList">
-            ${tabList.map(item => {
+            ${G_TAbLIST_ARR.map(item => {
         return `<li class="tab-item js-tab-item" data-id="${item.id}">${item.name}</li>`
       }).join('')}
-        </ul>`
-
+      </ul>`
     $('#div2d').append($(template));
+  }
 
-    $(".js-tab-item").on('click', function () {
-      const index = $(this).index()
-      _this.currentTab = $(this).data('id')
+  showTab(id, data = {}) {
+    this.buildingName = data.buildingName || ''
+    this.floorName = data.floorName || ''
+    this.currentTab = id || this.currentTab
 
-      console.log('app.level.current', app.level.current)
+    let $_dom = $(".js-tab-item[data-id=" + this.currentTab + "]")
+    this.currentIndex = $_dom.index()
 
-      // // 不是顶级 不允许切换tab且跳至顶级
-      if (!(app.level.current instanceof THING.Campus)) {
-        console.log('园区级事件')
-        // 不允许切换tab
-        if (!$(this).hasClass('active')) {
-          app.level.change(app.root.campuses[0])
-          _this.buildingName = ''
-        }
-      }
+    const isCurrentBuilding = $_dom.data('buildingName') === this.buildingName
+    const isCurrentFloor = $_dom.data('floorName') === this.floorName
+    if (isCurrentFloor && isCurrentBuilding && $_dom.hasClass('active')) {
+      return
+    }
+    $_dom.data('buildingName', this.buildingName)
+    $_dom.data('floorName', this.floorName)
+    // 因为是动态添加的，所以要用祖先查询
+    $('#div2d .page-container').hide()
+    $(`#page${this.currentTab}`).show()
+    $_dom.addClass('active').siblings().removeClass('active')
+    this.showPage()
+  }
 
-      const isCurrentBuilding = $(this).data('buildingName') === _this.buildingName
-      if (isCurrentBuilding && $(this).hasClass('active')) {
-        return
-      }
+  showPage() {
+    if ($(`#page${this.currentTab}`).length === 0) {
+      $('#div2d').append($(`<div class="page-container" id="page${this.currentTab}"></div>`))
+      G_TAbLIST_ARR[this.currentIndex].pageCtrl = app.addControl(new G_TAbLIST_ARR[this.currentIndex].func({
+        pageId: this.currentTab
+      }))
+    } else {
+      G_TAbLIST_ARR[this.currentIndex].pageCtrl.reload({
+        pageId: this.currentTab,
+        buildingName: this.buildingName,
+        floorName: this.floorName
+      })
+    }
 
-      console.log('currentTab===', _this.currentTab)
-      console.log('buildingName===', _this.buildingName)
-
-      $(this).data('buildingName', _this.buildingName)
-
-      if ($(`#page${_this.currentTab}`).length === 0) {
-        $('#div2d').append($(`<div class="page-container" id="page${_this.currentTab}"></div>`))
-        tabList[index].pageCtrl = app.addControl(new tabList[index].func({
-          pageId: _this.currentTab
-        }))
-      } else {
-        tabList[index].pageCtrl.reload({
-          pageId: _this.currentTab,
-          buildingName: _this.buildingName
-        })
-      }
-
-      $(`#page${_this.currentTab}`).show().siblings('.page-container').hide()
-      $(this).addClass('active').siblings().removeClass('active')
-      // 显示图表
-      $('.page-aside-left').addClass('animate__fadeInLeft')
-      $('.page-aside-right').addClass('animate__fadeInRight')
-      let timer = setTimeout(function () {
-        $('.page-aside-left').removeClass('animate__fadeInLeft')
-        $('.page-aside-right').removeClass('animate__fadeInRight')
-        clearTimeout(timer)
-      }, 1000)
+    // 显示图表
+    $('.page-aside-left').addClass('animate__fadeInLeft')
+    $('.page-aside-right').addClass('animate__fadeInRight')
+    let timer = setTimeout(function () {
+      $('.page-aside-left').removeClass('animate__fadeInLeft')
+      $('.page-aside-right').removeClass('animate__fadeInRight')
+      clearTimeout(timer)
+    }, 1000)
+    // 数字滚动
+    $(".js-rock-number").each(function () {
+      $(this).numberRock({
+        lastNumber: parseInt($(this).text()),
+        duration: 800,
+        easing: 'swing',
+      });
     })
   }
-
-  showTab(id, data) {
-    if (data) {
-      this.buildingName = data.buildingName
-    }
-    console.log(this.buildingName)
-    let $dom = $(".js-tab-item[data-id=" + (id || this.currentTab) + "]")
-    $dom.trigger("click")
-  }
 }
+

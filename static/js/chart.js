@@ -207,6 +207,7 @@ $(function () {
         },
       ],
     }
+    notReturnChart.clear()
     notReturnChart && notReturnChart.setOption(option)
   }
 
@@ -332,6 +333,7 @@ $(function () {
         },
       ],
     }
+    abnormalWarningChart.clear()
     abnormalWarningChart && abnormalWarningChart.setOption(option)
   }
 
@@ -394,6 +396,7 @@ $(function () {
         },
       ],
     }
+    roomUsageChart.clear()
     roomUsageChart && roomUsageChart.setOption(option)
   }
 
@@ -523,6 +526,7 @@ $(function () {
         },
       ],
     }
+    passChart.clear() 
     passChart && passChart.setOption(option)
   }
 
@@ -567,6 +571,7 @@ $(function () {
         },
       ],
     }
+    interceptChart.clear()
     interceptChart && interceptChart.setOption(option)
   }
 })

@@ -1,6 +1,8 @@
 .page-container {
-  
+  font-size: 16px;
+  color: #fff;
 }
+
 .page-aside {
   width: 28%;
   min-width: 380px;
@@ -66,11 +68,21 @@
       position: absolute;
       content: '';
       left: 0;
-      top: 25px;
+      top: 50%;
+      margin-top: 5px;
       width: 10px;
       height: 10px;
       background: linear-gradient(139deg, #24D6EB 0%, #1D4BD3 100%);
       border-radius: 50%;
+    }
+    .brand {
+      padding: 0 25px;
+      height: 21px;
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 21px;
+      background: linear-gradient(132deg, #2DE2E5 0%, #25A0E2 100%);
+      border-radius: 4px;
     }
     .label-list {
       justify-self: flex-end;
@@ -110,6 +122,7 @@
   .chart-block__bd {
     flex: 1;
     padding: 10px 0;
+    overflow: hidden;
     > div {
       height: 100%;
     }
@@ -156,4 +169,22 @@
       opacity: 0.5;
     }
   }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* 滑块 */
+::-webkit-scrollbar-thumb {
+  background-color: #276B86;
+  &:hover {
+    background-color: #276B86;
+  }
+}
+
+/* 滑道 */
+::-webkit-scrollbar-track {
+  background: #1D2A42;
 }

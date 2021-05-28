@@ -52,7 +52,12 @@
       <div class="page-container">
         <div class="page-aside page-aside-left animate__animated page-apartment">
           <div class="chart-block chart-basic flex-none">
-            <div class="chart-block__hd">学校概况</div>
+            <div class="chart-block__hd">
+              <p>
+                <span class="js-building-name"></span>
+                <span class="js-school-name">学校</span>概况
+              </p>
+            </div>
             <div class="chart-block__bd">
               <ul class="list">
                 <li class="item item-dormitory">
@@ -76,7 +81,7 @@
           </div>
           <div class="chart-block chart-not-return">
             <div class="chart-block__hd">
-              <span>未归寝率排行</span>
+              <p><span class="js-building-name"></span>未归寝率排行</p>
               <ul class="tab-list">
                 <li class="tab-item active">楼栋</li>
                 <li class="tab-item">院系</li>
@@ -87,7 +92,9 @@
             </div>
           </div>
           <div class="chart-block chart-abnormal">
-            <div class="chart-block__hd">异常预警</div>
+            <div class="chart-block__hd">
+              <p><span class="js-building-name"></span>异常预警</p>
+            </div>
             <div class="chart-block__bd">
               <div id="abnormalWarningChart"></div>
             </div>
@@ -95,25 +102,27 @@
         </div>
         <div class="page-aside page-aside-right animate__animated page-apartment">
           <div class="chart-block chart-room-usage flex-none">
-            <div class="chart-block__hd">房间使用率</div>
+            <div class="chart-block__hd">
+               <p><span class="js-building-name"></span>房间使用率</p>
+            </div>
             <div class="chart-block__bd">
               <div id="roomUsageChart" class="left"></div>
               <div class="right">
-                <div class="item card">
-                  <span class="dot"></span>未使用床位<span class="mark">752</span>
+                <div class="item square-card">
+                  <span class="dot"></span>未使用床位<span class="text">752</span>
                 </div>
-                <div class="item card card-alt">
-                  <span class="dot"></span>总床位<span class="mark">2367</span>
+                <div class="item square-card square-card--grren">
+                  <span class="dot"></span>总床位<span class="text">2367</span>
                 </div>
               </div>
             </div>
           </div>
           <div class="chart-block chart-pass">
             <div class="chart-block__hd">
-              <span>今日通行人数</span>
+              <p><span class="js-building-name"></span>今日通行人数</p>
               <ul class="label-list">
-                <li class="label-item">出：<span id="roomUsageChartIn">0</span></li>
-                <li class="label-item">入：<span id="roomUsageChartOut">0</span></li>
+                <li class="label-item">出：<span id="roomUsageChartOut">0</span></li>
+                <li class="label-item">入：<span id="roomUsageChartIn">0</span></li>
               </ul>
             </div>
             <div class="chart-block__bd">
@@ -122,7 +131,7 @@
           </div>
           <div class="chart-block chart-intercept">
             <div class="chart-block__hd">
-              <span>今日通行拦截</span>
+              <p><span class="js-building-name"></span>今日通行拦截</p>
               <ul class="label-list">
                 <li class="label-item">总人数：<span id="interceptChartSum">0</span></li>
               </ul>

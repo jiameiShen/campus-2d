@@ -78,80 +78,12 @@
 
       .right {
         flex: 1;
+        height: auto;
         display: flex;
         flex-direction: column;
         margin-left: 35px;
         justify-content: center;
-      }
-
-      .item {
-        position: relative;
-        width: 100%;
-        height: 30px;
-        padding: 0 12px;
-        background: #0b1931;
-        border: 1px solid #1e2f3f;
-        color: #7eadc0;
-        font-size: 14px;
-        align-items: center;
-        display: flex;
-        box-sizing: border-box;
-        justify-content: space-between;
-        padding-left: 25px;
-        &::before {
-          width: 0;
-          height: 0;
-          border-width: 4px;
-          border-color: #228ae1 transparent transparent #228ae1;
-          border-style: solid;
-          content: " ";
-          position: absolute;
-          left: 1px;
-          top: 1px;
-        }
-        &::after {
-          width: 0;
-          height: 0;
-          border-width: 4px;
-          border-color: transparent #228ae1 #228ae1 transparent;
-          border-style: solid;
-          content: " ";
-          position: absolute;
-          right: 1px;
-          bottom: 1px;
-        }
-        .dot {
-          display: inline-block;
-          width: 10px;
-          height: 10px;
-          border-width: 2px;
-          border-style: solid;
-          border-radius: 50%;
-          box-sizing: border-box;
-          margin-right: 6px;
-          position: absolute;
-          left: 10px;
-          top: 10px;
-          border-color: #228ae1;
-        }
-        .mark {
-          font-size: 16px;
-          font-weight: bold;
-          color: #fff;
-        }
-        &:nth-of-type(n+2) {
-          margin-top: 12px;
-          &::before {
-            border-color: #2DE2E5 transparent transparent #2DE2E5;
-          }
-          &::after {
-            border-color: transparent #2DE2E5 #2DE2E5 transparent;
-          }
-          .dot {
-            border-color: #2DE2E5;
-          }
-        }
-      }
+      }      
     }
   }
 
@@ -166,4 +98,247 @@
       padding: 20px 0;
     }
   }
+
+  .square-card {
+    position: relative;
+    width: 100%;
+    height: 30px;
+    padding: 0 12px;
+    background: #0b1931;
+    border: 1px solid #1e2f3f;
+    color: #7eadc0;
+    font-size: 14px;
+    align-items: center;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+    padding-left: 25px;
+    &::before {
+      width: 0;
+      height: 0;
+      border-width: 4px;
+      border-color: #228ae1 transparent transparent #228ae1;
+      border-style: solid;
+      content: " ";
+      position: absolute;
+      left: 1px;
+      top: 1px;
+    }
+    &::after {
+      width: 0;
+      height: 0;
+      border-width: 4px;
+      border-color: transparent #228ae1 #228ae1 transparent;
+      border-style: solid;
+      content: " ";
+      position: absolute;
+      right: 1px;
+      bottom: 1px;
+    }
+    .dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-width: 2px;
+      border-style: solid;
+      border-radius: 50%;
+      box-sizing: border-box;
+      margin-right: 6px;
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      border-color: #228ae1;
+    }
+    .text {
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+    }
+    &--green {
+      &::before {
+        border-color: #2DE2E5 transparent transparent #2DE2E5;
+      }
+      &::after {
+        border-color: transparent #2DE2E5 #2DE2E5 transparent;
+      }
+      .dot {
+        border-color: #2DE2E5;
+      }
+    }
+    &:nth-of-type(n+2) {
+      margin-top: 12px;
+      
+    }
+  }
+
+  // 楼层样式
+  .chart-room-count {
+    .chart-block__bd {
+      padding: 30px 0;
+      display: flex;
+      align-items: center;
+      .room-count-wrapper {
+        position: relative;
+        width: 136px;
+        height: 136px;
+        background: url('./../image/chart-circle-bg.png') no-repeat center top/100% 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        .inner {
+          position: absolute;
+        }
+        .count {
+          font-size: 20px;
+          line-height: 26px;
+          font-weight: bold;
+        }
+        .desc {
+          margin-top: 3px;
+          font-size: 14px;
+          color: #7EADC0;
+          line-height: 19px;
+        }
+      }
+
+      .right {
+        margin-left: 18px;
+        flex: 1;
+        height: auto;
+      }
+    }
+  }
+
+  .chart-check-statistics {
+    .chart-block__bd {
+      padding: 20px 0;
+      .list {
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .item {
+        position: relative;
+        flex: 1;
+        display: flex;
+        padding: 0 16px;
+        background: #0B1931;
+        border: 1px solid #263752;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 16px;
+        line-height: 19px;
+        cursor: pointer;
+        .glyphicon {
+          margin-left: 10px;
+          font-size: 12px;
+          transform: scale(0.9);
+          color: #D1D4D9;
+        }
+        &:nth-of-type(n+2) {
+          margin-top: 10px;
+        }
+      }
+
+      .icon {
+        width: 26px;
+        height: 26px;
+        margin-right: 16px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 0 0;
+      }
+
+      .icon-1 {
+        background-image: url('./../image/icon-checkdata-1.png');
+      }
+
+      .icon-2 {
+        background-image: url('./../image/icon-checkdata-2.png');
+      }
+
+      .icon-3 {
+        background-image: url('./../image/icon-checkdata-3.png');
+      }
+
+      .icon-4 {
+        background-image: url('./../image/icon-checkdata-4.png');
+      }
+
+      .icon-5 {
+        background-image: url('./../image/icon-checkdata-5.png');
+      }
+
+      .icon-6 {
+        background-image: url('./../image/icon-checkdata-6.png');
+      }
+
+      .k {
+        flex: 1;
+      }
+    }
+  }
+
+  .chart-room-statistics {
+    .chart-block__bd {
+      padding: 20px 0;
+      margin-right: -30px;
+      .list {
+        height: 100%;
+        overflow: auto;
+      }
+      .item {
+        margin-right: 20px;
+        padding: 16px;
+        background: #0B1931;
+        border: 1px solid #263752;
+        font-size: 14px;
+        line-height: 19px;
+        &:nth-of-type(n+2) {
+          margin-top: 10px;
+        }
+        .cell {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          .icon-door {
+            width: 18px;
+            height: 18px;
+            background: url('./../image/icon-door.png') no-repeat center top; 
+          }
+          .name {
+            flex: 1;
+          }
+          .rate {
+            color: #2BD0E4;
+          }
+        }
+
+        .cell-2 {
+          margin-top: 12px;
+          height: 8px;
+          background: #1D2A42;
+          border-radius: 5px;
+          .inner {
+            width: 80%;
+            height: 100%;
+            background: linear-gradient(316deg, #228AE1 0%, #28BEE3 100%);
+            border-radius: 5px;
+          }
+        }
+
+        .cell-3 {
+          margin-top: 10px;
+        }
+      }
+    }
+
+  }
+}
+
+.page-apartment-detail {
+  display: grid;
+  grid-template-rows: 36% 64%;
 }

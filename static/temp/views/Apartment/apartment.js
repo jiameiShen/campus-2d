@@ -12,6 +12,7 @@ class CreatePageApartment {
   pageId = 'Apartment'
   buildingName = ''
   floorName = ''
+  notReturnChart_current = 'dormitory'
   constructor(data) {
     if (data) {
       this.pageId = data.pageId || this.pageId
@@ -32,8 +33,18 @@ class CreatePageApartment {
    * 初始化面板
    */
   init() {
+    let _this = this
     // 插入到 ThingJS 内置的 2D 界面 #pageContainer 中
     $(`#page${this.pageId}`).html($(apartmentTemplate));
+
+    // 设置当前图表选项
+    /* 未归寝率排行 */
+    $(document).on('click', '#notReturnChartButton .tab-item', function () {
+      $(this).addClass('active').siblings().removeClass('active')
+      _this.notReturnChart_current = $(this).data('val')
+      renderNotReturnChart(this.notReturnChart_current)
+    })
+
     this.render()
   }
 
@@ -55,15 +66,20 @@ class CreatePageApartment {
 
   render() {
     $(`#page${this.pageId} .js-building-name`).text(this.buildingName)
+    let notReturnChart_current = ''
     if (this.buildingName) {
       $(`#page${this.pageId} .js-school-name`).hide()
+      notReturnChart_current = 'college'
+      $('#notReturnChartButton').hide()
     } else {
       $(`#page${this.pageId} .js-school-name`).show()
+      this.pickNotReturnChart()
+      $('#notReturnChartButton').show()
     }
 
     /* 未归寝率排行 */
     notReturnChart = window.echarts.init(document.getElementById('notReturnChart'), null, { devicePixelRatio: 2.5 })
-    renderNotReturnChart()
+    renderNotReturnChart(notReturnChart_current || this.notReturnChart_current)
     /* 异常预警 */
     abnormalWarningChart = window.echarts.init(document.getElementById('abnormalWarningChart'), null, { devicePixelRatio: 2.5 })
     renderAbnormalWarningChart()
@@ -350,6 +366,13 @@ class CreatePageApartment {
     floorPassChart = window.echarts.init(document.getElementById('floorPassChart'), null, { devicePixelRatio: 2.5 })
     renderFloorPassChart(passTimeList, passInList, passOutList)
   }
+
+  pickNotReturnChart(val) {
+    $(`#notReturnChartButton .tab-item[data-val="${val || this.notReturnChart_current}"]`)
+      .addClass('active')
+      .siblings()
+      .removeClass('active')
+  }
 }
 
 var apartmentTemplate = `
@@ -384,9 +407,9 @@ var apartmentTemplate = `
         <div class="chart-block chart-not-return">
         <div class="chart-block__hd">
             <p><span class="js-building-name"></span>未归寝率排行</p>
-            <ul class="tab-list">
-            <li class="tab-item active">楼栋</li>
-            <li class="tab-item">院系</li>
+            <ul class="tab-list" id="notReturnChartButton">
+              <li class="tab-item" data-val="dormitory">楼栋</li>
+              <li class="tab-item" data-val="college">院系</li>
             </ul>
         </div>
         <div class="chart-block__bd">

@@ -69,9 +69,13 @@ const TEXTCOLOR = '#7EADC0'
 //   interceptChart = window.echarts.init(document.getElementById('interceptChart'), null, {devicePixelRatio: 2.5})
 //   renderInterceptChart(interceptInfo.data)
 
-function renderNotReturnChart() {
+function renderNotReturnChart(notReturnChart_current) {
   const inData = [320, 302, 301, 334, 390, 330, 320]
   const outData = [120, 132, 101, 134, 90, 230, 210]
+  const categoryList =
+    notReturnChart_current === 'dormitory'
+      ? ['1#宿舍楼', '2#宿舍楼', '3#宿舍楼', '4#宿舍楼', '5#宿舍楼']
+      : ['管理学院', '计算机学院', '经济管理学院', '机电工程学院', '外语学院']
   let rateData = []
   inData.forEach((item, index) => {
     rateData.push(item / (item + outData[index]))
@@ -139,7 +143,7 @@ function renderNotReturnChart() {
     },
     yAxis: {
       type: 'category',
-      data: ['管理学院', '计算机学院', '经济管理学院', '机电工程学院', '外语学院'],
+      data: categoryList,
       axisLine: {
         lineStyle: {
           color: '#3C415B',

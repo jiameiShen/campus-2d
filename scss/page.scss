@@ -32,7 +32,7 @@
 
   // 解除自适应高度
   .flex-none {
-    flex: none!important;
+    flex: none !important;
   }
 
   .chart-block {
@@ -40,8 +40,8 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    
-    &:nth-of-type(n+2) {
+
+    &:nth-of-type(n + 2) {
       &::before {
         position: absolute;
         content: '';
@@ -49,7 +49,12 @@
         left: 30px;
         right: 30px;
         height: 1px;
-        background: linear-gradient(270deg, rgba(111, 127, 174, 0) 0%, #6F7FAE 52%, rgba(111, 127, 174, 0) 100%);
+        background: linear-gradient(
+          270deg,
+          rgba(111, 127, 174, 0) 0%,
+          #6f7fae 52%,
+          rgba(111, 127, 174, 0) 100%
+        );
         opacity: 0.5;
       }
     }
@@ -72,7 +77,7 @@
       margin-top: 5px;
       width: 10px;
       height: 10px;
-      background: linear-gradient(139deg, #24D6EB 0%, #1D4BD3 100%);
+      background: linear-gradient(139deg, #24d6eb 0%, #1d4bd3 100%);
       border-radius: 50%;
     }
     .brand {
@@ -81,14 +86,14 @@
       font-size: 16px;
       font-weight: bold;
       line-height: 21px;
-      background: linear-gradient(132deg, #2DE2E5 0%, #25A0E2 100%);
+      background: linear-gradient(132deg, #2de2e5 0%, #25a0e2 100%);
       border-radius: 4px;
     }
     .label-list {
       justify-self: flex-end;
       display: flex;
       font-size: 12px;
-      color: #7EADC0;
+      color: #7eadc0;
       font-weight: normal;
     }
     .label-item {
@@ -104,7 +109,7 @@
     .tab-item {
       padding: 2px 8px;
       line-height: 19px;
-      background: #1D2A42;
+      background: #1d2a42;
       border: 1px solid #263752;
       cursor: pointer;
       opacity: 0.8;
@@ -112,8 +117,8 @@
         opacity: 1;
       }
       &.active {
-        background: #1E4E6B;
-        border: 1px solid #2DC0E5;
+        background: #1e4e6b;
+        border: 1px solid #2dc0e5;
         opacity: 1;
       }
     }
@@ -126,64 +131,4 @@
       height: 100%;
     }
   }
-}
-
-.echarts-tooltip-dark {
-  background-color: #0B1931!important;
-  border-color: #263752!important;
-  color: #fff!important;
-  .caption {
-    padding-bottom: 10px;
-    font-size: 16px;
-  }
-  .item {
-    display: flex;
-    line-height: 19px;
-    align-items: center;
-  }
-  .mark {
-    margin-right: 3px;
-    width: 14px;
-    height: 4px;
-  }
-  .value {
-    margin-left: 14px;
-    flex: 1;
-    text-align: right;
-  }
-  .rate {
-    margin-top: 10px;
-    position: relative;
-    padding-top: 10px;
-    text-align: center;
-    color: #FCE569;
-    &::before {
-      position: absolute;
-      content: '';
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(270deg, rgba(111, 127, 174, 0) 0%, #6F7FAE 52%, rgba(111, 127, 174, 0) 100%);
-      opacity: 0.5;
-    }
-  }
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-/* 滑块 */
-::-webkit-scrollbar-thumb {
-  background-color: #276B86;
-  &:hover {
-    background-color: #276B86;
-  }
-}
-
-/* 滑道 */
-::-webkit-scrollbar-track {
-  background: #1D2A42;
 }

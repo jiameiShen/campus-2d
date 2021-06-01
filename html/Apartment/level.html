@@ -7,6 +7,7 @@
     <title>智慧校园</title>
     <link rel="stylesheet" href="../../static/css/home.css" />
     <link rel="stylesheet" href="../../static/css/header.css" />
+    <link rel="stylesheet" href="../../static/css/global.css" />
     <link rel="stylesheet" href="../../static/css/page.css" />
     <link rel="stylesheet" href="../../static/css/page-apartment.css" />
     <link rel="stylesheet" href="../../static/css/level-mock.css" />
@@ -41,6 +42,16 @@
 
   <body>
     <div id="div2d">
+      <div class="room-marker">
+        <div class="caption">101</div>
+        <ul class="list">
+          <li class="item">
+            <span class="item-info">1号床</span>
+            <span class="item-info item-name">李湘</span>
+            <span class="item-info">在寝</span>
+          </li>
+        </ul>
+      </div>
       <div class="g-header">
         <div class="left">
           <img class="logo" src="./../../static/image/logo.png" />
@@ -59,6 +70,11 @@
         <li class="tab-item js-tab-item" data-id="Security">安全管理</li>
       </ul>
       <div class="page-container">
+        <div class="page-apartment-toolbar">
+          <div class="legend-item"><span class="icon bg-yellow"></span>在外</div>
+          <div class="legend-item"><span class="icon bg-green"></span>请假</div>
+          <div class="vbtn js-tool-show-room" data-open="1">隐藏房间信息</div>
+        </div>
         <div class="page-aside page-aside-left animate__animated page-apartment page-apartment-detail">
           <div class="chart-block chart-room-count">
             <div class="chart-block__hd">
@@ -168,7 +184,6 @@
             </div>
           </div>
         </div>
-
         <!-- Modal -->
         <div class="modal fade g-dialog" id="checkStatisticsModal">
           <div class="modal-dialog">

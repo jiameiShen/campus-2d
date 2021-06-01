@@ -119,8 +119,10 @@ class CreatePageApartment {
   }
 
   renderFloor() {
+    let _this = this
     $(`#page${this.pageId} .js-floor-name`).text(this.floorName)
     // 模拟楼层学生数据
+    let floorNumber = parseInt(this.floorName)
     let dataList = Mock.mock({
       'data|23': [
         {
@@ -128,7 +130,7 @@ class CreatePageApartment {
           inNumber: 2, // 在寝
           outNumber: 1, // 离寝
           leaveNumber: 1, // 请假
-          floorNumber: 1,
+          floorNumber: floorNumber,
           roomId: '91865b3c250740829984d4f498839159',
           'roomNumber|+1': 1,
           'bedDTOList|4': [
@@ -149,10 +151,8 @@ class CreatePageApartment {
       ],
     }).data
 
-
     // 房间分布
-    let roomList = []
-    let roomTemplate = []
+    let roomMap = new Map()
 
     // 房间统计
     let roomStatisticsList = []
@@ -160,23 +160,19 @@ class CreatePageApartment {
 
     dataList.forEach(item => {
       // 房间名称
-      const roomName = `${item.floorNumber}${item.roomNumber.toString().padStart(2, '0')}`
+      item.roomNumber = item.roomNumber.toString().padStart(2, '0')
+      item.roomName = `${item.floorNumber}${item.roomNumber}`
 
       // 归寝率
       const inRate = item.inNumber / item.totalNumber
-      roomList.push(
-        `<li class="room-item js-room-item" data-room="${item.roomNumber}">
-        <span class="room-order">${roomName}</span>
-        <div class="bed-group bed-group-1" data-bed="01"></div>
-        <div class="bed-group bed-group-2" data-bed="02"></div>
-      </li>`
-      )
+
+      roomMap.set(item.roomNumber, item)
 
       roomStatisticsList.push(
         `<li class="item">
         <div class="cell cell-1">
           <span class="icon icon-door"></span>
-          <span class="name">${roomName}</span>
+          <span class="name">${item.roomName}</span>
           <span class="rate">归寝率：${(inRate * 100).toFixed(2)}%</span>
         </div>
         <div class="cell cell-2">
@@ -192,31 +188,48 @@ class CreatePageApartment {
       )
     })
 
-    roomTemplate = `<ul class="level-mock" id="levelMock">${roomList.join('')}</ul>`
     roomStatisticsTemplate = `<ul class="list">${roomStatisticsList.join('')}</ul>`
 
-    // $('#div2d').append($(roomTemplate))
     $('#roomStatisticsChart').html($(roomStatisticsTemplate))
 
-    // 模拟3d放学生信息进去
-    // dataList.forEach((room) => {
-    //   const roomNumber = room.roomNumber
-    //   room.bedDTOList.forEach((bed, bedIndex) => {
-    //     let bedNum = '01'
-    //     if (bedIndex >= 2) {
-    //       bedNum = '02'
-    //     }
-    //     let color = ''
-    //     if (bed.isLeave) {
-    //       color = 'color-green'
-    //     } else if (!bed.status) {
-    //       color = 'color-yellow'
-    //     }
-    //     $(`.js-room-item[data-room="${roomNumber}"]`)
-    //       .find(`[data-bed="${bedNum}"]`)
-    //       .append($(`<span class="bed-item bed-item-${bedIndex} ${color}" data-student-id="${bed.studentId}">${bedNum}${bed.studentName}</span>`))
-    //   })
-    // })
+    // 循环展示各房间信息
+    let currentFloor = app.level.current
+    currentFloor.rooms.forEach(function (room) {
+      let roomData = roomMap.get(room.userData.room)
+      if (roomData) {
+        let template = `
+          <div class="room-marker" id="board${roomData.roomNumber}">
+            <div class="caption">${roomData.roomName}</div>
+            <ul class="list">
+              ${roomData.bedDTOList.map((bed, index) => {
+                let color = ''
+                let status = '在寝'
+                if (bed.isLeave) {
+                  color = 'color-green'
+                  status = '请假'
+                } else if (!bed.status) {
+                  color = 'color-yellow'
+                  status = '外出'
+                }
+                return `<li class="item">
+                  <span class="item-info">${index+1}号床</span>
+                  <span class="item-info item-name ${color} bed-item" data-room-number="${roomData.roomNumber}" data-student-id="${bed.studentId}">${bed.studentName}</span>
+                  <span class="item-info">${status}</span>
+                </li>`
+              }).join('')}
+            </ul>
+          </div>
+        `
+        $(`#page${_this.pageId}`).append($(template));
+        app.create({
+          type: 'UIAnchor',
+          parent: room,
+          element: document.getElementById('board' + roomData.roomNumber),
+          localPosition: [0, 2, 0],
+          pivot: [0.5, 1]
+        });
+      }
+    })
 
     // 查寝统计弹窗
     $('#checkStatisticsChart').on('click', '.item', function () {
@@ -250,23 +263,19 @@ class CreatePageApartment {
       </table>
     `
       $('#checkStatisticsModal').find('.modal-body').html($(template))
-      console.log($(this).index())
       $('#checkStatisticsModal .modal-title').text($(this).find('.k').text())
       $('#checkStatisticsModal').modal()
     })
 
-    $('#levelMock').on('click', '.bed-item', function () {
+    $('#div2d').on('click', '.room-marker .bed-item', function () {
+      const roomNumber = $(this).data('room-number').toString()
       const studentId = $(this).data('student-id')
-      let studentInfo = null
-      dataList.forEach((room) => {
-        if (studentInfo) {
-          return
-        }
-        studentInfo = room.bedDTOList.find(bed => bed.studentId === studentId)
-      })
-
-      if (!studentId) return
-
+      let room = roomMap.get(roomNumber)
+      if (!room) {
+        return
+      }
+      let studentInfo = room.bedDTOList.find(bed => bed.studentId === studentId)
+      if (!studentInfo) return
       let color = ''
       let status = '在寝'
       if (studentInfo.isLeave) {
@@ -437,222 +446,225 @@ var apartmentTemplate = `
 `
 
 var apartmentLevelTemplate = `
-    <div class="page-container">
-        <div class="page-aside page-aside-left animate__animated page-apartment page-apartment-detail">
-          <div class="chart-block chart-room-count">
-            <div class="chart-block__hd">
-              <p class="brand js-floor-name">1F</p>
-            </div>
-            <div class="chart-block__bd">
-              <div class="left room-count-wrapper">
-                <div class="inner">
-                  <p class="count js-rock-number">10</p>
-                  <p class="desc">房间总数</p>
-                </div>
-              </div>
-              <div class="right">
-                <div class="square-card">
-                  <span class="dot"></span>空房间数<span class="text">2</span>
-                </div>
-                <div class="square-card">
-                  <span class="dot"></span>床位总数<span class="text">60</span>
-                </div>
-                <div class="square-card">
-                  <span class="dot"></span>空床位数<span class="text">10</span>
-                </div>
-                <div class="square-card">
-                  <span class="dot"></span>入住人数<span class="text">10</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="chart-block chart-check-statistics">
-            <div class="chart-block__hd">查寝统计</div>
-            <div class="chart-block__bd" id="checkStatisticsChart">
-              <ul class="list">
-                <li class="item">
-                  <span class="icon icon-1"></span>
-                  <span class="k">当前在寝</span>
-                  <span class="v">20</span>
-                  <span class="glyphicon glyphicon-menu-right"></span>
-                </li>
-                <li class="item">
-                  <span class="icon icon-2"></span>
-                  <span class="k">当前在外</span>
-                  <span class="v">20</span>
-                  <span class="glyphicon glyphicon-menu-right"></span>
-                </li>
-                <li class="item">
-                  <span class="icon icon-3"></span>
-                  <span class="k">昨日晚归</span>
-                  <span class="v color-red">20</span>
-                  <span class="glyphicon glyphicon-menu-right"></span>
-                </li>
-                <li class="item">
-                  <span class="icon icon-4"></span>
-                  <span class="k">昨日未归</span>
-                  <span class="v color-red">20</span>
-                  <span class="glyphicon glyphicon-menu-right"></span>
-                </li>
-                <li class="item">
-                  <span class="icon icon-5"></span>
-                  <span class="k">多天未出</span>
-                  <span class="v color-red">20</span>
-                  <span class="glyphicon glyphicon-menu-right"></span>
-                </li>
-                <li class="item">
-                  <span class="icon icon-6"></span>
-                  <span class="k">多天未归</span>
-                  <span class="v color-red">20</span>
-                  <span class="glyphicon glyphicon-menu-right"></span>
-                </li>
-              </ul>
-            </div>
-          </div>
+    <div class="page-apartment-toolbar">
+      <div class="legend-item"><span class="icon bg-yellow"></span>在外</div>
+      <div class="legend-item"><span class="icon bg-green"></span>请假</div>
+      <div class="vbtn js-tool-show-room" data-open="1">隐藏房间信息</div>
+    </div>
+    <div class="page-aside page-aside-left animate__animated page-apartment page-apartment-detail">
+      <div class="chart-block chart-room-count">
+        <div class="chart-block__hd">
+          <p class="brand js-floor-name">1F</p>
         </div>
-        <div class="page-aside page-aside-right animate__animated page-apartment page-apartment-detail">
-          <div class="chart-block">
-            <div class="chart-block__hd">
-              <p><span class="js-building-name"></span>归寝趋势</p>
-              <ul class="label-list">
-                <li class="label-item">归寝：<span id="roomUsageChartIn">7</span></li>
-                <li class="label-item">外出：<span id="roomUsageChartOut">1</span></li>
-              </ul>
-            </div>
-            <div class="chart-block__bd">
-              <div id="floorPassChart"></div>
+        <div class="chart-block__bd">
+          <div class="left room-count-wrapper">
+            <div class="inner">
+              <p class="count js-rock-number">10</p>
+              <p class="desc">房间总数</p>
             </div>
           </div>
-          <div class="chart-block chart-room-statistics">
-            <div class="chart-block__hd">各房间统计</div>
-            <div class="chart-block__bd" id="roomStatisticsChart">
-              <ul class="list">
-                <li class="item">
-                  <div class="cell cell-1">
-                    <span class="icon icon-door"></span>
-                    <span class="name">101</span>
-                    <span class="rate">归寝率：50%</span>
-                  </div>
-                  <div class="cell cell-2">
-                    <div class="inner"></div>
-                  </div>
-                  <div class="cell cell-3">
-                    <span class="count">入住：4</span>
-                    <span class="count">在寝：2</span>
-                    <span class="count">在外：1</span>
-                    <span class="count">请假：1</span>
-                  </div>
-                </li>
-              </ul>
+          <div class="right">
+            <div class="square-card">
+              <span class="dot"></span>空房间数<span class="text">2</span>
             </div>
-          </div>
-        </div>
-
-        <!-- Modal -->
-        <div class="modal fade g-dialog" id="checkStatisticsModal">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-                <p class="modal-title">昨日晚归</p>
-              </div>
-              <div class="modal-body">
-                <table class="g-table">
-                  <thead>
-                    <tr>
-                      <th>姓名</th>
-                      <th>房间</th>
-                      <th>床位</th>
-                      <th>持续天数</th>
-                      <th>开始日期</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>赵柳</td>
-                      <td>101</td>
-                      <td>02</td>
-                      <td>10</td>
-                      <td>2021-04-23</td>
-                    </tr>
-                    <tr>
-                      <td>赵柳</td>
-                      <td>101</td>
-                      <td>02</td>
-                      <td>10</td>
-                      <td>2021-04-23</td>
-                    </tr>
-                    <tr>
-                      <td>赵柳</td>
-                      <td>101</td>
-                      <td>02</td>
-                      <td>10</td>
-                      <td>2021-04-23</td>
-                    </tr>
-                    <tr>
-                      <td>赵柳</td>
-                      <td>101</td>
-                      <td>02</td>
-                      <td>10</td>
-                      <td>2021-04-23</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+            <div class="square-card">
+              <span class="dot"></span>床位总数<span class="text">60</span>
             </div>
-          </div>
-        </div>
-
-        <!-- Modal -->
-        <div class="modal fade g-dialog" id="studentInfoModal">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-                <p class="modal-title" id="studentInfoModalLabel">人员信息</p>
-              </div>
-              <div class="modal-body">
-                <ul class="g-dialog-details">
-                  <li class="item">
-                    <span class="subject">当前状态</span>
-                    <span class="content color-yellow">在外</span>
-                  </li>
-                  <li class="item">
-                    <span class="subject">学号</span>
-                    <span class="content">3113004669</span>
-                  </li>
-                  <li class="item">
-                    <span class="subject">姓名</span>
-                    <span class="content">林龙涵</span>
-                  </li>
-                  <li class="item">
-                    <span class="subject">手机号</span>
-                    <span class="content">15822189120</span>
-                  </li>
-                  <li class="item">
-                    <span class="subject">院系班级</span>
-                    <span class="content">管理学院</span>
-                  </li>
-                  <li class="item">
-                    <span class="subject">身份证号</span>
-                    <span class="content">441581199408045974</span>
-                  </li>
-                  <li class="item">
-                    <span class="subject">一卡通号</span>
-                    <span class="content">324234</span>
-                  </li>
-                  <li class="item">
-                    <span class="subject">人员类型</span>
-                    <span class="content">普通人员</span>
-                  </li>
-                </ul>
-              </div>
+            <div class="square-card">
+              <span class="dot"></span>空床位数<span class="text">10</span>
+            </div>
+            <div class="square-card">
+              <span class="dot"></span>入住人数<span class="text">10</span>
             </div>
           </div>
         </div>
       </div>
+      <div class="chart-block chart-check-statistics">
+        <div class="chart-block__hd">查寝统计</div>
+        <div class="chart-block__bd" id="checkStatisticsChart">
+          <ul class="list">
+            <li class="item">
+              <span class="icon icon-1"></span>
+              <span class="k">当前在寝</span>
+              <span class="v">20</span>
+              <span class="glyphicon glyphicon-menu-right"></span>
+            </li>
+            <li class="item">
+              <span class="icon icon-2"></span>
+              <span class="k">当前在外</span>
+              <span class="v">20</span>
+              <span class="glyphicon glyphicon-menu-right"></span>
+            </li>
+            <li class="item">
+              <span class="icon icon-3"></span>
+              <span class="k">昨日晚归</span>
+              <span class="v color-red">20</span>
+              <span class="glyphicon glyphicon-menu-right"></span>
+            </li>
+            <li class="item">
+              <span class="icon icon-4"></span>
+              <span class="k">昨日未归</span>
+              <span class="v color-red">20</span>
+              <span class="glyphicon glyphicon-menu-right"></span>
+            </li>
+            <li class="item">
+              <span class="icon icon-5"></span>
+              <span class="k">多天未出</span>
+              <span class="v color-red">20</span>
+              <span class="glyphicon glyphicon-menu-right"></span>
+            </li>
+            <li class="item">
+              <span class="icon icon-6"></span>
+              <span class="k">多天未归</span>
+              <span class="v color-red">20</span>
+              <span class="glyphicon glyphicon-menu-right"></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="page-aside page-aside-right animate__animated page-apartment page-apartment-detail">
+      <div class="chart-block">
+        <div class="chart-block__hd">
+          <p><span class="js-building-name"></span>归寝趋势</p>
+          <ul class="label-list">
+            <li class="label-item">归寝：<span id="roomUsageChartIn">7</span></li>
+            <li class="label-item">外出：<span id="roomUsageChartOut">1</span></li>
+          </ul>
+        </div>
+        <div class="chart-block__bd">
+          <div id="floorPassChart"></div>
+        </div>
+      </div>
+      <div class="chart-block chart-room-statistics">
+        <div class="chart-block__hd">各房间统计</div>
+        <div class="chart-block__bd" id="roomStatisticsChart">
+          <ul class="list">
+            <li class="item">
+              <div class="cell cell-1">
+                <span class="icon icon-door"></span>
+                <span class="name">101</span>
+                <span class="rate">归寝率：50%</span>
+              </div>
+              <div class="cell cell-2">
+                <div class="inner"></div>
+              </div>
+              <div class="cell cell-3">
+                <span class="count">入住：4</span>
+                <span class="count">在寝：2</span>
+                <span class="count">在外：1</span>
+                <span class="count">请假：1</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade g-dialog" id="checkStatisticsModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <p class="modal-title">昨日晚归</p>
+          </div>
+          <div class="modal-body">
+            <table class="g-table">
+              <thead>
+                <tr>
+                  <th>姓名</th>
+                  <th>房间</th>
+                  <th>床位</th>
+                  <th>持续天数</th>
+                  <th>开始日期</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>赵柳</td>
+                  <td>101</td>
+                  <td>02</td>
+                  <td>10</td>
+                  <td>2021-04-23</td>
+                </tr>
+                <tr>
+                  <td>赵柳</td>
+                  <td>101</td>
+                  <td>02</td>
+                  <td>10</td>
+                  <td>2021-04-23</td>
+                </tr>
+                <tr>
+                  <td>赵柳</td>
+                  <td>101</td>
+                  <td>02</td>
+                  <td>10</td>
+                  <td>2021-04-23</td>
+                </tr>
+                <tr>
+                  <td>赵柳</td>
+                  <td>101</td>
+                  <td>02</td>
+                  <td>10</td>
+                  <td>2021-04-23</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade g-dialog" id="studentInfoModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <p class="modal-title" id="studentInfoModalLabel">人员信息</p>
+          </div>
+          <div class="modal-body">
+            <ul class="g-dialog-details">
+              <li class="item">
+                <span class="subject">当前状态</span>
+                <span class="content color-yellow">在外</span>
+              </li>
+              <li class="item">
+                <span class="subject">学号</span>
+                <span class="content">3113004669</span>
+              </li>
+              <li class="item">
+                <span class="subject">姓名</span>
+                <span class="content">林龙涵</span>
+              </li>
+              <li class="item">
+                <span class="subject">手机号</span>
+                <span class="content">15822189120</span>
+              </li>
+              <li class="item">
+                <span class="subject">院系班级</span>
+                <span class="content">管理学院</span>
+              </li>
+              <li class="item">
+                <span class="subject">身份证号</span>
+                <span class="content">441581199408045974</span>
+              </li>
+              <li class="item">
+                <span class="subject">一卡通号</span>
+                <span class="content">324234</span>
+              </li>
+              <li class="item">
+                <span class="subject">人员类型</span>
+                <span class="content">普通人员</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
 `

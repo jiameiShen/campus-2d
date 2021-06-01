@@ -18,6 +18,31 @@ $(function () {
   }
   var ctrlHeader = app.addControl(new CreatHeader())
 
+  /* 返回按钮 */
+  class CreateBackNavigator {
+    constructor() { }
+    onAdd() {
+      $('#div2d').append(`<div class="g-back-navigator"><span class="glyphicon glyphicon-menu-left"></span>返回</div>`)
+      this.hide()
+    }
+
+    show() {
+      $('.g-back-navigator').show()
+    }
+
+    hide() {
+      $('.g-back-navigator').hide()
+    }
+
+    back() {
+      app.level.back()
+    }
+  }
+  var ctrlBackNavigator = app.addControl(new CreateBackNavigator())
+  $(document).on('click', '.g-back-navigator', function () {
+    ctrlBackNavigator.back()
+  })
+
   // 添加全局tab导航
   var ctrlGTabList = app.addControl(new CreateGTabList())
   ctrlGTabList.showTab('Apartment')
@@ -47,37 +72,32 @@ $(function () {
     $('#buildingMarker' + item.id + ' .text').text(item.userData.name)
   })
 
-  var buildings2 = app.query('.Thing');
+  var buildings2 = app.query('建筑');
   buildings2.forEach(function (item) {
-    if (item.name === '建筑') {
-      // 创建标注
-      let ui = app.create({
-        type: 'UIAnchor',
-        parent: item,
-        element: cloneBoardElement('buildingMarker', item.id), // 此参数填写要添加的Dom元素
-        localPosition: [0, 1, 0],
-        pivot: [0.5, 1], //[0,0]即以界面左上角定位，[1,1]即以界面右下角进行定位
-      })
-      $('#buildingMarker' + item.id + ' .text').text(item.userData.name)
-    }
+    // 创建标注
+    let ui = app.create({
+      type: 'UIAnchor',
+      parent: item,
+      element: cloneBoardElement('buildingMarker', item.id), // 此参数填写要添加的Dom元素
+      localPosition: [0, 1, 0],
+      pivot: [0.5, 1], //[0,0]即以界面左上角定位，[1,1]即以界面右下角进行定位
+    })
+    $('#buildingMarker' + item.id + ' .text').text(item.userData.name)
   })
 
   //  层级变化
-  // {String} ev.level 当前层级标识枚举值 可通过 THING.LevelType 获取枚举值，如建筑层级标识为 THING.LevelType.Building
-  // {THING.BaseObject} ev.object 当前层级对象（将要进入的层级对象）
-  // {THING.BaseObject} ev.current 当前层级对象（将要进入的层级对象）
-  // {THING.BaseObject} ev.previous 上一层级对象（离开的层级对象）
-
   app.on(THING.EventType.LevelChange, function (ev) {
     let object = ev.current
     if (object instanceof THING.Campus) {
       console.log('Campus: ' + object)
       $('.buildingMarker').show()
+      ctrlBackNavigator.hide()
       ctrlGTabList.showTab(null, {
         buildingName: ''
       })
     } else {
       $('.buildingMarker').hide()
+      ctrlBackNavigator.show()
     }
     if (object instanceof THING.Building) {
       ctrlGTabList.showTab(null, {
@@ -97,6 +117,27 @@ $(function () {
     }
   })
 
+  // 房间信息隐藏事件
+  $('#div2d').on('click', '.js-tool-show-room', function () {
+    if (!!$(this).data('open')) {
+      $(this).data('open', 0)
+      $(this).text('展示房间信息')
+      $('.room-marker').hide()
+    } else {
+      $(this).data('open', 1)
+      $(this).text('隐藏房间信息')
+      $('.room-marker').show()
+    }
+  })
+
+  // 点击房间
+  app.query(".Room").on(THING.EventType.SingleClick, function () {
+    let roomNumber = this.userData.room;
+    if ($(`#board${roomNumber}`).length > 0) {
+      $(`#board${roomNumber}`).toggle()
+      return
+    }
+  });
 
   // 创建主页建筑面板marker
   function createBoardHtml() {

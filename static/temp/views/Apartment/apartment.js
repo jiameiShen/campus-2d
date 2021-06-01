@@ -458,10 +458,14 @@ var apartmentTemplate = `
               <div id="roomUsageChart" class="left"></div>
               <div class="right">
                 <div class="item square-card">
+                  <span class="caret-left"></span>
                   <span class="dot"></span>未使用床位<span class="text js-rock-number">752</span>
+                  <span class="caret-right"></span>
                 </div>
-                <div class="item square-card square-card--grren">
+                <div class="item square-card square-card--green">
+                  <span class="caret-left"></span>
                   <span class="dot"></span>总床位<span class="text js-rock-number">2367</span>
+                  <span class="caret-right"></span>
                 </div>
               </div>
             </div>
@@ -510,18 +514,26 @@ var apartmentLevelTemplate = `
               <p class="desc">房间总数</p>
             </div>
           </div>
-          <div class="right">
+          <div class="right square-card--hasline">
             <div class="square-card">
+              <span class="caret-left"></span>
               <span class="dot"></span>空房间数<span class="text">2</span>
+              <span class="caret-right"></span>
             </div>
             <div class="square-card">
+              <span class="caret-left"></span>
               <span class="dot"></span>床位总数<span class="text">60</span>
+              <span class="caret-right"></span>
             </div>
             <div class="square-card">
+              <span class="caret-left"></span>
               <span class="dot"></span>空床位数<span class="text">10</span>
+              <span class="caret-right"></span>
             </div>
             <div class="square-card">
+              <span class="caret-left"></span>
               <span class="dot"></span>入住人数<span class="text">10</span>
+              <span class="caret-right"></span>
             </div>
           </div>
         </div>

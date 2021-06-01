@@ -73,6 +73,7 @@ class CreatePageApartment {
     if (this.buildingName) {
       notReturnChart_current = 'college'
       $('#notReturnChartButton').hide()
+      this.changeChartBasicCaption()
     } else {
       this.pickNotReturnChart()
       $('#notReturnChartButton').show()
@@ -88,8 +89,8 @@ class CreatePageApartment {
     /* 房间使用率 */
     roomUsageChart = window.echarts.init(document.getElementById('roomUsageChart'), null, { devicePixelRatio: 2.5 })
     const roomUsageData = {
-      idle: 32629,
-      total: 33487,
+      idle: 752,
+      total: 2367,
     }
     renderRoomUsageChart(
       !roomUsageData.total
@@ -374,6 +375,28 @@ class CreatePageApartment {
       .siblings()
       .removeClass('active')
   }
+
+  changeChartBasicCaption() {
+    let template = `<ul class="list">
+      <li class="item item-dormitory">
+        <p><span class="count js-rock-number">6</span>层</p>
+        <p class="caption">楼层总数</p>
+      </li>
+      <li class="item item-room">
+        <p><span class="count js-rock-number">138</span>间</p>
+        <p class="caption">房间总数</p>
+      </li>
+      <li class="item item-bed">
+        <p><span class="count js-rock-number">552</span>张</p>
+        <p class="caption">床位总数</p>
+      </li>
+      <li class="item item-people">
+        <p><span class="count js-rock-number">552</span>人</p>
+        <p class="caption">入住总数</p>
+      </li>
+    </ul>`
+    $('.chart-basic .chart-block__bd').html($(template))
+  }
 }
 
 var apartmentTemplate = `
@@ -473,7 +496,7 @@ var apartmentLevelTemplate = `
     <div class="page-apartment-toolbar">
       <div class="legend-item"><span class="icon bg-yellow"></span>在外</div>
       <div class="legend-item"><span class="icon bg-green"></span>请假</div>
-      <div class="vbtn js-tool-show-room" data-open="1">隐藏房间信息</div>
+      <div class="vbtn js-tool-show-room" data-open="0">展示房间信息</div>
     </div>
     <div class="page-aside page-aside-left animate__animated page-apartment page-apartment-detail">
       <div class="chart-block chart-room-count">

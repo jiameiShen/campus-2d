@@ -68,6 +68,7 @@ function schoolAssetsChart() {
       },
     ],
   }
+  schoolAssets.clear()
   schoolAssets.setOption(option)
 }
 
@@ -158,6 +159,7 @@ function collegeAssetsChart() {
       },
     ],
   }
+  AssetsRanking.clear()
   AssetsRanking.setOption(option)
 }
 
@@ -244,6 +246,7 @@ function classAssetsChart() {
       },
     ],
   }
+  classAssets.clear()
   classAssets.setOption(option)
 }
 
@@ -350,5 +353,6 @@ function totalAssetsChart() {
       },
     ],
   }
+  classAssets.clear()
   classAssets.setOption(option)
 }

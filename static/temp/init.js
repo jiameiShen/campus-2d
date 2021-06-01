@@ -85,6 +85,12 @@ $(function () {
     $('#buildingMarker' + item.id + ' .text').text(item.userData.name)
   })
 
+  // 修改层级背景
+  app.on(THING.EventType.EnterLevel, function (ev) {
+    app.background = '#030303';
+  }, 'customLevelSetBackground');
+  app.pauseEvent(THING.EventType.EnterLevel, THING.EventTag.LevelSetBackground);
+
   //  层级变化
   app.on(THING.EventType.LevelChange, function (ev) {
     let object = ev.current
@@ -106,7 +112,6 @@ $(function () {
       console.log('Building: ' + object)
     } else if (object instanceof THING.Floor) {
       const previousObj = ev.previous
-      console.log(object.name)
       ctrlGTabList.showTab(null, {
         buildingName: previousObj.userData.name,
         floorName: object.name
@@ -114,6 +119,11 @@ $(function () {
       console.log('Floor: ' + object)
     } else if (object instanceof THING.Thing) {
       console.log('Thing: ' + object)
+      if (object.name === '建筑') {
+        ctrlGTabList.showTab(null, {
+          buildingName: object.userData.name
+        })
+      }
     }
   })
 

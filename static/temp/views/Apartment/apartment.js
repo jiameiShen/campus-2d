@@ -65,14 +65,15 @@ class CreatePageApartment {
   }
 
   render() {
-    $(`#page${this.pageId} .js-building-name`).text(this.buildingName)
+    let _this = this
+    $(`#page${this.pageId} .js-building-name`).each(function () {
+      $(this).text(_this.buildingName || $(this).data('school'))
+    })
     let notReturnChart_current = ''
     if (this.buildingName) {
-      $(`#page${this.pageId} .js-school-name`).hide()
       notReturnChart_current = 'college'
       $('#notReturnChartButton').hide()
     } else {
-      $(`#page${this.pageId} .js-school-name`).show()
       this.pickNotReturnChart()
       $('#notReturnChartButton').show()
     }
@@ -377,95 +378,95 @@ class CreatePageApartment {
 
 var apartmentTemplate = `
     <div class="page-aside page-aside-left animate__animated page-apartment">
-        <div class="chart-block chart-basic flex-none">
-        <div class="chart-block__hd">
-            <p>
-            <span class="js-building-name"></span><span class="js-school-name">学校</span>概况
-            </p>
-        </div>
-        <div class="chart-block__bd">
-            <ul class="list">
-            <li class="item item-dormitory">
-                <p><span class="count js-rock-number">14</span>栋</p>
-                <p class="caption">楼栋总数</p>
-            </li>
-            <li class="item item-room">
-                <p><span class="count js-rock-number">824</span>间</p>
-                <p class="caption">房间总数</p>
-            </li>
-            <li class="item item-bed">
-                <p><span class="count js-rock-number">24002</span>张</p>
-                <p class="caption">床位总数</p>
-            </li>
-            <li class="item item-people">
-                <p><span class="count js-rock-number">24002</span>人</p>
-                <p class="caption">入住总数</p>
-            </li>
-            </ul>
-        </div>
-        </div>
-        <div class="chart-block chart-not-return">
-        <div class="chart-block__hd">
-            <p><span class="js-building-name"></span>未归寝率排行</p>
-            <ul class="tab-list" id="notReturnChartButton">
-              <li class="tab-item" data-val="dormitory">楼栋</li>
-              <li class="tab-item" data-val="college">院系</li>
-            </ul>
-        </div>
-        <div class="chart-block__bd">
-            <div id="notReturnChart"></div>
-        </div>
-        </div>
-        <div class="chart-block chart-abnormal">
-        <div class="chart-block__hd">
-            <p><span class="js-building-name"></span>异常预警</p>
-        </div>
-        <div class="chart-block__bd">
-            <div id="abnormalWarningChart"></div>
-        </div>
-        </div>
-    </div>
-    <div class="page-aside page-aside-right animate__animated page-apartment">
-        <div class="chart-block chart-room-usage flex-none">
-        <div class="chart-block__hd">
-            <p><span class="js-building-name"></span>房间使用率</p>
-        </div>
-        <div class="chart-block__bd">
-            <div id="roomUsageChart" class="left"></div>
-            <div class="right">
-            <div class="item square-card">
-                <span class="dot"></span>未使用床位<span class="text js-rock-number">752</span>
+          <div class="chart-block chart-basic flex-none">
+            <div class="chart-block__hd">
+              <p>
+                <span class="js-building-name" data-school="学校"></span>概况
+              </p>
             </div>
-            <div class="item square-card square-card--grren">
-                <span class="dot"></span>总床位<span class="text js-rock-number">2367</span>
+            <div class="chart-block__bd">
+              <ul class="list">
+                <li class="item item-dormitory">
+                  <p><span class="count js-rock-number">14</span>栋</p>
+                  <p class="caption">楼栋总数</p>
+                </li>
+                <li class="item item-room">
+                  <p><span class="count js-rock-number">824</span>间</p>
+                  <p class="caption">房间总数</p>
+                </li>
+                <li class="item item-bed">
+                  <p><span class="count js-rock-number">24002</span>张</p>
+                  <p class="caption">床位总数</p>
+                </li>
+                <li class="item item-people">
+                  <p><span class="count js-rock-number">24002</span>人</p>
+                  <p class="caption">入住总数</p>
+                </li>
+              </ul>
             </div>
+          </div>
+          <div class="chart-block chart-not-return">
+            <div class="chart-block__hd">
+              <p><span class="js-building-name"></span>未归寝率排行</p>
+              <ul class="tab-list" id="notReturnChartButton">
+                <li class="tab-item active" data-val="dormitory">楼栋</li>
+                <li class="tab-item" data-val="college">院系</li>
+              </ul>
             </div>
+            <div class="chart-block__bd">
+              <div id="notReturnChart"></div>
+            </div>
+          </div>
+          <div class="chart-block chart-abnormal">
+            <div class="chart-block__hd">
+              <p><span class="js-building-name"></span>异常预警</p>
+            </div>
+            <div class="chart-block__bd">
+              <div id="abnormalWarningChart"></div>
+            </div>
+          </div>
         </div>
+        <div class="page-aside page-aside-right animate__animated page-apartment">
+          <div class="chart-block chart-room-usage flex-none">
+            <div class="chart-block__hd">
+               <p><span class="js-building-name"></span>房间使用率</p>
+            </div>
+            <div class="chart-block__bd">
+              <div id="roomUsageChart" class="left"></div>
+              <div class="right">
+                <div class="item square-card">
+                  <span class="dot"></span>未使用床位<span class="text js-rock-number">752</span>
+                </div>
+                <div class="item square-card square-card--grren">
+                  <span class="dot"></span>总床位<span class="text js-rock-number">2367</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="chart-block chart-pass">
+            <div class="chart-block__hd">
+              <p><span class="js-building-name"></span>今日通行人数</p>
+              <ul class="label-list">
+                <li class="label-item">出：<span id="roomUsageChartOut">0</span></li>
+                <li class="label-item">入：<span id="roomUsageChartIn">0</span></li>
+              </ul>
+            </div>
+            <div class="chart-block__bd">
+              <div id="passChart"></div>
+            </div>
+          </div>
+          <div class="chart-block chart-intercept">
+            <div class="chart-block__hd">
+              <p><span class="js-building-name"></span>今日通行拦截</p>
+              <ul class="label-list">
+                <li class="label-item">总人数：<span id="interceptChartSum">0</span></li>
+              </ul>
+            </div>
+            <div class="chart-block__bd">
+              <div id="interceptChart"></div>
+            </div>
+          </div>
         </div>
-        <div class="chart-block chart-pass">
-        <div class="chart-block__hd">
-            <p><span class="js-building-name"></span>今日通行人数</p>
-            <ul class="label-list">
-            <li class="label-item">出：<span id="roomUsageChartOut">0</span></li>
-            <li class="label-item">入：<span id="roomUsageChartIn">0</span></li>
-            </ul>
-        </div>
-        <div class="chart-block__bd">
-            <div id="passChart"></div>
-        </div>
-        </div>
-        <div class="chart-block chart-intercept">
-        <div class="chart-block__hd">
-            <p><span class="js-building-name"></span>今日通行拦截</p>
-            <ul class="label-list">
-            <li class="label-item">总人数：<span id="interceptChartSum">0</span></li>
-            </ul>
-        </div>
-        <div class="chart-block__bd">
-            <div id="interceptChart"></div>
-        </div>
-        </div>
-    </div>
 `
 
 var apartmentLevelTemplate = `

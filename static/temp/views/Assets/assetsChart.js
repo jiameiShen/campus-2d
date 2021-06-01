@@ -171,6 +171,15 @@ function classAssetsChart() {
       trigger: 'axis',
       axisPointer: {            // 坐标轴指示器，坐标轴触发有效
         type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+      },
+      padding: 10,
+      className: 'echarts-tooltip-dark',
+      formatter: function (params) {
+        return `<p class="caption">${params[0].name}</p>
+          <p class="item">
+            <span class="mark" style="background-color: #228AE1;"></span>
+            <span class="value">${params[0].value}</span>
+          </p>`
       }
     },
     grid: {
@@ -264,7 +273,13 @@ function totalAssetsChart() {
       },
       padding: 10,
       className: 'echarts-tooltip-dark',
-
+      formatter: function (params) {
+        return `<p class="caption">${params[0].name}</p>
+          <p class="item">
+            <span class="mark" style="background-color: ${params[0].color};"></span>
+            <span class="value">${params[0].value}</span>
+          </p>`
+      }
     },
     xAxis: [
       {

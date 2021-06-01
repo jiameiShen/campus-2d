@@ -1,0 +1,87 @@
+.page-assets .school-assets-content {
+  height: 310px;
+}
+.page-assets .school-assets-content .ring {
+  width: 320px;
+  height: 181px;
+}
+.page-assets .school-assets-content .ring-info {
+  display: flex;
+}
+.page-assets .school-assets-content .ring-info .info-bk {
+  width: 150px;
+  height: 109px;
+  background-size: 150px 109px;
+}
+.page-assets .school-assets-content .ring-info .info-bk:first-child {
+  background-image: url('./../image/else/ring-bk2-blue.png');
+  margin-right: 20px;
+}
+.page-assets .school-assets-content .ring-info .info-bk:last-child {
+  background-image: url('./../image/else/ring-bk2-yellow.png');
+}
+
+.page-assets .school-assets-content .ring-info .info-bk div:first-child {
+  font-size: 14px;
+  font-family: MicrosoftYaHei;
+  color: #ffffff;
+  height: 47px;
+  line-height: 47px;
+  text-align: center;
+}
+.page-assets .school-assets-content .ring-info .info-bk div:last-child {
+  font-size: 20px;
+  font-family: MicrosoftYaHei-Bold, MicrosoftYaHei;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 15px;
+}
+.page-assets .school-assets-content .ring-info .info-bk .software {
+  color: #2DE2E5;
+}
+.page-assets .school-assets-content .ring-info .info-bk .hardware {
+  color: #FCE569;
+}
+.page-assets .college-assets-content {
+  height: 309px;
+}
+.page-assets .class-assets-content {
+  height: 178px;
+}
+.page-assets .ranking-assets-content {
+  height: 213px;
+  width: 100%;
+  font-size: 14px;
+  color: #ffffff;
+  table-layout: fixed;
+  padding: 14px 0 20px 18px;
+}
+.page-assets .ranking-assets-content tr {
+  height: 36px;
+  box-shadow: 0 1px 0 0 #172335;
+}
+.page-assets .ranking-assets-content tr td:first-child {
+  width: 39px;
+} 
+.page-assets .ranking-assets-content tr td:last-child {
+  width: 39px;
+  padding-right: 50px;
+} 
+
+.page-assets .ranking-assets-content .number{
+  width: 20px;
+  height: 20px;
+  text-align: center;
+}
+.page-assets .ranking-assets-content tr:first-child td .number {
+  background-color: #CF961F;
+}
+.page-assets .ranking-assets-content tr:nth-child(2) td .number {
+  background-color: #546F8C;
+}
+.page-assets .ranking-assets-content tr:nth-child(3) td .number {
+  background-color: #90684E;
+}
+.page-assets .total-assets-content {
+  height: 185px;
+}

@@ -7,6 +7,7 @@
     <title>智慧校园</title>
     <link rel="stylesheet" href="../../static/css/home.css" />
     <link rel="stylesheet" href="../../static/css/header.css" />
+    <link rel="stylesheet" href="../../static/css/global.css" />
     <link rel="stylesheet" href="../../static/css/page.css" />
     <link rel="stylesheet" href="../../static/css/page-apartment.css" />
     <link href="https://cdn.bootcdn.net/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
@@ -54,26 +55,25 @@
           <div class="chart-block chart-basic flex-none">
             <div class="chart-block__hd">
               <p>
-                <span class="js-building-name"></span>
-                <span class="js-school-name">学校</span>概况
+                <span class="js-building-name" data-school="学校"></span>概况
               </p>
             </div>
             <div class="chart-block__bd">
               <ul class="list">
                 <li class="item item-dormitory">
-                  <p><span class="count">14</span>栋</p>
+                  <p><span class="count js-rock-number">14</span>栋</p>
                   <p class="caption">楼栋总数</p>
                 </li>
                 <li class="item item-room">
-                  <p><span class="count">824</span>间</p>
+                  <p><span class="count js-rock-number">824</span>间</p>
                   <p class="caption">房间总数</p>
                 </li>
                 <li class="item item-bed">
-                  <p><span class="count">24,002</span>张</p>
+                  <p><span class="count js-rock-number">24002</span>张</p>
                   <p class="caption">床位总数</p>
                 </li>
                 <li class="item item-people">
-                  <p><span class="count">24,002</span>人</p>
+                  <p><span class="count js-rock-number">24002</span>人</p>
                   <p class="caption">入住总数</p>
                 </li>
               </ul>
@@ -109,10 +109,10 @@
               <div id="roomUsageChart" class="left"></div>
               <div class="right">
                 <div class="item square-card">
-                  <span class="dot"></span>未使用床位<span class="text">752</span>
+                  <span class="dot"></span>未使用床位<span class="text js-rock-number">752</span>
                 </div>
                 <div class="item square-card square-card--grren">
-                  <span class="dot"></span>总床位<span class="text">2367</span>
+                  <span class="dot"></span>总床位<span class="text js-rock-number">2367</span>
                 </div>
               </div>
             </div>

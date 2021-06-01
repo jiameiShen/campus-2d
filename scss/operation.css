@@ -1,0 +1,215 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  background: #030303;
+}
+.energy-page {
+  width: 100%;
+  height: 100%;
+}
+.left,
+.right {
+  height: 100%;
+  width: 380px;
+  padding-left: 30px;
+  box-sizing: border-box;
+}
+.left {
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+.right {
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+.operation-page .operation-maintenance-content {
+  height: 147px;
+  display: flex;
+  padding-top: 18px;
+  box-sizing: border-box;
+}
+.operation-page .operation-maintenance-content .info-bk {
+  width: 100px;
+  height: 109px;
+  background-size: 100px 109px;
+}
+.operation-page .operation-maintenance-content .info-bk:first-child {
+  background-image: url('../image/ring-bk2-red.png');
+}
+.operation-page .operation-maintenance-content .info-bk:nth-child(2) {
+  background-image: url('../image/ring-bk2-yellow.png');
+  margin: 0 10px;
+}
+.operation-page .operation-maintenance-content .info-bk:last-child {
+  background-image: url('../image/ring-bk2-blue.png');
+}
+.operation-page .operation-maintenance-content .info-bk .title {
+  font-size: 14px;
+  font-family: MicrosoftYaHei;
+  color: #ffffff;
+  height: 47px;
+  line-height: 47px;
+  text-align: center;
+}
+.operation-page .operation-maintenance-content .info-bk .color {
+  font-size: 20px;
+  font-family: MicrosoftYaHei-Bold, MicrosoftYaHei;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 15px;
+}
+.operation-page .operation-maintenance-content .info-bk .color-red {
+  color: #f2679a;
+}
+.operation-page .operation-maintenance-content .info-bk .color-yellow {
+  color: #fce569;
+}
+.operation-page .operation-maintenance-content .info-bk .color-blue {
+  color: #2de2e5;
+}
+.operation-page .event-list-content {
+  height: 211px;
+  padding-top: 12px;
+  box-sizing: border-box;
+}
+.operation-page .event-list-content .tab {
+  display: flex;
+  width: 320px;
+  height: 25px;
+}
+.operation-page .event-list-content .tip {
+  padding: 0 4px;
+  background-color: #de4251;
+  font-size: 12px;
+  font-family: MicrosoftYaHei;
+  color: #ffffff;
+  border-radius: 50%;
+  margin-left: 3px;
+}
+.operation-page .event-list-content .tab .item {
+  width: 106px;
+  height: 25px;
+  background: #1e4e6b;
+  border: 1px solid #263752;
+  font-size: 14px;
+  font-family: MicrosoftYaHei;
+  color: #d1d4d9;
+  line-height: 25px;
+  margin: 0px -1px -1px 0px;
+  text-align: center;
+}
+.operation-page .event-list-content .tab .tab-active {
+  border: 1px solid #2dc0e5;
+  color: #ffffff;
+  margin: 0;
+}
+.operation-page .event-list-content .table {
+  width: 320px;
+  text-align: left;
+  table-layout: fixed;
+  font-size: 14px;
+  margin-top: 10px;
+  color: #ffffff;
+}
+.operation-page .event-list-content .table tr {
+  height: 34px;
+  line-height: 34px;
+  box-shadow: 0px 1px 0px 0px #172335;
+}
+.operation-page .event-list-content .table tr:last-child {
+  box-shadow: none;
+}
+.operation-page .event-list-content .table tr td:first-child {
+  width: 62px;
+  padding-left: 20px;
+  box-sizing: border-box;
+}
+.operation-page .event-list-content .table tr td:nth-child(2) {
+  width: 96px;
+}
+.operation-page .event-list-content .table tr td:last-child {
+  color: #fce569;
+}
+.operation-page .duty-personnel-content {
+  height: 219px;
+  width: 320px;
+  table-layout: fixed;
+  margin-top: 10px;
+}
+.operation-page .duty-personnel-content tr {
+  height: 50px;
+
+  line-height: 50px;
+  box-shadow: 0px 1px 0px 0px #172335;
+  font-size: 14px;
+  font-family: MicrosoftYaHei;
+  color: #ffffff;
+}
+.operation-page .duty-personnel-content tr .pic {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.operation-page .duty-personnel-content tr td:first-child {
+  width: 74px;
+  padding-left: 20px;
+  box-sizing: border-box;
+}
+.operation-page .device-status-content {
+  height: 252px;
+  display: flex;
+  align-items: center;
+}
+.operation-page .device-status-content .device-status-ring {
+  width: 154px;
+  height: 100%;
+}
+.operation-page .device-status-content .device-status-info .each-count {
+  width: 166px;
+  height: 62px;
+  background-size: 100%;
+  font-size: 14px;
+  font-family: MicrosoftYaHei;
+  color: #ffffff;
+}
+.operation-page
+  .device-status-content
+  .device-status-info
+  .each-count:first-child {
+  background-image: url('../image/ring-info-bk-red.png');
+}
+.operation-page
+  .device-status-content
+  .device-status-info
+  .each-count:nth-child(2) {
+  background-image: url('../image/ring-info-bk-yellow.png');
+  margin: 10px 0;
+}
+.operation-page
+  .device-status-content
+  .device-status-info
+  .each-count:last-child {
+  background-image: url('../image/ring-info-bk-blue.png');
+}
+.operation-page .device-status-content .device-status-info .each-count .info {
+  margin-left: 28px;
+  height: 31px;
+  line-height: 31px;
+}
+.operation-page .device-status-content .device-status-info .each-count .info .percentage {
+  color: #2de2e5;
+}
+.operation-page .device-status-content .device-status-info .each-count .info  .align-left {
+  margin-right: 69px;
+}
+.operation-page .device-maintenance-content {
+  height: 184px;
+}
+.operation-page .regional-statistics-content {
+  height: 141px;
+}

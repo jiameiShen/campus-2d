@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
+    <link rel="stylesheet" href="../css/security.css" />
+    <link rel="stylesheet" href="../css/common.css" />
+  </head>
+  <body>
+    <div class="security-page">
+      <div class="left">
+        <div>
+          <div class="title-main">
+            <div class="icon"></div>
+            <span class="modular-title">学校访客</span>
+          </div>
+          <div class="school-visitors-content">
+            <div class="school-visitors-count">
+              <div>
+                <span class="count-k">今日访客</span>
+                <span class="count-v">91</span>
+              </div>
+              <div>
+                <span class="count-k">本周访客</span>
+                <span class="count-v">241</span>
+              </div>
+            </div>
+            <div class="school-visitors-chart" id="school-visitors-chart"></div>
+          </div>
+          <div class="line"></div>
+        </div>
+        <div>
+          <div class="title-main">
+            <div class="icon"></div>
+            <span class="modular-title">监控警报</span>
+          </div>
+          <div class="monitoring-alarms-content">
+            <div class="tab">
+              <div class="item tab-active">消防 <span class="tip">2</span></div>
+              <div class="item">门禁<span class="tip">2</span></div>
+              <div class="item">摄像头<span class="tip">2</span></div>
+            </div>
+            <table class="table">
+              <tr>
+                <td>01</td>
+                <td>德育楼201</td>
+                <td>摄像头灭火报警</td>
+              </tr>
+              <tr>
+                <td>02</td>
+                <td>德育楼202</td>
+                <td>摄像头灭火报警</td>
+              </tr>
+              <tr>
+                <td>03</td>
+                <td>德育楼203</td>
+                <td>摄像头灭火报警</td>
+              </tr>
+              <tr>
+                <td>04</td>
+                <td>德育楼205</td>
+                <td>摄像头灭火报警</td>
+              </tr>
+              <!-- <tr>
+              <td>05</td>
+              <td>德育楼206</td>
+              <td>椅子缺失</td>
+            </tr> -->
+            </table>
+          </div>
+          <div class="line"></div>
+        </div>
+        <div>
+          <div class="title-main">
+            <div class="icon"></div>
+            <span class="modular-title">学校区域安全管控</span>
+          </div>
+          <div class="safety-control-content">
+            <ul class="tab">
+              <li>生活区</li>
+              <li>教学区</li>
+              <li>办公区</li>
+              <li>运动区</li>
+              <li>实验区</li>
+              <li>运动区</li>
+              <li>实验区</li>
+              <li>运动区</li>
+              <li>实验区</li>
+              <li>运动区</li>
+            </ul>
+            <ul class="list">
+              <li>文科教学楼A</li>
+              <li>文科教学楼A</li>
+              <li>文科教学楼A</li>
+              <li>文科教学楼A</li>
+              <li>文科教学楼A</li>
+              <li>文科教学楼A</li>
+              <li>文科教学楼A</li>
+              <li>文科教学楼A</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="right">
+        <div>
+          <div class="title-main">
+            <div class="icon"></div>
+            <span class="modular-title">安防摄像头</span>
+          </div>
+          <div class="camera-content">
+            <div class="camera-ring-main">
+              <div class="camera-ring" id="camera-ring"></div>
+              <div class="camera-ring-info">
+                <div class="each-count">
+                  <div class="info">
+                    <span class="align-left">报修</span
+                    ><span class="align-right">632</span>
+                  </div>
+                  <div class="info">
+                    <span>同比上周：</span
+                    ><span class="percentage">↓37.5%</span>
+                  </div>
+                </div>
+                <div class="each-count">
+                  <div class="info">
+                    <span class="align-left">正常</span
+                    ><span class="align-right">818</span>
+                  </div>
+                  <div class="info">
+                    <span>同比上周：</span
+                    ><span class="percentage">↑48.6%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="tab">
+                <div class="item tab-active">东门</div>
+                <div class="item">西门</div>
+                <div class="item">南门</div>
+                <div class="item">北门</div>
+              </div>
+              <div class="capture-pictures">
+                <img src="../image/ring-bk2-blue.png" class="img1" />
+                <img src="../image/ring-bk2-blue.png" class="img2" />
+              </div>
+            </div>
+          </div>
+          <div class="line"></div>
+        </div>
+        <div>
+          <div class="title-main">
+            <div class="icon"></div>
+            <span class="modular-title">消防监控</span>
+          </div>
+          <div class="fire-control-content">
+            <div class="fire-control" id="fire-control"></div>
+            <div class="fire-control-info">
+              <div class="each-count">
+                <div class="info">
+                  <span class="align-left">报修</span
+                  ><span class="align-right">32</span>
+                </div>
+                <div class="info">
+                  <span>同比上周：</span><span class="percentage">↓39.0%</span>
+                </div>
+              </div>
+              <div class="each-count">
+                <div class="info">
+                  <span class="align-left">正常</span
+                  ><span class="align-right">50</span>
+                </div>
+                <div class="info">
+                  <span>同比上周：</span><span class="percentage">↑61.0%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="line"></div>
+        </div>
+        <div>
+          <div class="title-main">
+            <div class="icon"></div>
+            <span class="modular-title">值班保卫信息</span>
+          </div>
+          <table class="personnel-info-content">
+            <tr>
+              <td>张毅</td>
+              <td>18038009393</td>
+              <td>南门安保</td>
+            </tr>
+            <tr>
+              <td>黄新</td>
+              <td>17890098768</td>
+              <td>南门安保</td>
+            </tr>
+            <tr>
+              <td>刘广</td>
+              <td>15820099878</td>
+              <td>北门安保</td>
+            </tr>
+            <tr>
+              <td>赵柳</td>
+              <td>15678877987</td>
+              <td>北门安保</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script src="../js/securityCharts.js"></script>
+  </body>
+</html>

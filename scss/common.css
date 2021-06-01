@@ -1,0 +1,24 @@
+.title-main {
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
+}
+.icon {
+  width: 10px;
+  height: 10px;
+  background: linear-gradient(139deg, #24d6eb 0%, #1d4bd3 100%);
+  border-radius: 50%;
+  margin-right: 8px;
+}
+.modular-title {
+  font-size: 16px;
+  font-family: MicrosoftYaHei-Bold, MicrosoftYaHei;
+  font-weight: bold;
+  color: #ffffff;
+}
+.line {
+  width: 320px;
+  height: 1px;
+  background: linear-gradient(270deg, rgba(111, 127, 174, 0) 0%, #6F7FAE 52%, rgba(111, 127, 174, 0) 100%);
+  opacity: 0.5;
+}

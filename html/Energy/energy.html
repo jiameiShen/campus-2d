@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
+    <link rel="stylesheet" href="../css/energy.css" />
+    <link rel="stylesheet" href="../css/common.css" />
+  </head>
+  <body>
+    <div class="energy-page">
+      <div class="left">
+        <div>
+          <div class="title-main">
+            <div class="icon"></div>
+            <span class="modular-title">能源消耗情况</span>
+          </div>
+          <div class="situation-content">
+            <div class="bk">
+              <div class="number-main">
+                <div class="number">24,002</div>
+                <div class="unit">(Kw·H)</div>
+              </div>
+            </div>
+            <div class="time">统计截止：2021-04-30 00:00</div>
+          </div>
+          <div class="line"></div>
+        </div>
+        <div>
+          <div class="title-main">
+            <div class="icon"></div>
+            <span class="modular-title">能源消耗排行</span>
+          </div>
+          <div class="ranking-content" id="ranking-content"></div>
+          <div class="line"></div>
+        </div>
+        <div>
+          <div class="title-main">
+            <div class="icon"></div>
+            <span class="modular-title">能源分类消耗</span>
+          </div>
+          <div class="chart-main">
+            <div class="classification-content" id="classification-content">
+              圆环图
+            </div>
+            <div class="info-main">
+              <div>
+                <span class="info-k">照明用电</span>
+                <span class="info-v">
+                  727
+                  <span class="info-unit"> (Kw·H)</span>
+                </span>
+              </div>
+              <div>
+                <span class="info-k">空调用电</span>
+                <span class="info-v">
+                  727
+                  <span class="info-unit"> (Kw·H)</span>
+                </span>
+              </div>
+              <div>
+                <span class="info-k">空调用电</span>
+                <span class="info-v">
+                  727
+                  <span class="info-unit"> (Kw·H)</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right">
+        <div>
+          <div class="title-main">
+            <div class="icon"></div>
+            <span class="modular-title">月度能耗消耗统计</span>
+          </div>
+          <div class="statistics-content" id="statistics-content"></div>
+          <div class="line"></div>
+        </div>
+        <div>
+          <div class="title-main">
+            <div class="icon"></div>
+            <span class="modular-title">电力报警</span>
+          </div>
+          <div class="call-police-content">
+            <div class="call-police-count">
+              <div class="count">
+                <div>109</div>
+                <div>总数(单位)</div>
+              </div>
+              <div>
+                <div class="each-count">
+                  <div class="info clearfix">
+                    <span class="align-left">警报</span
+                    ><span class="align-right">32</span>
+                  </div>
+                  <div class="info">
+                    <span>同比上周：</span><span class="percentage">↓10%</span>
+                  </div>
+                </div>
+                <div class="each-count">
+                  <div class="info clearfix">
+                    <span class="align-left">处理中</span
+                    ><span class="align-right">77</span>
+                  </div>
+                  <div class="info">
+                    <span>同比上周：</span><span class="percentage">↑10%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="call-police-list">
+              <div class="tab">
+                <div class="item tab-active">
+                  警报 <span class="tip">2</span>
+                </div>
+                <div class="item">处理中<span class="tip">12</span></div>
+                <div class="item">待处理</div>
+              </div>
+              <table class="table">
+                <tr>
+                  <td>序号</td>
+                  <td>地址</td>
+                  <td>原因</td>
+                  <td>状态</td>
+                </tr>
+                <tr>  
+                  <td>01</td>
+                  <td>德育楼德育楼…</td>
+                  <td>电流过载</td>
+                  <td>待处理</td>
+                </tr>
+                <tr>
+                  <th>02</th>
+                  <td>文史楼304</td>
+                  <td>跳闸</td>
+                  <td>处理中</td>
+                </tr>
+                <tr>
+                  <th>03</th>
+                  <td>文史楼304</td>
+                  <td>跳闸</td>
+                  <td>处理中</td>
+                </tr>
+                <tr>
+                  <th>04</th>
+                  <td>文史楼304</td>
+                  <td>跳闸</td>
+                  <td>处理中</td>
+                </tr>
+                <tr>
+                  <th>05</th>
+                  <td>文史楼304</td>
+                  <td>跳闸</td>
+                  <td>处理中</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../js/energyChart.js"></script>
+  </body>
+</html>

@@ -1,0 +1,343 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  background: #030303;
+}
+.security-page-page {
+  width: 100%;
+  height: 100%;
+}
+.left,
+.right {
+  height: 100%;
+  width: 380px;
+  padding-left: 30px;
+  box-sizing: border-box;
+}
+.left {
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+.right {
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+.security-page .school-visitors-content {
+  height: 207px;
+}
+.security-page .school-visitors-content .school-visitors-count {
+  height: 58px;
+  display: flex;
+  padding-top: 14px;
+  box-sizing: border-box;
+}
+
+.security-page .school-visitors-content .school-visitors-count div {
+  background-size: 155px 30px;
+  background-repeat: no-repeat;
+  width: 155px;
+  height: 30px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.security-page .school-visitors-content .school-visitors-count div:first-child {
+  background-image: url('../image/day-visitors.png');
+}
+.security-page .school-visitors-content .school-visitors-count div:last-child {
+  background-image: url('../image/week-visitors.png');
+}
+.security-page .school-visitors-content .school-visitors-count div .count-k {
+  font-size: 14px;
+  font-family: MicrosoftYaHei;
+  color: #7eadc0;
+  margin-left: 30px;
+}
+.security-page .school-visitors-content .school-visitors-count div .count-v {
+  font-size: 16px;
+  font-family: MicrosoftYaHei-Bold, MicrosoftYaHei;
+  font-weight: bold;
+  color: #ffffff;
+  margin-right: 12px;
+}
+.security-page .school-visitors-content .school-visitors-chart {
+  height: 128px;
+}
+.security-page .monitoring-alarms-content {
+  height: 206px;
+  padding-top: 12px;
+  box-sizing: border-box;
+}
+.security-page .tab {
+  display: flex;
+  width: 320px;
+  height: 25px;
+}
+.security-page .monitoring-alarms-content .tip {
+  padding: 0 4px;
+  background-color: #de4251;
+  font-size: 12px;
+  font-family: MicrosoftYaHei;
+  color: #ffffff;
+  border-radius: 50%;
+  margin-left: 3px;
+}
+.security-page .tab .item {
+  width: 106px;
+  height: 25px;
+  background: #1e4e6b;
+  border: 1px solid #263752;
+  font-size: 14px;
+  font-family: MicrosoftYaHei;
+  color: #d1d4d9;
+  line-height: 25px;
+  margin: 0px -1px -1px 0px;
+  text-align: center;
+}
+.security-page .tab .tab-active {
+  border: 1px solid #2dc0e5;
+  color: #ffffff;
+  margin: 0;
+}
+.security-page .monitoring-alarms-content .table {
+  width: 320px;
+  text-align: left;
+  table-layout: fixed;
+  font-size: 14px;
+  margin-top: 10px;
+  color: #ffffff;
+}
+.security-page .monitoring-alarms-content .table tr {
+  height: 34px;
+  line-height: 34px;
+  box-shadow: 0px 1px 0px 0px #172335;
+}
+.security-page .monitoring-alarms-content .table tr:last-child {
+  box-shadow: none;
+}
+.security-page .monitoring-alarms-content .table tr td:first-child {
+  width: 62px;
+  padding-left: 20px;
+  box-sizing: border-box;
+}
+.security-page .monitoring-alarms-content .table tr td:nth-child(2) {
+  width: 96px;
+}
+.security-page .monitoring-alarms-content .table tr td:last-child {
+  color: #fce569;
+}
+.security-page .safety-control-content {
+  height: 206px;
+  display: flex;
+}
+.security-page .safety-control-content .tab {
+  list-style-type: none;
+  width: 88px;
+  height: 100%;
+  max-height: 174px;
+  display: block;
+  padding: 0;
+  overflow: auto;
+}
+.security-page .safety-control-content .tab::-webkit-scrollbar, .security-page .safety-control-content .list::-webkit-scrollbar{
+  width: 8px;
+  height: 8px;
+}
+.security-page .safety-control-content .tab::-webkit-scrollbar-thumb {
+  background: #276b86;
+}
+/*滚动条里面轨道样式*/
+.security-page .safety-control-content .tab::-webkit-scrollbar-track {
+  background: #1d2a42;
+  border-radius: 1px;
+  opacity: 0.6;
+}
+.security-page .safety-control-content .tab li {
+  width: 70px;
+  height: 25px;
+  line-height: 25px;
+  background-color: #1d2a42;
+  text-align: center;
+  font-size: 14px;
+  font-family: MicrosoftYaHei;
+  color: #ffffff;
+  border: 1px solid #263752;
+  margin-top: -1px;
+}
+.security-page .safety-control-content .list {
+  width: 242px;
+  height: 100%;
+  max-height: 174px;
+  display: block;
+  padding: 0;
+  overflow: auto;
+  margin-left: 10px;
+}
+.security-page .safety-control-content .list li {
+  font-size: 14px;
+  font-family: MicrosoftYaHei;
+  color: #ffffff;
+  width: 222px;
+  height: 36px;
+  line-height: 36px;
+  box-shadow: 0px 1px 0px 0px #172335;
+  padding-left: 20px;
+  box-sizing: border-box;
+}
+.security-page .safety-control-content .list {
+  list-style-type: none;
+}
+.security-page .camera-content {
+  height: 316px;
+}
+.security-page .camera-content .capture-pictures {
+  height: 99px;
+  width: 320px;
+  margin-top: 10px;
+}
+.security-page .camera-content .capture-pictures img {
+  width: 155px;
+  height: 99px;
+  object-fit: cover;
+}
+.security-page .camera-content .capture-pictures .img1 {
+  margin-right: 5px;
+}
+.security-page .camera-content .camera-ring-main {
+  height: 168px;
+  display: flex;
+  align-items: center;
+}
+.security-page .camera-content .camera-ring {
+  width: 144px;
+  height: 100%;
+}
+.security-page .camera-content .camera-ring-main .camera-ring-info .each-count {
+  width: 166px;
+  height: 62px;
+  background-size: 100%;
+  font-size: 14px;
+  font-family: MicrosoftYaHei;
+  color: #ffffff;
+}
+.security-page
+  .camera-content
+  .camera-ring-main
+  .camera-ring-info
+  .each-count:first-child {
+  background-image: url('../image/ring-info-bk-red.png');
+  margin-bottom: 10px;
+}
+.security-page
+  .camera-content
+  .camera-ring-main
+  .camera-ring-info
+  .each-count:last-child {
+  background-image: url('../image/ring-info-bk-blue.png');
+}
+.security-page
+  .camera-content
+  .camera-ring-main
+  .camera-ring-info
+  .each-count
+  .info {
+  margin-left: 28px;
+  height: 31px;
+  line-height: 31px;
+}
+.security-page
+  .camera-content
+  .camera-ring-main
+  .camera-ring-info
+  .each-count
+  .info
+  .percentage {
+  color: #2de2e5;
+}
+.security-page
+  .camera-content
+  .camera-ring-main
+  .camera-ring-info
+  .each-count
+  .info
+  .align-left {
+  margin-right: 69px;
+}
+.security-page .fire-control-content {
+  height: 162px;
+  display: flex;
+  align-items: center;
+}
+.security-page .fire-control-content .fire-control-info .each-count {
+  width: 166px;
+  height: 62px;
+  background-size: 100%;
+  font-size: 14px;
+  font-family: MicrosoftYaHei;
+  color: #ffffff;
+}
+.security-page
+  .fire-control-content
+  .fire-control-info
+  .each-count:first-child {
+  background-image: url('../image/ring-info-bk-red.png');
+  margin-bottom: 10px;
+}
+.security-page .fire-control-content .fire-control-info .each-count:last-child {
+  background-image: url('../image/ring-info-bk-blue.png');
+}
+.security-page .fire-control-content .fire-control-info .each-count .info {
+  margin-left: 28px;
+  height: 31px;
+  line-height: 31px;
+}
+.security-page
+  .fire-control-content
+  .fire-control-info
+  .each-count
+  .info
+  .percentage {
+  color: #2de2e5;
+}
+.security-page
+  .fire-control-content
+  .fire-control-info
+  .each-count
+  .info
+  .align-left {
+  margin-right: 69px;
+}
+.security-page .fire-control-content .fire-control {
+  width: 144px;
+  height: 100%;
+}
+.security-page .personnel-info-content {
+  height: 99px;
+  width: 100%;
+  font-size: 14px;
+  font-family: MicrosoftYaHei;
+  color: #ffffff;
+  table-layout: fixed;
+  margin-top: 10px;
+}
+.security-page .personnel-info-content tr {
+  height: 36px;
+}
+.security-page .personnel-info-content tr td:first-child {
+  width: 54px;
+  box-sizing: border-box;
+  padding-left: 20px;
+}
+.security-page .personnel-info-content tr td:nth-child(2) {
+  width: auto;
+  text-align: center;
+}
+.security-page .personnel-info-content tr td:last-child {
+  width: 106px;
+  color: #fce569;
+}

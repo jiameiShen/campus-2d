@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
+    <link rel="stylesheet" href="../css/operation.css" />
+    <link rel="stylesheet" href="../css/common.css" />
+  </head>
+  <body>
+    <div class="operation-page">
+      <div class="left">
+        <div>
+          <div class="title-main">
+            <div class="icon"></div>
+            <span class="modular-title">运维情况</span>
+          </div>
+          <div class="operation-maintenance-content">
+            <div class="info-bk">
+              <div class="title">待解决(件)</div>
+              <div class="color color-red">14</div>
+            </div>
+            <div class="info-bk">
+              <div class="title">处理中(件)</div>
+              <div class="color color-yellow">24</div>  
+            </div>
+            <div class="info-bk">
+              <div class="title">已解决(件)</div>
+              <div class="color color-blue">24,002</div>  
+            </div>
+          </div>
+          <div class="line"></div>
+        </div>
+        <div>
+          <div class="title-main">
+            <div class="icon"></div>
+            <span class="modular-title">事件列表</span>
+          </div>
+          <div class="event-list-content">
+            <div class="tab">
+              <div class="item tab-active">
+                警报 <span class="tip">2</span>
+              </div>
+              <div class="item">处理中<span class="tip">2</span></div>
+              <div class="item">待处理<span class="tip">2</span></div>
+            </div>
+            <table class="table">
+              <tr>  
+                <td>01</td>
+                <td>德育楼201</td>
+                <td>多媒体损坏</td>
+              </tr>
+              <tr>
+                <td>02</td>
+                <td>德育楼202</td>
+                <td>空调无法开启</td>
+              </tr>
+              <tr>
+                <td>03</td>
+                <td>德育楼203</td>
+                <td>传真机损坏</td>
+              </tr>
+              <tr>
+                <td>04</td>
+                <td>德育楼205</td>
+                <td>椅子缺失</td>
+              </tr>
+              <!-- <tr>
+                <td>05</td>
+                <td>德育楼206</td>
+                <td>椅子缺失</td>
+              </tr> -->
+            </table>
+          </div>
+          <div class="line"></div>
+        </div>
+        <div>
+          <div class="title-main">
+            <div class="icon"></div>
+            <span class="modular-title">今日值班运维人员</span>
+          </div>
+          <table class="duty-personnel-content">
+            <tr>  
+              <td>
+                <img style="vertical-align:middle;" src="../image/ring-bk.png" class="pic">
+              </td>
+              <td>张毅</td>
+              <td>18038009393</td>
+            </tr>
+            <tr>
+              <td> <img src="../image/ring-bk.png" class="pic"></td>
+              <td>黄新</td>
+              <td>17890098768</td>
+            </tr>
+            <tr>
+              <td> <img src="../image/ring-bk.png" class="pic"></td>
+              <td>刘广</td>
+              <td>15820099878</td>
+            </tr>
+            <tr>
+              <td> <img src="../image/ring-bk.png" class="pic"></td>
+              <td>赵柳</td>
+              <td>15678877987</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="right">
+        <div>
+          <div class="title-main">
+            <div class="icon"></div>
+            <span class="modular-title">设备状态统计</span>
+          </div>
+          <div class="device-status-content" >
+            <div class="device-status-ring" id="device-status-ring"></div>
+            <div class="device-status-info">
+              <div class="each-count">
+                <div class="info">
+                  <span class="align-left">报修</span
+                  ><span class="align-right">632</span>
+                </div>
+                <div class="info">
+                  <span>同比上周：</span><span class="percentage">↓37.5%</span>
+                </div>
+              </div>
+              <div class="each-count">
+                <div class="info">
+                  <span class="align-left">报废</span
+                  ><span class="align-right">232</span>
+                </div>
+                <div class="info">
+                  <span>同比上周：</span><span class="percentage">↑13.8%</span>
+                </div>
+              </div>
+              <div class="each-count">
+                <div class="info">
+                  <span class="align-left">正常</span
+                  ><span class="align-right">818</span>
+                </div>
+                <div class="info">
+                  <span>同比上周：</span><span class="percentage">↑48.6%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="line"></div>
+        </div>
+        <div>
+          <div class="title-main">
+            <div class="icon"></div>
+            <span class="modular-title">维修设备分类统计</span>
+          </div>
+          <div class="device-maintenance-content" id="device-maintenance-content">大饼图</div>
+          <div class="line"></div>
+        </div>
+        <div>
+          <div class="title-main">
+            <div class="icon"></div>
+            <span class="modular-title">运维情况区域统计</span>
+          </div>
+          <div class="regional-statistics-content" id="regional-statistics-content"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../js/operationChart.js"></script>
+  </body>
+</html>

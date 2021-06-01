@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
+    <link rel="stylesheet" href="../css/assets.css" />
+    <link rel="stylesheet" href="../css/common.css" />
+  </head>
+  <body>
+    <div class="assets-page">
+      <div class="left">
+        <div>
+          <div class="title-main">
+            <div class="icon"></div>
+            <span class="modular-title">学校资产统计</span>
+          </div>
+          <div class="school-assets-content">
+            <div class="ring" id="school-assets-content"></div>
+            <div class="ring-info">
+              <div class="info-bk">
+                <div>软件资产(万元）</div>
+                <div class="software">1,890</div>
+              </div>
+              <div class="info-bk">
+                <div>硬件资产(万元）</div>
+                <div class="hardware">4,933</div>
+              </div>
+            </div>
+          </div>
+         
+          <div class="line"></div>
+        </div>
+        <div>
+          <div class="title-main">
+            <div class="icon"></div>
+            <span class="modular-title">各学院资产统计</span>
+          </div>
+          <div class="college-assets-content"  id="college-assets-content"></div>
+        </div>
+      </div>
+      <div class="right">
+        <div>
+          <div class="title-main">
+            <div class="icon"></div>
+            <span class="modular-title">学院各类资产统计</span>
+          </div>
+          <div class="class-assets-content" id="class-assets-content"></div>
+          <div class="line"></div>
+        </div>
+        <div>
+          <div class="title-main">
+            <div class="icon"></div>
+            <span class="modular-title">实验室资产排行榜</span>
+          </div>
+          <table class="ranking-assets-content">
+            <tr>
+              <td>
+                <div class="number">01</div>
+              </td>
+              <td>物理实验室1201</td>
+              <td>720万</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="number">02</div>
+              </td>
+              <td>物理实验室809</td>
+              <td>630万</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="number">03</div>
+              </td>
+              <td>化学实验室302</td>
+              <td>488万</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="number">04</div>
+              </td>
+              <td>化学实验室408</td>
+              <td>336万</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="number">05</div>
+              </td>
+              <td>生物实验室809</td>
+              <td>140万</td>
+            </tr>
+          </table>
+          <div class="line"></div>
+        </div>
+        <div>
+          <div class="title-main">
+            <div class="icon"></div>
+            <span class="modular-title">学校资产总额统计</span>
+          </div>
+          <div class="total-assets-content" id="total-assets-content">折线图</div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../js/assetsChart.js"></script>
+  </body>
+</html>

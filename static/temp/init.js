@@ -1,27 +1,14 @@
-// ctrlGTabList  全局导航实例   
-// buildings     全局buildings 
-
 $(function () {
-  // 添加顶部信息栏
-  class CreatHeader {
-    constructor() { }
-    onAdd(app) {
-      let iframe = document.createElement('iframe')
-      iframe.src =
-        '/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/views/Header/index.html'
-      iframe.width = '100%'
-      iframe.height = '66px'
-      iframe.frameborder = '0'
-      iframe.scrolling = 'no'
-      $('#div2d').append(iframe)
-    }
-  }
-  var ctrlHeader = app.addControl(new CreatHeader())
+  /* 添加顶部信息栏 */
+  var ctrlGHeader = app.addControl(new CreateGHeader())
 
   /* 返回按钮 */
   var ctrlGBackNavigator = app.addControl(new CreateGBackNavigator())
 
-  // 添加全局tab导航
+  /* 切换楼层 */
+  var ctrlGLevelSwitch = app.addControl(new CreateGLevelSwitch())
+
+  /* 添加全局tab导航 */
   var ctrlGTabList = app.addControl(new CreateGTabList())
   ctrlGTabList.showTab('Apartment')
 
@@ -34,7 +21,7 @@ $(function () {
     ctrlGTabList.showTab(pageId)
   })
 
-  // 添加主页楼栋标注
+  /* 添加主页楼栋标注 */
   campus = app.query('.Campus')[0] // 获取园区对象
   createBoardHtml()
   var buildings = campus.buildings // 获取园区下的所有建筑，返回为 Selector 结构
@@ -63,13 +50,13 @@ $(function () {
     $('#buildingMarker' + item.id + ' .text').text(item.userData.name)
   })
 
-  // 修改层级背景
+  /* 修改层级背景 */
   app.on(THING.EventType.EnterLevel, function (ev) {
     app.background = '#030303';
   }, 'customLevelSetBackground');
   app.pauseEvent(THING.EventType.EnterLevel, THING.EventTag.LevelSetBackground);
 
-  //  层级变化
+  /* 层级变化 */
   app.on(THING.EventType.LevelChange, function (ev) {
     let object = ev.current
     if (object instanceof THING.Campus) {
@@ -83,6 +70,13 @@ $(function () {
       $('.buildingMarker').hide()
       ctrlGBackNavigator.show()
     }
+
+    if (object instanceof THING.Floor) {
+      ctrlGLevelSwitch.show()
+    } else {
+      ctrlGLevelSwitch.hide()
+    }
+
     if (object instanceof THING.Building) {
       ctrlGTabList.showTab(null, {
         buildingName: object.userData.name
@@ -105,7 +99,7 @@ $(function () {
     }
   })
 
-  // 房间信息隐藏事件
+  /* 房间信息隐藏事件 */
   $('#div2d').on('click', '.js-tool-show-room', function () {
     if (!!$(this).data('open')) {
       $(this).data('open', 0)
@@ -118,7 +112,7 @@ $(function () {
     }
   })
 
-  // 点击房间
+  /* 点击房间 */
   app.query(".Room").on(THING.EventType.SingleClick, function () {
     let roomNumber = this.userData.room;
     if ($(`#board${roomNumber}`).length > 0) {
@@ -127,7 +121,7 @@ $(function () {
     }
   });
 
-  // 创建主页建筑面板marker
+  /* 创建主页建筑面板marker */
   function createBoardHtml() {
     let html = `
         <div id="buildingMarker" class="buildingMarker" style="position: absolute;">

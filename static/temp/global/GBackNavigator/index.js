@@ -5,7 +5,7 @@
  * @returns
  */
 THING.Utils.dynamicLoad([
-  '/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/global/GTabList/index.css'
+  '/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/global/GBackNavigator/index.css'
 ])
 
 console.log('初始化：CreateGBackNavigator')

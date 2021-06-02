@@ -76,7 +76,6 @@ function schoolAssetsChart() {
 function collegeAssetsChart() {
   let AssetsRanking = echarts.init(document.getElementById('college-assets-content'))
   let option = {
-    backgroundColor: 'black',
     grid: {
       top: 31,
       left: '3%',

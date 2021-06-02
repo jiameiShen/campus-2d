@@ -8,7 +8,6 @@
 function energyRankingChart() {
   let energyRanking = echarts.init(document.getElementById('ranking-content'))
   let option = {
-    backgroundColor: 'black',
     grid: {
       top: 31,
       left: '3%',
@@ -156,7 +155,7 @@ function energyStatisticsChart() {
       top: 31,
       left: '3%',
       right: '11%',
-      bottom: 0,
+      bottom: 14,
       containLabel: true,
     },
     xAxis: {

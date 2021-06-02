@@ -13,7 +13,7 @@ console.log('初始化：CreateGTabList')
 const G_TAbLIST_ARR = [
   { name: '公寓管理', id: 'Apartment', func: CreatePageApartment, pageCtrl: null },
   { name: '能耗管理', id: 'Energy', func: CreatePageApartment, pageCtrl: null },
-  { name: '资产管理', id: 'Asset', func: CreatePageApartment, pageCtrl: null },
+  { name: '资产管理', id: 'Assets', func: CreatePageAssets, pageCtrl: null },
   { name: '运维管理', id: 'Operations', func: CreatePageApartment, pageCtrl: null },
   { name: '安全管理', id: 'Security', func: CreatePageApartment, pageCtrl: null },
 ]

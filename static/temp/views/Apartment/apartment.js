@@ -42,7 +42,7 @@ class CreatePageApartment {
     $(document).on('click', '#notReturnChartButton .tab-item', function () {
       $(this).addClass('active').siblings().removeClass('active')
       _this.notReturnChart_current = $(this).data('val')
-      renderNotReturnChart(this.notReturnChart_current)
+      renderNotReturnChart(_this.notReturnChart_current)
     })
 
     this.render()
@@ -220,21 +220,21 @@ class CreatePageApartment {
             <div class="caption">${roomData.roomName}</div>
             <ul class="list">
               ${roomData.bedDTOList.map((bed, index) => {
-                let color = ''
-                let status = '在寝'
-                if (bed.isLeave) {
-                  color = 'color-green'
-                  status = '请假'
-                } else if (!bed.status) {
-                  color = 'color-yellow'
-                  status = '外出'
-                }
-                return `<li class="item">
-                  <span class="item-info">${index+1}号床</span>
+          let color = ''
+          let status = '在寝'
+          if (bed.isLeave) {
+            color = 'color-green'
+            status = '请假'
+          } else if (!bed.status) {
+            color = 'color-yellow'
+            status = '外出'
+          }
+          return `<li class="item">
+                  <span class="item-info">${index + 1}号床</span>
                   <span class="item-info item-name ${color} bed-item" data-room-number="${roomData.roomNumber}" data-student-id="${bed.studentId}">${bed.studentName}</span>
                   <span class="item-info">${status}</span>
                 </li>`
-              }).join('')}
+        }).join('')}
             </ul>
           </div>
         `

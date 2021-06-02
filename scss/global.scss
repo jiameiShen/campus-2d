@@ -198,6 +198,9 @@
   box-sizing: border-box;
   justify-content: space-between;
   padding-left: 25px;
+  &:nth-of-type(n+2) {
+    margin-top: 12px;
+  }
   .caret-left,
   .caret-right {
     width: 0;
@@ -246,8 +249,27 @@
       border-color: #2DE2E5;
     }
   }
-  &:nth-of-type(n+2) {
-    margin-top: 12px;
+  &--red {
+    .caret-left {
+      border-color: #F2679A transparent transparent #F2679A;
+    }
+    .caret-right {
+      border-color: transparent #F2679A #F2679A transparent;
+    }
+    .dot {
+      border-color: #F2679A;
+    }
+  }
+  &--yellow {
+    .caret-left {
+      border-color: #FCE569 transparent transparent #FCE569;
+    }
+    .caret-right {
+      border-color: transparent #FCE569 #FCE569 transparent;
+    }
+    .dot {
+      border-color: #FCE569;
+    }
   }
 }
 

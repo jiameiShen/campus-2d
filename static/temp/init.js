@@ -19,29 +19,7 @@ $(function () {
   var ctrlHeader = app.addControl(new CreatHeader())
 
   /* 返回按钮 */
-  class CreateBackNavigator {
-    constructor() { }
-    onAdd() {
-      $('#div2d').append(`<div class="g-back-navigator"><span class="glyphicon glyphicon-menu-left"></span>返回</div>`)
-      this.hide()
-    }
-
-    show() {
-      $('.g-back-navigator').show()
-    }
-
-    hide() {
-      $('.g-back-navigator').hide()
-    }
-
-    back() {
-      app.level.back()
-    }
-  }
-  var ctrlBackNavigator = app.addControl(new CreateBackNavigator())
-  $(document).on('click', '.g-back-navigator', function () {
-    ctrlBackNavigator.back()
-  })
+  var ctrlGBackNavigator = app.addControl(new CreateGBackNavigator())
 
   // 添加全局tab导航
   var ctrlGTabList = app.addControl(new CreateGTabList())
@@ -97,13 +75,13 @@ $(function () {
     if (object instanceof THING.Campus) {
       console.log('Campus: ' + object)
       $('.buildingMarker').show()
-      ctrlBackNavigator.hide()
+      ctrlGBackNavigator.hide()
       ctrlGTabList.showTab(null, {
         buildingName: ''
       })
     } else {
       $('.buildingMarker').hide()
-      ctrlBackNavigator.show()
+      ctrlGBackNavigator.show()
     }
     if (object instanceof THING.Building) {
       ctrlGTabList.showTab(null, {

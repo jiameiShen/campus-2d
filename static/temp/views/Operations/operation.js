@@ -163,7 +163,7 @@ var operationTemplate = `
           <div class="chart-block__bd">
             <div class="device-status-content">
               <div class="device-status-ring" id="device-status-ring"></div>
-              <div class="device-status-info">
+              <div class="device-status-info square-card--hasline">
                 <div class="each-count square-card square-card--red">
                   <span class="caret-left caret-red-left"></span>
                   <div class="caret-circle caret-circle-red"></div>

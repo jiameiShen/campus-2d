@@ -198,6 +198,19 @@
   width: 52%;
   margin-left: 35px;
   position: relative;
+  .square-card::before {
+    left: -24px;
+  }
+  &.square-card--hasline {
+    &::before {
+      left: -46px;
+      top: 22px;
+    }
+    &::after {
+      left: -46px;
+      bottom: 22px;
+    }
+  }
 }
 // .page-operation
 //   .device-status-content

@@ -289,7 +289,6 @@
     top: 7px;
     border-right-color: #228AE1;
   }
-
   &::after {
     left: -38px;
     bottom: 7px;
@@ -299,17 +298,11 @@
     &::before {
       position: absolute;
       content: '';
-      width: 14px;
+      width: 12px;
       height: 0;
-      left: -18px;
+      left: -16px;
+      top: 50%;
       border-bottom: 1px dashed #228AE1;
-    }
-    &:first-child,
-    &:last-child {
-      &::before {
-        width: 12px;
-        left: -16px;
-      }
     }
   }
 }

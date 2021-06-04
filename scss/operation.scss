@@ -1,0 +1,271 @@
+.page-operation .operation-maintenance-content {
+  height: 147px;
+  display: flex;
+  padding-bottom: 18px;
+  box-sizing: border-box;
+}
+.page-operation .operation-maintenance-content .info-bk {
+  // width: 32%;
+  width: 100px;
+  height: 109px;
+  background-size: 100px 109px;
+}
+.page-operation .operation-maintenance-content .info-bk:first-child {
+  background-image: url('../image/else/ring-bk2-red.png');
+}
+.page-operation .operation-maintenance-content .info-bk:nth-child(2) {
+  background-image: url('../image/else/ring-bk2-yellow.png');
+  margin: 0 10px;
+}
+.page-operation .operation-maintenance-content .info-bk:last-child {
+  background-image: url('../image/else/ring-bk2-blue.png');
+}
+.page-operation .operation-maintenance-content .info-bk .title {
+  font-size: 14px;
+  font-family: MicrosoftYaHei;
+  color: #ffffff;
+  height: 47px;
+  line-height: 47px;
+  text-align: center;
+}
+.page-operation .operation-maintenance-content .info-bk .color {
+  font-size: 20px;
+  font-family: MicrosoftYaHei-Bold, MicrosoftYaHei;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 15px;
+}
+.page-operation .operation-maintenance-content .info-bk .color-red {
+  color: #f2679a;
+}
+.page-operation .operation-maintenance-content .info-bk .color-yellow {
+  color: #fce569;
+}
+.page-operation .operation-maintenance-content .info-bk .color-blue {
+  color: #2de2e5;
+}
+.page-operation .event-list-content {
+  height: 211px;
+  box-sizing: border-box;
+}
+.page-operation .event-list-content .tab {
+  display: flex;
+  width: 100%;
+  height: 25px;
+}
+.page-operation .event-list-content .tip {
+  padding: 0 4px;
+  background-color: #de4251;
+  font-size: 12px;
+  font-family: MicrosoftYaHei;
+  color: #ffffff;
+  border-radius: 50%;
+  margin-left: 3px;
+}
+.page-operation .event-list-content .tab .item {
+  width: calc(100% - 212px);
+  height: 25px;
+  background: #1e4e6b;
+  border: 1px solid #263752;
+  font-size: 14px;
+  font-family: MicrosoftYaHei;
+  color: #d1d4d9;
+  line-height: 25px;
+  margin: 0px -1px -1px 0px;
+  text-align: center;
+}
+.page-operation .event-list-content .tab .tab-active {
+  border: 1px solid #2dc0e5;
+  color: #ffffff;
+  margin: 0;
+}
+.page-operation .event-list-content .table {
+  width: 100%;
+  text-align: left;
+  table-layout: fixed;
+  font-size: 14px;
+  margin-top: 10px;
+  color: #ffffff;
+}
+.page-operation .event-list-content .table tr {
+  height: 34px;
+  line-height: 34px;
+  box-shadow: 0px 1px 0px 0px #172335;
+}
+.page-operation .event-list-content .table tr:last-child {
+  box-shadow: none;
+}
+.page-operation .event-list-content .table tr td:first-child {
+  width: 21%;
+  padding-left: 20px;
+  box-sizing: border-box;
+}
+// .page-operation .event-list-content .table tr td:nth-child(2) {
+//   width: 96px;
+// }
+.page-operation .event-list-content .table tr td:last-child {
+  color: #fce569;
+}
+.page-operation .duty-personnel-content {
+  height: 219px;
+  width: 100%;
+  table-layout: fixed;
+}
+.page-operation .duty-personnel-content tr {
+  height: 50px;
+
+  line-height: 50px;
+  box-shadow: 0px 1px 0px 0px #172335;
+  font-size: 14px;
+  font-family: MicrosoftYaHei;
+  color: #ffffff;
+}
+.page-operation .duty-personnel-content tr .pic {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.page-operation .duty-personnel-content tr td:first-child {
+  width: 74px;
+  padding-left: 20px;
+  box-sizing: border-box;
+}
+.page-operation .device-status-content {
+  height: 252px;
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px;
+}
+.page-operation .device-status-content .device-status-ring {
+  width: 45%;
+  height: 100%;
+}
+.page-operation .device-status-content .device-status-info .each-count {
+  // width: 166px;
+  height: 62px;
+  background-size: 100%;
+  font-size: 14px;
+  font-family: MicrosoftYaHei;
+  color: #ffffff;
+  position: relative;
+}
+.page-operation .device-status-content .device-status-info .square-card {
+  height: 62px;
+  display: block;
+}
+.page-operation .device-status-content .device-status-info .caret-circle {
+  width: 10px;
+  height: 10px;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 50%;
+  box-sizing: border-box;
+  margin-right: 6px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+.page-operation .device-status-content .device-status-info .caret-circle-red {
+  border-color: #f2679a;
+}
+.page-operation .device-status-content .device-status-info .caret-circle-yellow {
+  border-color: #FCE569;
+}
+.page-operation .device-status-content .device-status-info .caret-circle-green {
+  border-color: #2DE2E5;
+}
+.page-operation .device-status-content .device-status-info {
+  width: 100%;
+  margin-left: 35px;
+  position: relative;
+}
+// .page-operation
+//   .device-status-content
+//   .device-status-info
+//   .each-count:first-child {
+//   background-image: url('../image/else/ring-info-bk-red.png');
+// }
+.page-operation
+  .device-status-content
+  .device-status-info
+  .each-count:nth-child(2) {
+  // background-image: url('../image/else/ring-info-bk-yellow.png');
+  margin: 10px 0;
+}
+// .page-operation
+//   .device-status-content
+//   .device-status-info
+//   .each-count:last-child {
+//   background-image: url('../image/else/ring-info-bk-blue.png');
+// }
+.page-operation .device-status-content .device-status-info .each-count .info {
+  margin-left: 8px;
+  // height: 31px;
+  // line-height: 31px;
+  padding-top: 6px;
+}
+.page-operation
+  .device-status-content
+  .device-status-info
+  .each-count
+  .info-center {
+  text-align: center;
+  padding-top: 10px;
+}
+.page-operation
+  .device-status-content
+  .device-status-info
+  .each-count
+  .info
+  .percentage {
+  color: #2de2e5;
+}
+.page-operation
+  .device-status-content
+  .device-status-info
+  .each-count
+  .info
+  .align-left {
+  float: left;
+}
+.page-operation
+  .device-status-content
+  .device-status-info
+  .each-count
+  .info
+  .align-right {
+  float: right;
+}
+.page-operation .device-maintenance-content .device-maintenance-chart {
+  height: 184px;
+  display: flex;
+  align-items: center;
+}
+.page-operation .regional-statistics-content .regional-statistics-chart {
+  height: 141px;
+}
+.clearfix:after {
+  content: '020';
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.clearfix {
+  zoom: 1;
+}
+.line {
+  width: calc(100% - 37px);
+  height: 1px;
+  background: linear-gradient(
+    270deg,
+    rgba(111, 127, 174, 0) 0%,
+    #6f7fae 52%,
+    rgba(111, 127, 174, 0) 100%
+  );
+  opacity: 0.5;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}

@@ -19,8 +19,8 @@ function operationDeviceStatusChart() {
         color: '#7EADC0',
         fontSize: 14,
       },
-      x: '17% ',
-      y: '40%',
+      x: 'center',
+      y: '38%',
     },
 
     color: ['#F2679A', '#FCE569', '#228AE1'],
@@ -28,8 +28,8 @@ function operationDeviceStatusChart() {
       {
         name: '访问来源',
         type: 'pie',
-        radius: ['60%', '80%'],
-        center: ['40%', '50%'],
+        radius: ['70%', '90%'],
+        center: ['50%', '50%'],
         avoidLabelOverlap: false,
         label: {
           normal: {
@@ -58,17 +58,17 @@ function operationDeviceStatusChart() {
 }
 
 // 维修设备分类统计
-function  operationDeviceMaintenanceChart() {
+function operationDeviceMaintenanceChart() {
   let regionalStatistics = echarts.init(
     document.getElementById('device-maintenance-content')
   )
   let option = {
     backgroundColor: 'transparent',
-    color: ['#2DE2E5','#228AE1','#F2679A', '#9095EC',],
+    color: ['#2DE2E5', '#228AE1', '#F2679A', '#9095EC',],
     legend: {
       orient: 'vertical',
       right: 0,
-      bottom: 20,
+      bottom: 10,
       itemWidth: 14,
       itemHeight: 4,
       itemGap: 16,
@@ -77,14 +77,14 @@ function  operationDeviceMaintenanceChart() {
         lineHeight: 16,
         color: '#fff',
       },
-      data: ['摄像机','办公桌椅','智能穿戴','监控设备'],
+      data: ['摄像机', '办公桌椅', '智能穿戴', '监控设备'],
     },
     series: [
       {
         name: '维修设备分类统计',
         type: 'pie',
-        radius: '50%',
-        center:['38%','45%'],
+        radius: '60%',
+        center: ['32%', '45%'],
         label: {
           formatter: '{font|{b}}\n{font|{c}}',
           rich: {
@@ -96,10 +96,10 @@ function  operationDeviceMaintenanceChart() {
           },
         },
         data: [
-          {value:'336',name:'摄像机'},
-          {value:'400',name:'办公桌椅'},
-          {value:'480',name:'智能穿戴'},
-          {value:'880',name:'监控设备'},
+          { value: '336', name: '摄像机' },
+          { value: '400', name: '办公桌椅' },
+          { value: '480', name: '智能穿戴' },
+          { value: '880', name: '监控设备' },
         ],
       },
     ],
@@ -113,7 +113,6 @@ function operationRegionalStatisticsChart() {
     document.getElementById('regional-statistics-content')
   )
   let option = {
-    backgroundColor: 'black',
     grid: {
       top: 18,
       left: '3%',
@@ -123,20 +122,20 @@ function operationRegionalStatisticsChart() {
     },
     dataZoom: [
       {
-        start:0,//默认为0
-        end: 100-1500/31,//默认为100
+        start: 0,//默认为0
+        end: 100 - 1500 / 31,//默认为100
         type: 'slider',
         show: true,
         yAxisIndex: [0],
         handleSize: 0,//滑动条的 左右2个滑动条的大小 
         borderColor: "#000",
         fillerColor: '#276B86',
-        width:12,
-        borderRadius:5,
+        width: 12,
+        borderRadius: 5,
         backgroundColor: '#1D2A42',//两边未选中的滑动条区域的颜色
         showDataShadow: false,//是否显示数据阴影 默认auto
         showDetail: false,//即拖拽时候是否显示详细数值信息 默认true
-        realtime:true, //是否实时更新
+        realtime: true, //是否实时更新
         filterMode: 'filter',
       },
     ],

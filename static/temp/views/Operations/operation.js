@@ -1,18 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
-    <link rel="stylesheet" href="../../static/css/global.css" />
-    <link rel="stylesheet" href="../../static/css/page.css" />
-    <link rel="stylesheet" href="../../static/css/operation.css" />
-    <link rel="stylesheet" href="../../static/css/common.css" />
-  </head>
-  <body>
-    <div class="page-container">
+/**
+ * @class CreatePageAssets
+ * @desc 创建资产管理
+ * @param
+ * @returns
+ */
+THING.Utils.dynamicLoad(
+  '/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/views/Operations/operation.css'
+)
+THING.Utils.dynamicLoad(
+  '/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/views/Operations/operationChart.js'
+)
+console.log('CreatePageOperations')
+
+class CreatePageOperations {
+  pageId = 'Operations'
+  buildingName = ''
+  constructor(data) {
+    if (data) {
+      this.pageId = data.pageId || this.pageId
+      this.buildingName = data.buildingName || ''
+    }
+  }
+
+  onAdd(app) {
+    this.init()
+  }
+
+  onRemove() {
+    $(`#${this.pageId}`).remove()
+  }
+
+  /**
+   * 初始化面板
+   */
+  init() {
+    let _this = this
+    // 插入到 ThingJS 内置的 2D 界面 #pageContainer 中
+    $(`#page${this.pageId}`).html($(operationTemplate))
+    this.render()
+  }
+
+  reload(data) {
+    if (data) {
+      this.pageId = data.pageId || this.pageId
+      this.buildingName = data.buildingName || ''
+    }
+    this.render()
+  }
+
+  render() {
+    let _this = this
+    $(`#page${this.pageId} .js-building-name`).each(function () {
+      $(this).text(_this.buildingName || $(this).data('school'))
+    })
+
+    operationDeviceStatusChart()
+    operationRegionalStatisticsChart()
+    operationDeviceMaintenanceChart()
+  }
+}
+
+var operationTemplate = `
       <div class="page-aside page-aside-left animate__animated page-operation">
         <div class="chart-block flex-none">
           <div class="chart-block__hd">
@@ -108,8 +156,8 @@
             </table>
           </div>
         </div>
-      </div>
-      <div class="page-aside page-aside-right animate__animated page-operation">
+        </div>
+        <div class="page-aside page-aside-right animate__animated page-operation">
         <div class="chart-block flex-none">
           <div class="chart-block__hd">
             <p><span class="js-building-name"></span>设备状态统计</p>
@@ -191,8 +239,4 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <script src="../../static/temp/views/Operations/operationChart.js"></script>
-  </body>
-</html>
+`

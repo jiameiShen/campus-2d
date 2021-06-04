@@ -47,7 +47,7 @@ class CreatePageAssets {
   render() {
     let _this = this
     $(`#page${this.pageId} .js-building-name`).each(function () {
-      $(this).text(_this.buildingName || $(this).data('school'))
+      $(this).text(_this.buildingName || $(this).data('school') || '')
     })
 
     schoolAssetsChart()

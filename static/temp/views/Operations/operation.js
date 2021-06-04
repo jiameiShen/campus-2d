@@ -51,7 +51,7 @@ class CreatePageOperations {
   render() {
     let _this = this
     $(`#page${this.pageId} .js-building-name`).each(function () {
-      $(this).text(_this.buildingName || $(this).data('school'))
+      $(this).text(_this.buildingName || $(this).data('school') || '')
     })
 
     operationDeviceStatusChart()
@@ -70,20 +70,20 @@ var operationTemplate = `
             <div class="operation-maintenance-content">
               <div class="info-bk">
                 <div class="title">待解决(件)</div>
-                <div class="color color-red">14</div>
+                <div class="color color-red js-rock-number">14</div>
               </div>
               <div class="info-bk">
                 <div class="title">处理中(件)</div>
-                <div class="color color-yellow">24</div>
+                <div class="color color-yellow js-rock-number">24</div>
               </div>
               <div class="info-bk">
                 <div class="title">已解决(件)</div>
-                <div class="color color-blue">24,002</div>
+                <div class="color color-blue js-rock-number">24002</div>
               </div>
             </div>
           </div>
         </div>
-        <div class="chart-block">
+        <div class="chart-block chart-block-2">
           <div class="chart-block__hd">
             <p><span class="js-building-name"></span>事件列表</p>
           </div>
@@ -96,68 +96,66 @@ var operationTemplate = `
                 <div class="item">处理中<span class="tip">2</span></div>
                 <div class="item">待处理<span class="tip">2</span></div>
               </div>
-              <table class="table">
+              <div class="vtable-wrapper">
+                <table class="vtable">
+                  <tr>
+                    <td>01</td>
+                    <td>德育楼201</td>
+                    <td>多媒体损坏</td>
+                  </tr>
+                  <tr>
+                    <td>02</td>
+                    <td>德育楼202</td>
+                    <td>空调无法开启</td>
+                  </tr>
+                  <tr>
+                    <td>03</td>
+                    <td>德育楼203</td>
+                    <td>传真机损坏</td>
+                  </tr>
+                  <tr>
+                    <td>04</td>
+                    <td>德育楼205</td>
+                    <td>椅子缺失</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="chart-block chart-block-3">
+          <div class="chart-block__hd">
+            <p><span class="js-building-name"></span>今日值班运维人员</p>
+          </div>
+          <div class="chart-block__bd">
+            <div class="vtable-wrapper">
+              <table class="duty-personnel-content">
                 <tr>
-                  <td>01</td>
-                  <td>德育楼201</td>
-                  <td>多媒体损坏</td>
+                  <td><img src="https://img.zcool.cn/community/01a3865ab91314a8012062e3c38ff6.png@1280w_1l_2o_100sh.png" class="pic" /></td>
+                  <td>张毅</td>
+                  <td>18038009393</td>
                 </tr>
                 <tr>
-                  <td>02</td>
-                  <td>德育楼202</td>
-                  <td>空调无法开启</td>
+                  <td><img src="https://img.zcool.cn/community/01a3865ab91314a8012062e3c38ff6.png@1280w_1l_2o_100sh.png" class="pic" /></td>
+                  <td>黄新</td>
+                  <td>17890098768</td>
                 </tr>
                 <tr>
-                  <td>03</td>
-                  <td>德育楼203</td>
-                  <td>传真机损坏</td>
+                  <td><img src="https://img.zcool.cn/community/01a3865ab91314a8012062e3c38ff6.png@1280w_1l_2o_100sh.png" class="pic" /></td>
+                  <td>刘广</td>
+                  <td>15820099878</td>
                 </tr>
                 <tr>
-                  <td>04</td>
-                  <td>德育楼205</td>
-                  <td>椅子缺失</td>
+                  <td><img src="https://img.zcool.cn/community/01a3865ab91314a8012062e3c38ff6.png@1280w_1l_2o_100sh.png" class="pic" /></td>
+                  <td>赵柳</td>
+                  <td>15678877987</td>
                 </tr>
               </table>
             </div>
           </div>
         </div>
-        <div class="chart-block">
-          <div class="chart-block__hd">
-            <p><span class="js-building-name"></span>今日值班运维人员</p>
-          </div>
-          <div class="chart-block__bd">
-            <table class="duty-personnel-content">
-              <tr>
-                <td>
-                  <img
-                    style="vertical-align: middle"
-                    src="../image/ring-bk.png"
-                    class="pic"
-                  />
-                </td>
-                <td>张毅</td>
-                <td>18038009393</td>
-              </tr>
-              <tr>
-                <td><img src="../image/ring-bk.png" class="pic" /></td>
-                <td>黄新</td>
-                <td>17890098768</td>
-              </tr>
-              <tr>
-                <td><img src="../image/ring-bk.png" class="pic" /></td>
-                <td>刘广</td>
-                <td>15820099878</td>
-              </tr>
-              <tr>
-                <td><img src="../image/ring-bk.png" class="pic" /></td>
-                <td>赵柳</td>
-                <td>15678877987</td>
-              </tr>
-            </table>
-          </div>
-        </div>
-        </div>
-        <div class="page-aside page-aside-right animate__animated page-operation">
+      </div>
+      <div class="page-aside page-aside-right animate__animated page-operation">
         <div class="chart-block flex-none">
           <div class="chart-block__hd">
             <p><span class="js-building-name"></span>设备状态统计</p>
@@ -212,17 +210,15 @@ var operationTemplate = `
             </div>
           </div>
         </div>
-        <div class="chart-block flex-none">
+        <div class="chart-block">
           <div class="chart-block__hd">
             <p><span class="js-building-name"></span>维修设备分类统计</p>
           </div>
           <div class="chart-block__bd">
-            <div class="device-maintenance-content">
-              <div
-                class="device-maintenance-chart"
-                id="device-maintenance-content"
-              ></div>
-            </div>
+            <div
+              class="device-maintenance-chart"
+              id="device-maintenance-content"
+            ></div>
           </div>
         </div>
         <div class="chart-block">
@@ -230,12 +226,10 @@ var operationTemplate = `
             <p><span class="js-building-name"></span>运维情况区域统计</p>
           </div>
           <div class="chart-block__bd">
-            <div class="regional-statistics-content">
-              <div
-                class="regional-statistics-chart"
-                id="regional-statistics-content"
-              ></div>
-            </div>
+            <div
+              class="regional-statistics-chart"
+              id="regional-statistics-content"
+            ></div>
           </div>
         </div>
       </div>

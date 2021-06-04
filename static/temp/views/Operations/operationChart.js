@@ -28,7 +28,7 @@ function operationDeviceStatusChart() {
       {
         name: '访问来源',
         type: 'pie',
-        radius: ['70%', '90%'],
+        radius: ['75%', '100%'],
         center: ['50%', '50%'],
         avoidLabelOverlap: false,
         label: {
@@ -54,6 +54,7 @@ function operationDeviceStatusChart() {
       },
     ],
   }
+  deviceStatus.clear()
   deviceStatus.setOption(option)
 }
 
@@ -68,7 +69,7 @@ function operationDeviceMaintenanceChart() {
     legend: {
       orient: 'vertical',
       right: 0,
-      bottom: 10,
+      bottom: 0,
       itemWidth: 14,
       itemHeight: 4,
       itemGap: 16,
@@ -84,13 +85,13 @@ function operationDeviceMaintenanceChart() {
         name: '维修设备分类统计',
         type: 'pie',
         radius: '60%',
-        center: ['32%', '45%'],
+        center: ['38%', '50%'],
         label: {
           formatter: '{font|{b}}\n{font|{c}}',
           rich: {
             font: {
               color: '#fff',
-              fontSize: 14,
+              fontSize: 12,
               lineHeight: 20,
             },
           },
@@ -104,6 +105,7 @@ function operationDeviceMaintenanceChart() {
       },
     ],
   }
+  regionalStatistics.clear()
   regionalStatistics.setOption(option)
 }
 
@@ -173,7 +175,6 @@ function operationRegionalStatisticsChart() {
     series: [
       {
         type: 'bar',
-        barWidth: 26,
         data: [97, 518, 212, 486, 427, 284, 502],
         label: {
           normal: {
@@ -210,10 +211,10 @@ function operationRegionalStatisticsChart() {
             shadowOffsetY: 3,
           },
         },
-        barWidth: 12, //柱子宽度
       },
     ],
   }
+  regionalStatistics.clear()
   regionalStatistics.setOption(option)
 }
 

@@ -98,7 +98,7 @@ class CreatePageApartment {
     this.dormitoryId = currentObj.userData.dormitoryId || ''
     let _this = this
     $(`#page${this.pageId} .js-building-name`).each(function () {
-      $(this).text(_this.buildingName || $(this).data('school'))
+      $(this).text(_this.buildingName || $(this).data('school') || '')
     })
     let notReturnChart_current = ''
     let abnormalWarningChart_current = ''

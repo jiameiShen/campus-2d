@@ -11,8 +11,10 @@ console.log('CreatePageApartment')
 class CreatePageApartment {
   pageId = 'Apartment'
   buildingName = ''
+  dormitoryId = ''
   floorName = ''
   notReturnChart_current = 'dormitory'
+  abnormalWarningChart_current = 'dormitory'
   constructor(data) {
     if (data) {
       this.pageId = data.pageId || this.pageId
@@ -62,7 +64,14 @@ class CreatePageApartment {
     $(document).on('click', '#notReturnChartButton .tab-item', function () {
       $(this).addClass('active').siblings().removeClass('active')
       _this.notReturnChart_current = $(this).data('val')
-      renderNotReturnChart(_this.notReturnChart_current)
+      _this.$_renderNotReturnChart(_this.notReturnChart_current)
+    })
+
+    /* 异常预警 */
+    $(document).on('click', '#abnormalWarningChartButton .tab-item', function () {
+      $(this).addClass('active').siblings().removeClass('active')
+      _this.abnormalWarningChart_current = $(this).data('val')
+      _this.$_renderAbnormalWarningChart(_this.abnormalWarningChart_current)
     })
 
     this.render()
@@ -85,75 +94,76 @@ class CreatePageApartment {
   }
 
   render() {
+    let currentObj = app.level.current
+    this.dormitoryId = currentObj.userData.dormitoryId || ''
     let _this = this
     $(`#page${this.pageId} .js-building-name`).each(function () {
       $(this).text(_this.buildingName || $(this).data('school'))
     })
     let notReturnChart_current = ''
+    let abnormalWarningChart_current = ''
     if (this.buildingName) {
       notReturnChart_current = 'college'
+      abnormalWarningChart_current = 'college'
       $('#notReturnChartButton').hide()
-      this.changeChartBasicCaption()
+      $('#abnormalWarningChartButton').hide()
     } else {
       this.pickNotReturnChart()
+      this.pickAbnormalWarningChart()
       $('#notReturnChartButton').show()
+      $('#abnormalWarningChartButton').show()
     }
 
     /* 未归寝率排行 */
-    notReturnChart = window.echarts.init(document.getElementById('notReturnChart'), null, { devicePixelRatio: 2.5 })
-    renderNotReturnChart(notReturnChart_current || this.notReturnChart_current)
+    this.$_renderNotReturnChart(notReturnChart_current)
+
     /* 异常预警 */
-    abnormalWarningChart = window.echarts.init(document.getElementById('abnormalWarningChart'), null, { devicePixelRatio: 2.5 })
-    renderAbnormalWarningChart()
+    this.$_renderAbnormalWarningChart(abnormalWarningChart_current)
 
-    /* 房间使用率 */
-    roomUsageChart = window.echarts.init(document.getElementById('roomUsageChart'), null, { devicePixelRatio: 2.5 })
-    const roomUsageData = {
-      idle: 752,
-      total: 2367,
-    }
-    renderRoomUsageChart(
-      !roomUsageData.total
-        ? '0'
-        : ((roomUsageData.total - roomUsageData.idle) / roomUsageData.total).toFixed(2)
-    )
+    $_ajaxPromise({
+      type: "get",
+      url: `${window.$baseUrl}/queryIndexData`,
+      data: {
+        dormitoryId: this.dormitoryId
+      },
+      dataType: "json"
+    }).then(res => {
+      const { message } = res
+      if (message) {
+        const { roomtInfo, trafficInfo, warning } = message
+        /* 基础信息 */
+        this.changeChartBasicCaption(roomtInfo)
 
-    /* 今日通行人数 */
-    const passInfo = {
-      data: [
-        { time: "09:00", in: 0, out: 0 },
-        { time: "09:30", in: 0, out: 0 },
-        { time: "10:00", in: 0, out: 0 },
-        { time: "10:30", in: 0, out: 0 },
-        { time: "11:00", in: 0, out: 0 },
-        { time: "11:30", in: 0, out: 0 },
-        { time: "12:00", in: 0, out: 0 },
-        { time: "12:30", in: 0, out: 0 },
-        { time: "13:00", in: 0, out: 0 },
-        { time: "13:30", in: 0, out: 0 },
-        { time: "14:00", in: 8, out: 0 },
-        { time: "14:30", in: 0, out: 1 }
-      ],
-      in: 11,
-      out: 1
-    }
-    const passTimeList = passInfo.data.map((item) => item.time)
-    const passInList = passInfo.data.map((item) => item.in)
-    const passOutList = passInfo.data.map((item) => item.out)
-    passChart = window.echarts.init(document.getElementById('passChart'), null, { devicePixelRatio: 2.5 })
-    renderPassChart(passTimeList, passInList, passOutList)
-    /* 今日通行拦截 */
-    const interceptInfo = {
-      data: [
-        { name: '体温异常', value: 5 },
-        { name: '非活体', value: 8 },
-        { name: '陌生人', value: 80 },
-        { name: '黑名单', value: 1 },
-      ],
-      total: 94,
-    }
-    interceptChart = window.echarts.init(document.getElementById('interceptChart'), null, { devicePixelRatio: 2.5 })
-    renderInterceptChart(interceptInfo.data)
+        /* 房间使用率 */
+        $('#roomUsageChartFree').numberRock({ lastNumber: roomtInfo.bedFreeNumber })
+        $('#roomUsageChartTotal').numberRock({ lastNumber: roomtInfo.bedNumber })
+        roomUsageChart = window.echarts.init(document.getElementById('roomUsageChart'), null, { devicePixelRatio: 2.5 })
+        renderRoomUsageChart(roomtInfo.bedUsePercentage / 100)
+
+        /* 今日通行人数 */
+        const passTimeList = trafficInfo.todayTrafficInfo.map((item) => item.time)
+        const passInList = trafficInfo.todayTrafficInfo.map((item) => item.in)
+        const passOutList = trafficInfo.todayTrafficInfo.map((item) => item.out)
+        $('#passChartIn').text(trafficInfo.inNumber)
+        $('#passChartOut').text(trafficInfo.outNumber)
+        passChart = window.echarts.init(document.getElementById('passChart'), null, { devicePixelRatio: 2.5 })
+        renderPassChart(passTimeList, passInList, passOutList)
+
+        /* 今日通行拦截 */
+        const interceptInfo = {
+          data: [
+            { name: '体温异常', value: warning.temperatureUnusualNumber },
+            { name: '非活体', value: warning.todayNotLivingNumber },
+            { name: '陌生人', value: warning.todayStrangerNumber },
+            { name: '黑名单', value: warning.todayBlacklistNumber },
+          ],
+          total: warning.todayAbnormalNumber,
+        }
+        $('#interceptChartTotal').text(interceptInfo.total)
+        interceptChart = window.echarts.init(document.getElementById('interceptChart'), null, { devicePixelRatio: 2.5 })
+        renderInterceptChart(interceptInfo.data)
+      }
+    })
   }
 
   renderFloor() {
@@ -395,29 +405,99 @@ class CreatePageApartment {
       .addClass('active')
       .siblings()
       .removeClass('active')
+
   }
 
-  changeChartBasicCaption() {
+  pickAbnormalWarningChart(val) {
+    $(`#abnormalWarningChartButton .tab-item[data-val="${val || this.abnormalWarningChart_current}"]`)
+      .addClass('active')
+      .siblings()
+      .removeClass('active')
+  }
+
+  $_renderNotReturnChart(val) {
+    const curType = val || this.notReturnChart_current
+    $_ajaxPromise({
+      type: "get",
+      url: `${window.$baseUrl}/${curType === 'college' ? 'queryCollegeBedRate' : 'queryDormitoryBedRate'}`,
+      data: {
+        dormitoryId: this.dormitoryId
+      },
+      dataType: "json"
+    }).then(res => {
+      const { message } = res
+      if (message) {
+        notReturnChart = window.echarts.init(document.getElementById('notReturnChart'), null, { devicePixelRatio: 2.5 })
+        renderNotReturnChart(message)
+      }
+    })
+  }
+
+  $_renderAbnormalWarningChart(val) {
+    const curType = val || this.abnormalWarningChart_current
+    $_ajaxPromise({
+      type: "get",
+      url: `${window.$baseUrl}/${curType === 'college' ? 'queryCollegeAbnormalInfo' : 'queryDormitoryAbnormalInfo'}`,
+      data: {
+        dormitoryId: this.dormitoryId
+      },
+      dataType: "json"
+    }).then(res => {
+      const { message } = res
+      if (message) {
+        abnormalWarningChart = window.echarts.init(document.getElementById('abnormalWarningChart'), null, { devicePixelRatio: 2.5 })
+        renderAbnormalWarningChart(message)
+      }
+    })
+  }
+
+  changeChartBasicCaption(roomtInfo) {
     let template = `<ul class="list">
-      <li class="item item-dormitory">
+      ${this.buildingName ? `<li class="item item-dormitory">
         <p><span class="count js-rock-number">6</span>层</p>
         <p class="caption">楼层总数</p>
-      </li>
-      <li class="item item-room">
-        <p><span class="count js-rock-number">138</span>间</p>
+      </li>`
+        : `<li class="item item-dormitory">
+        <p><span class="count js-rock-number">${roomtInfo.dormitoryNumber}</span>栋</p>
+        <p class="caption">楼栋总数</p>
+      </li>`
+      }<li class="item item-room">
+        <p><span class="count js-rock-number">${roomtInfo.roomNumber}</span>间</p>
         <p class="caption">房间总数</p>
       </li>
       <li class="item item-bed">
-        <p><span class="count js-rock-number">552</span>张</p>
+        <p><span class="count js-rock-number">${roomtInfo.bedNumber}</span>张</p>
         <p class="caption">床位总数</p>
       </li>
       <li class="item item-people">
-        <p><span class="count js-rock-number">552</span>人</p>
+        <p><span class="count js-rock-number">${roomtInfo.bedStayNumber}</span>人</p>
         <p class="caption">入住总数</p>
       </li>
     </ul>`
     $('.chart-basic .chart-block__bd').html($(template))
+    $(".chart-basic .js-rock-number").each(function () {
+      $(this).numberRock({
+        lastNumber: parseInt($(this).text())
+      });
+    })
   }
+}
+
+function $_ajaxPromise(params) {
+  return new Promise((resovle, reject) => {
+    $.ajax({
+      "type": params.type || "get",
+      "async": params.async || true,
+      "url": params.url,
+      "data": params.data || "",
+      "success": res => {
+        resovle(res);
+      },
+      "error": err => {
+        reject(err);
+      }
+    })
+  })
 }
 
 var apartmentTemplate = `
@@ -464,6 +544,10 @@ var apartmentTemplate = `
           <div class="chart-block chart-abnormal">
             <div class="chart-block__hd">
               <p><span class="js-building-name"></span>异常预警</p>
+              <ul class="tab-list" id="abnormalWarningChartButton">
+                <li class="tab-item active" data-val="dormitory">楼栋</li>
+                <li class="tab-item" data-val="college">院系</li>
+              </ul>
             </div>
             <div class="chart-block__bd">
               <div id="abnormalWarningChart"></div>
@@ -480,12 +564,12 @@ var apartmentTemplate = `
               <div class="right">
                 <div class="item square-card">
                   <span class="caret-left"></span>
-                  <span class="dot"></span>未使用床位<span class="text js-rock-number">752</span>
+                  <span class="dot"></span>未使用床位<span class="text" id="roomUsageChartFree">752</span>
                   <span class="caret-right"></span>
                 </div>
                 <div class="item square-card square-card--green">
                   <span class="caret-left"></span>
-                  <span class="dot"></span>总床位<span class="text js-rock-number">2367</span>
+                  <span class="dot"></span>总床位<span class="text" id="roomUsageChartTotal">2367</span>
                   <span class="caret-right"></span>
                 </div>
               </div>
@@ -495,8 +579,8 @@ var apartmentTemplate = `
             <div class="chart-block__hd">
               <p><span class="js-building-name"></span>今日通行人数</p>
               <ul class="label-list">
-                <li class="label-item">出：<span id="roomUsageChartOut">0</span></li>
-                <li class="label-item">入：<span id="roomUsageChartIn">0</span></li>
+                <li class="label-item">出：<span id="passChartOut">0</span></li>
+                <li class="label-item">入：<span id="passChartIn">0</span></li>
               </ul>
             </div>
             <div class="chart-block__bd">
@@ -507,7 +591,7 @@ var apartmentTemplate = `
             <div class="chart-block__hd">
               <p><span class="js-building-name"></span>今日通行拦截</p>
               <ul class="label-list">
-                <li class="label-item">总人数：<span id="interceptChartSum">0</span></li>
+                <li class="label-item">总人数：<span id="interceptChartTotal">0</span></li>
               </ul>
             </div>
             <div class="chart-block__bd">
@@ -608,8 +692,8 @@ var apartmentLevelTemplate = `
         <div class="chart-block__hd">
           <p><span class="js-building-name"></span>归寝趋势</p>
           <ul class="label-list">
-            <li class="label-item">归寝：<span id="roomUsageChartIn">7</span></li>
-            <li class="label-item">外出：<span id="roomUsageChartOut">1</span></li>
+            <li class="label-item">归寝：<span id="passChartIn">7</span></li>
+            <li class="label-item">外出：<span id="passChartOut">1</span></li>
           </ul>
         </div>
         <div class="chart-block__bd">

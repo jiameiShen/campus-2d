@@ -12,10 +12,10 @@ console.log('初始化：CreateGTabList')
 
 const G_TAbLIST_ARR = [
   { name: '公寓管理', id: 'Apartment', func: CreatePageApartment, pageCtrl: null },
-  { name: '能耗管理', id: 'Energy', func: CreatePageApartment, pageCtrl: null },
+  { name: '能耗管理', id: 'Energy', func: CreatePageEnergy, pageCtrl: null },
   { name: '资产管理', id: 'Assets', func: CreatePageAssets, pageCtrl: null },
-  { name: '运维管理', id: 'Operations', func: CreatePageApartment, pageCtrl: null },
-  { name: '安全管理', id: 'Security', func: CreatePageApartment, pageCtrl: null },
+  { name: '运维管理', id: 'Operations', func: CreatePageOperations, pageCtrl: null },
+  { name: '安全管理', id: 'Security', func: CreatePageSecurity, pageCtrl: null },
 ]
 
 class CreateGTabList {
@@ -53,7 +53,7 @@ class CreateGTabList {
       this.buildingName = currentObj.parent.userData.name
       this.floorName = currentObj.name
     } else {
-      this.buildingName = currentObj.userData.name
+      this.buildingName = currentObj.userData.name || ''
       this.floorName = ''
     }
     this.currentTab = id || this.currentTab
@@ -101,9 +101,8 @@ class CreateGTabList {
     $(".js-rock-number").each(function () {
       $(this).numberRock({
         lastNumber: parseInt($(this).text()),
-        duration: 800,
-        easing: 'swing',
       });
     })
   }
 }
+

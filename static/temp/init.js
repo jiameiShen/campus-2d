@@ -31,7 +31,7 @@ $(function () {
       type: 'UIAnchor',
       parent: item,
       element: cloneBoardElement('buildingMarker', item.id), // 此参数填写要添加的Dom元素
-      localPosition: [0, 1, 0],
+      localPosition: [0, 0, 0],
       pivot: [0.5, 1], //[0,0]即以界面左上角定位，[1,1]即以界面右下角进行定位
     })
     $('#buildingMarker' + item.id + ' .text').text(item.userData.name)
@@ -56,68 +56,50 @@ $(function () {
   }, 'customLevelSetBackground');
   app.pauseEvent(THING.EventType.EnterLevel, THING.EventTag.LevelSetBackground);
 
+  /* 修改进入层级操作 */
+  app.on(THING.EventType.DBLClick, function (ev) {
+    let currentTab = ctrlGTabList.currentTab
+    let object = ev.object
+    // 公寓管理--不能进入其他楼栋
+    // 其他--不能进入宿舍楼栋层级
+    if (currentTab === 'Apartment') {
+      if (!(object instanceof THING.Thing)) {
+        object.app.level.change(object)
+      }
+    } else {
+      if (!(object instanceof THING.Floor)) {
+        object.app.level.change(object)
+      }
+    }
+  }, 'customLevelEnterMethod');
+  app.pauseEvent(THING.EventType.DBLClick, '*', THING.EventTag.LevelEnterOperation);
+
   /* 层级变化 */
   app.on(THING.EventType.LevelChange, function (ev) {
     let object = ev.current
+    ctrlGTabList.showTab()
     if (object instanceof THING.Campus) {
       console.log('Campus: ' + object)
       $('.buildingMarker').show()
       ctrlGBackNavigator.hide()
-      ctrlGTabList.showTab(null, {
-        buildingName: ''
-      })
     } else {
       $('.buildingMarker').hide()
       ctrlGBackNavigator.show()
     }
 
     if (object instanceof THING.Floor) {
+      console.log('Floor: ' + object)
       ctrlGLevelSwitch.show()
     } else {
       ctrlGLevelSwitch.hide()
     }
 
     if (object instanceof THING.Building) {
-      ctrlGTabList.showTab(null, {
-        buildingName: object.userData.name
-      })
       console.log('Building: ' + object)
-    } else if (object instanceof THING.Floor) {
-      const previousObj = ev.previous
-      ctrlGTabList.showTab(null, {
-        buildingName: previousObj.userData.name,
-        floorName: object.name
-      })
-      console.log('Floor: ' + object)
     } else if (object instanceof THING.Thing) {
       console.log('Thing: ' + object)
-      if (object.name === '建筑') {
-        ctrlGTabList.showTab(null, {
-          buildingName: object.userData.name
-        })
-      }
-    }
-  })
-
-  /* 房间信息隐藏事件 */
-  $('#div2d').on('click', '.js-tool-show-room', function () {
-    if (!!$(this).data('open')) {
-      $(this).data('open', 0)
-      $(this).text('展示房间信息')
-      $('.room-marker').hide()
-    } else {
-      $(this).data('open', 1)
-      $(this).text('隐藏房间信息')
-      $('.room-marker').show()
-    }
-  })
-
-  /* 点击房间 */
-  app.query(".Room").on(THING.EventType.SingleClick, function () {
-    let roomNumber = this.userData.room;
-    if ($(`#board${roomNumber}`).length > 0) {
-      $(`#board${roomNumber}`).toggle()
-      return
+      //   if (object.name === '建筑') {
+      //   }
     }
   });
 

@@ -23,6 +23,26 @@ class CreatePageApartment {
 
   onAdd(app) {
     this.init()
+    /* 房间信息隐藏事件 */
+    $('#div2d').on('click', '.js-tool-show-room', function () {
+      if (!!$(this).data('open')) {
+        $(this).data('open', 0)
+        $(this).text('展示房间信息')
+        $('.room-marker').hide()
+      } else {
+        $(this).data('open', 1)
+        $(this).text('隐藏房间信息')
+        $('.room-marker').show()
+      }
+    })
+
+    /* 点击房间 */
+    app.query('.Room').on(THING.EventType.SingleClick, function () {
+      let roomNumber = this.userData.room;
+      if ($(`#board${roomNumber}`).length > 0) {
+        $(`#board${roomNumber}`).toggle()
+      }
+    });
   }
 
   onRemove() {
@@ -243,11 +263,12 @@ class CreatePageApartment {
           type: 'UIAnchor',
           parent: room,
           element: document.getElementById('board' + roomData.roomNumber),
-          localPosition: [0, 2, 0],
+          localPosition: [0, 0, 0],
           pivot: [0.5, 1]
         });
       }
     })
+    $('.room-marker').hide()
 
     // 查寝统计弹窗
     $('#checkStatisticsChart').on('click', '.item', function () {

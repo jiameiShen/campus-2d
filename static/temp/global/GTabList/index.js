@@ -47,9 +47,15 @@ class CreateGTabList {
     $('#div2d').append($(template));
   }
 
-  showTab(id, data = {}) {
-    this.buildingName = data.buildingName || ''
-    this.floorName = data.floorName || ''
+  showTab(id) {
+    let currentObj = app.level.current
+    if (currentObj.type === 'Floor') {
+      this.buildingName = currentObj.parent.userData.name
+      this.floorName = currentObj.name
+    } else {
+      this.buildingName = currentObj.userData.name
+      this.floorName = ''
+    }
     this.currentTab = id || this.currentTab
 
     let $_dom = $(".js-tab-item[data-id=" + this.currentTab + "]")
@@ -101,4 +107,3 @@ class CreateGTabList {
     })
   }
 }
-

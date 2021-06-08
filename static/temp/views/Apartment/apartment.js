@@ -511,19 +511,19 @@ var apartmentTemplate = `
             <div class="chart-block__bd">
               <ul class="list">
                 <li class="item item-dormitory">
-                  <p><span class="count js-rock-number">14</span>栋</p>
+                  <p><span class="count js-rock-number">0</span>栋</p>
                   <p class="caption">楼栋总数</p>
                 </li>
                 <li class="item item-room">
-                  <p><span class="count js-rock-number">824</span>间</p>
+                  <p><span class="count js-rock-number">0</span>间</p>
                   <p class="caption">房间总数</p>
                 </li>
                 <li class="item item-bed">
-                  <p><span class="count js-rock-number">24002</span>张</p>
+                  <p><span class="count js-rock-number">0</span>张</p>
                   <p class="caption">床位总数</p>
                 </li>
                 <li class="item item-people">
-                  <p><span class="count js-rock-number">24002</span>人</p>
+                  <p><span class="count js-rock-number">0</span>人</p>
                   <p class="caption">入住总数</p>
                 </li>
               </ul>
@@ -564,12 +564,12 @@ var apartmentTemplate = `
               <div class="right">
                 <div class="item square-card">
                   <span class="caret-left"></span>
-                  <span class="dot"></span>未使用床位<span class="text" id="roomUsageChartFree">752</span>
+                  <span class="dot"></span>未使用床位<span class="text" id="roomUsageChartFree">0</span>
                   <span class="caret-right"></span>
                 </div>
                 <div class="item square-card square-card--green">
                   <span class="caret-left"></span>
-                  <span class="dot"></span>总床位<span class="text" id="roomUsageChartTotal">2367</span>
+                  <span class="dot"></span>总床位<span class="text" id="roomUsageChartTotal">0</span>
                   <span class="caret-right"></span>
                 </div>
               </div>

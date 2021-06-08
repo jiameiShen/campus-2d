@@ -73,7 +73,9 @@ function renderNotReturnChart(data) {
   const categoryList = data.map((item) => item.collegeName || item.dormitoryName)
   const inNumber = data.map((item) => item.inNumber)
   const outNumber = data.map((item) => item.outNumber)
-  const returnPercentage = data.map((item) => item.returnPercentage)
+  const returnPercentage = data.map((item) => {
+    return item.returnPercentage / 100
+  })
   const option = {
     backgroundColor: 'transparent',
     color: BAR_CHART_COLORS,
@@ -191,9 +193,12 @@ function renderNotReturnChart(data) {
         label: {
           normal: {
             show: true,
-            position: 'right',
+            position: 'left',
+            offset: [50, 0],
             textStyle: { color: '#fff' },
-            formatter: '{c}%',
+            formatter: function (parmas) {
+              return (parmas.data * 100).toFixed(1) + '%'
+            },
           },
         },
         itemStyle: {

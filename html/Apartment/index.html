@@ -33,6 +33,19 @@
 
   <body>
     <div id="div2d">
+      <div class="u-warning-marker animate__animated" id="warning1">
+        <div class="u-warning-marker__title">告警</div>
+        <div class="u-warning-marker__hd">告警告警</div>
+        <div class="u-warning-marker__bd">
+          <div class="item">
+            <span class="subject">告警告警</span>
+            <span class="content">告警告警</span>
+          </div>
+        </div>
+      </div>
+      <div class="u-building-marker">
+        <div class="caption">南区1号楼</div>
+      </div>
       <div class="g-header">
         <div class="left">
           <img class="logo" src="./../../static/image/logo.png" />
@@ -148,4 +161,112 @@
       </div>
     </div>
   </body>
+  <script>
+    $(function() {
+      mockWarning()
+
+      function mockWarning() {
+        let parmasArr = [
+          {
+            id: 1,
+            buildingName: '3#教学楼',
+            data: [
+              {
+                subject: '搁置维修单超过预警值',
+                content: '89单',
+                imgUrl: ''
+              }
+            ]
+          },
+          {
+            id: 2,
+            buildingName: '1#实验楼',
+            data: [
+              {
+                subject: '今日用电超出预警值',
+                content: '4.321KW/h',
+                imgUrl: ''
+              }
+            ]
+          },
+          {
+            id: 3,
+            buildingName: '图书馆',
+            data: [
+              {
+                subject: '安全布控-黑名单',
+                content: '',
+                imgUrl: 'https://img.51miz.com/Element/00/88/63/61/7d962719_E886361_53733d01.png'
+              }
+            ]
+          }
+        ]
+        // 动态添加宿舍楼
+        // let object = buildings[2]
+        // parmasArr.push({
+        //   id: object.userData.dormitoryId,
+        //   buildingName: object.userData.name,
+        //   data: [
+        //     {
+        //       subject: '昨日晚归人数',
+        //       content: '45人',
+        //       imgUrl: ''
+        //     },
+        //     {
+        //       subject: '昨日未归人数',
+        //       content: '60人',
+        //       imgUrl: ''
+        //     }
+        //   ]
+        // })
+        parmasArr.forEach(item => {
+          createWarning(item)
+        })
+        const len = parmasArr.length
+        let index = 0
+        let timer = setInterval(() => {
+          if (index >= len) {
+            index = 0
+          }
+          showWarning(parmasArr[index].id)
+          index++
+        }, 6000)
+      }
+      
+      function createWarning(params) {
+        const template = `
+        <div class="u-warning-marker animate__animated" id="warning${params.id}">
+          <div class="u-warning-marker__title">告警</div>
+          <div class="u-warning-marker__hd">${params.buildingName}</div>
+          <div class="u-warning-marker__bd">
+            ${params.data.map(item => {
+              return `<div class="item">
+                <span class="subject">${item.subject}</span>
+                <span class="content">
+                  ${item.imgUrl ? `<img src="https://img.51miz.com/Element/00/88/63/61/7d962719_E886361_53733d01.png" alt="">` : item.content}
+                </span>
+              </div>`
+            }).join('')}
+          </div>
+        </div>
+        `
+        $('#div2d').append($(template))
+        // const building = ''
+        // app.create({
+        //   type: 'UIAnchor',
+        //   parent: building,
+        //   element: document.getElementById('warning' + params.id),
+        //   localPosition: [0, 0, 0],
+        //   pivot: [0.5, 1]
+        // });
+      }
+
+      function showWarning(id) {
+        $(`#warning${id}`).show().removeClass('animate__zoomOut').addClass('animate__zoomIn')
+        setTimeout(() => {
+          $(`#warning${id}`).addClass('animate__zoomOut').removeClass('animate__zoomIn')
+        }, 3000)
+      }
+    })
+  </script>
 </html>

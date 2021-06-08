@@ -29,6 +29,83 @@
   font-weight: bold;
 }
 
+/* 告警 */
+.u-warning-marker {
+  position: absolute;
+  width: 237px;
+  padding: 6px 6px 10px;
+  background: rgba(87, 23, 29, 0.94);
+  border-radius: 4px;
+  border: 1px solid #FB434E;
+  opacity: 0.98;
+  font-size: 14px;
+  line-height: 19px;
+  color: #fff;
+  &.animate__animated {
+    animation-duration: 0.5s;
+  }
+  &__title {
+    padding: 4px 10px;
+    background: linear-gradient(90deg, #DE4251 0%, rgba(222, 66, 80, 0) 100%);
+    font-weight: bold;
+  }
+  &__hd {
+    padding: 14px 0;
+    color: #FCE569;
+    text-align: center;
+  }
+  &__bd {
+    position: relative;
+    &::before {
+      position: absolute;
+      content: '';
+      left: 0;
+      right: 0;
+      top: -10px;
+      height: 1px;
+      background: linear-gradient(270deg, rgba(111, 127, 174, 0) 0%, rgba(111, 127, 174, 0.78) 28%, #6F7FAE 72%, rgba(111, 127, 174, 0) 100%);
+      opacity: 0.5;
+    }
+    .item {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .subject {
+
+    }
+    .content {
+      text-align: right;
+      font-weight: bold;
+      img {
+        width: 60px;
+      }
+    }
+  }
+}
+
+.u-building-marker {
+  position: absolute;
+  font-size: 12px;
+  line-height: 16px;
+  padding: 4px 6px;
+  background-color: #29ADCE;
+  border-radius: 2px;
+  color: #fff;
+  display: none;
+  &::before {
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 0;
+    border: 5px solid transparent;
+    border-top-color: #29ADCE;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -10px;
+  }
+}
+
 /* 模态框层级 */
 .modal-backdrop {
   z-index: 2040;

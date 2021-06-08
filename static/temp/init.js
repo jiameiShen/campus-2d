@@ -21,6 +21,7 @@ $(function () {
     ctrlGTabList.showTab(pageId)
   })
 
+  let ctrlGMockWarning = null
   /* 添加主页楼栋标注 */
   campus = app.query('.Campus')[0] // 获取园区对象
   createBoardHtml()
@@ -46,25 +47,26 @@ $(function () {
             localPosition: [0, 0, 0],
             pivot: [0.5, 1], //[0,0]即以界面左上角定位，[1,1]即以界面右下角进行定位
           })
-          $('#buildingMarker' + dormitory.tid + ' .text').text(obj.userData.name)
+          $('#buildingMarker' + dormitory.tid + ' .caption').text(obj.userData.name)
         } else {
           obj.visible = false
         }
       })
+      ctrlGMockWarning = app.addControl(new CreateGMockWarning())
     }
   })
 
   const buildings2 = app.query('建筑');
-  buildings2.forEach(function (item) {
+  buildings2.forEach(function (obj) {
     // 创建标注
     app.create({
       type: 'UIAnchor',
-      parent: item,
-      element: cloneBoardElement('buildingMarker', item.id), // 此参数填写要添加的Dom元素
+      parent: obj,
+      element: cloneBoardElement('buildingMarker', obj.id), // 此参数填写要添加的Dom元素
       localPosition: [0, 1, 0],
       pivot: [0.5, 1], //[0,0]即以界面左上角定位，[1,1]即以界面右下角进行定位
     })
-    $('#buildingMarker' + item.id + ' .text').text(item.userData.name)
+    $('#buildingMarker' + obj.id + ' .caption').text(obj.userData.name)
   })
 
   /* 修改层级背景 */
@@ -101,11 +103,13 @@ $(function () {
     ctrlGTabList.showTab()
     if (object instanceof THING.Campus) {
       console.log('Campus: ' + object)
-      $('.buildingMarker').show()
+      $('.u-building-marker').show()
       ctrlGBackNavigator.hide()
+      ctrlGMockWarning.start()
     } else {
-      $('.buildingMarker').hide()
+      $('.u-building-marker').hide()
       ctrlGBackNavigator.show()
+      ctrlGMockWarning.stop()
     }
 
     if (object instanceof THING.Floor) {
@@ -125,13 +129,10 @@ $(function () {
   /* 创建主页建筑面板marker */
   function createBoardHtml() {
     const html = `
-        <div id="buildingMarker" class="buildingMarker" style="position: absolute;">
-            <div class="text" style="color: #FF0000;font-size: 12px;text-shadow: white  0px 2px, white  2px 0px, white  -2px 0px, white  0px -2px, white  -1.4px -1.4px, white  1.4px 1.4px, white  1.4px -1.4px, white  -1.4px 1.4px;margin-bottom: 5px;">
-            </div>
-            <div class="picture" style="height: 30px;width: 30px;margin: auto;">
-                <img src="/guide/examples/images/navigation/pointer.png" style="height: 100%;width: 100%;">
-            </div>
-        </div>`
+      <div class="u-building-marker" id="buildingMarker">
+        <div class="caption"></div>
+      </div>
+    `
     $('#div3d').append($(html))
   }
 

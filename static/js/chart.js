@@ -191,7 +191,8 @@ $(function () {
           label: {
             normal: {
               show: true,
-              position: 'right',
+              position: 'left',
+              offset: [50, 0],
               textStyle: { color: '#fff' },
               formatter: function (parmas) {
                 return (parmas.data * 100).toFixed(1) + '%'

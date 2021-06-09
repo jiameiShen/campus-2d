@@ -10,7 +10,7 @@ $(function () {
   const LINE_CHART_COLORS = ['#2DE2E5', '#9095EC']
   const TEXTCOLOR = '#7EADC0'
 
-  /* 未归寝率排行 */
+  /* 归寝率排行 */
   notReturnChart = window.echarts.init(document.getElementById('notReturnChart'), null, {devicePixelRatio: 2.5})
   renderNotReturnChart()
   /* 异常预警 */
@@ -171,7 +171,12 @@ $(function () {
           type: 'bar',
           stack: 'total',
           label: {
-            show: true,
+            normal: {
+              show: true,
+              formatter: function (parmas) {
+                return parmas.data || ''
+              },
+            }
           },
           data: inData,
         },
@@ -180,7 +185,12 @@ $(function () {
           type: 'bar',
           stack: 'total',
           label: {
-            show: true,
+            normal: {
+              show: true,
+              formatter: function (parmas) {
+                return parmas.data || ''
+              },
+            }
           },
           data: outData,
         },
@@ -191,8 +201,8 @@ $(function () {
           label: {
             normal: {
               show: true,
-              position: 'left',
-              offset: [50, 0],
+              position: 'insideLeft',
+              // offset: [50, 0],
               textStyle: { color: '#fff' },
               formatter: function (parmas) {
                 return (parmas.data * 100).toFixed(1) + '%'

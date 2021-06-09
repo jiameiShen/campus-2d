@@ -10,7 +10,7 @@ const BAR_CHART_COLORS = ['#2DE2E5', '#228AE1', '#FCE569', '#F2679A']
 const LINE_CHART_COLORS = ['#2DE2E5', '#9095EC']
 const TEXTCOLOR = '#7EADC0'
 
-//   /* 未归寝率排行 */
+//   /* 归寝率排行 */
 //   notReturnChart = window.echarts.init(document.getElementById('notReturnChart'), null, {devicePixelRatio: 2.5})
 //   renderNotReturnChart()
 //   /* 异常预警 */
@@ -73,9 +73,7 @@ function renderNotReturnChart(data) {
   const categoryList = data.map((item) => item.collegeName || item.dormitoryName)
   const inNumber = data.map((item) => item.inNumber)
   const outNumber = data.map((item) => item.outNumber)
-  const returnPercentage = data.map((item) => {
-    return item.returnPercentage / 100
-  })
+  const returnPercentage = data.map((item) => item.returnPercentage)
   const option = {
     backgroundColor: 'transparent',
     color: BAR_CHART_COLORS,
@@ -173,7 +171,12 @@ function renderNotReturnChart(data) {
         type: 'bar',
         stack: 'total',
         label: {
-          show: true,
+          normal: {
+            show: true,
+            formatter: function (parmas) {
+              return parmas.data || ''
+            },
+          }
         },
         data: inNumber,
       },
@@ -182,7 +185,12 @@ function renderNotReturnChart(data) {
         type: 'bar',
         stack: 'total',
         label: {
-          show: true,
+          normal: {
+            show: true,
+            formatter: function (parmas) {
+              return parmas.data || ''
+            },
+          }
         },
         data: outNumber,
       },
@@ -193,8 +201,7 @@ function renderNotReturnChart(data) {
         label: {
           normal: {
             show: true,
-            position: 'left',
-            offset: [50, 0],
+            position: 'insideLeft',
             textStyle: { color: '#fff' },
             formatter: function (parmas) {
               return (parmas.data * 100).toFixed(1) + '%'

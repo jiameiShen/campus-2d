@@ -60,107 +60,185 @@ class CreatePageEnergy {
   }
 }
 
-var assetsTemplate = `
-      <div class="page-aside page-aside-left animate__animated page-assets">
-      <div class="chart-block chart-1 flex-none">
-        <div class="chart-block__hd">
-          <p>
-            <span class="js-building-name" data-school="学校"></span>资产统计
-          </p>
-        </div>
-        <div class="chart-block__bd">
-          <div class="school-assets-content">
-            <div class="ring" id="school-assets-content"></div>
-            <div class="ring-info">
-              <div class="info-bk">
-                <div>软件资产(万元）</div>
-                <div class="software">1,890</div>
+var energyTemplate = `
+      <div class="page-aside page-aside-left animate__animated page-energy">
+        <div class="chart-block flex-none">
+          <div class="chart-block__hd">
+            <p><span class="js-building-name"></span>能源消耗情况</p>
+          </div>
+          <div class="chart-block__bd">
+            <div class="situation-content">
+              <div class="bk">
+                <div class="number-main">
+                  <div class="number count js-rock-number">24,002</div>
+                  <div class="unit">(Kw·H)</div>
+                </div>
               </div>
-              <div class="info-bk">
-                <div>硬件资产(万元）</div>
-                <div class="hardware">4,933</div>
+              <div class="time">统计截止：2021-04-30 00:00</div>
+            </div>
+          </div>
+        </div>
+        <div class="chart-block flex-none">
+          <div class="chart-block__hd">
+            <p><span class="js-building-name"></span>能源消耗排行</p>
+          </div>
+          <div class="chart-block__bd">
+            <div class="ranking-content">
+              <div id="ranking-content" class="ranking-chart"></div>
+            </div>
+          </div>
+        </div>
+        <div class="chart-block flex-none">
+          <div class="chart-block__hd">
+            <p><span class="js-building-name"></span>能源分类消耗</p>
+          </div>
+          <div class="chart-block__bd">
+            <div class="classification-content chart-main">
+              <div
+                id="classification-content"
+                class="classification-chart"
+              ></div>
+              <div class="info-main">
+                <div class="square-card">
+                  <span class="caret-left"></span>
+                  <span class="dot"></span>照明用电<span class="text">727 <span class="info-unit"> (Kw·H)</span></span>
+                  <span class="caret-right"></span>
+                </div>
+                <div class="square-card square-card--red">
+                  <span class="caret-left"></span>
+                  <span class="dot"></span>空调用电<span class="text">727 <span class="info-unit"> (Kw·H)</span></span>
+                  <span class="caret-right"></span>
+                </div>
+                <div class="square-card square-card--yellow">
+                  <span class="caret-left"></span>
+                  <span class="dot"></span>多媒体用电<span class="text">727 <span class="info-unit"> (Kw·H)</span></span>
+                  <span class="caret-right"></span>
+                </div>
+                <!-- <div>
+                  <span class="info-k">空调用电</span>
+                  <span class="info-v">
+                    727
+                    <span class="info-unit"> (Kw·H)</span>
+                  </span>
+                </div>
+                <div>
+                  <span class="info-k">空调用电</span>
+                  <span class="info-v">
+                    727
+                    <span class="info-unit"> (Kw·H)</span>
+                  </span>
+                </div> -->
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="chart-block chart-2">
-        <div class="chart-block__hd">
-          <p>
-            <span class="js-building-name"></span>各学院资产统计
-          </p>
         </div>
-        <div class="chart-block__bd">
-          <div class="college-assets-content"  id="college-assets-content"></div>
+        <div class="page-aside page-aside-right animate__animated page-energy">
+        <div class="chart-block">
+          <div class="chart-block__hd">
+            <p><span class="js-building-name"></span>月度能耗消耗统计</p>
+          </div>
+          <div class="chart-block__bd">
+            <div class="statistics-content">
+              <div class="statistics-chart" id="statistics-content"></div>
+            </div>
+          </div>
         </div>
-      </div>
-      </div>
-      <div class="page-aside page-aside-right animate__animated page-assets">
-      <div class="chart-block chart-3">
-        <div class="chart-block__hd">
-          <p>
-            <span class="js-building-name" data-school="学院"></span>各类资产统计
-          </p>
+        <div class="chart-block">
+          <div class="chart-block__hd">
+            <p><span class="js-building-name"></span>电力报警</p>
+          </div>
+          <div class="chart-block__bd">
+            <div class="call-police-content">
+              <div class="call-police-count">
+                <div class="count">
+                  <div class="count js-rock-number">109</div>
+                  <div>总数(单位)</div>
+                </div>
+                <div>
+                  <div class="each-count">
+                    <span class="ring-info-bk caret-left caret-red-left"></span>
+                    <div class="caret-circle caret-circle-red"></div>
+                    <div class="line"></div>
+                    <div class="info clearfix">
+                      <span class="align-left">警报</span
+                      ><span class="align-right">32</span>
+                    </div>
+                    <div class="info">
+                      <span>同比上周：</span
+                      ><span class="percentage">↓10%</span>
+                    </div>
+                    <span
+                      class="ring-info-bk caret-right caret-red-right"
+                    ></span>
+                  </div>
+                  <div class="each-count">
+                    <span class="ring-info-bk caret-left caret-blue-left"></span>
+                    <div class="caret-circle caret-circle-blue"></div>
+                    <div class="line"></div>
+                    <div class="info clearfix">
+                      <span class="align-left">处理中</span
+                      ><span class="align-right">77</span>
+                    </div>
+                    <div class="info">
+                      <span>同比上周：</span
+                      ><span class="percentage">↑10%</span>
+                    </div>
+                    <span
+                    class="ring-info-bk caret-right caret-blue-right"
+                  ></span>
+                  </div>
+                </div>
+              </div>
+              <div class="call-police-list">
+                <div class="tab">
+                  <div class="item tab-active">
+                    警报 <span class="tip">2</span>
+                  </div>
+                  <div class="item">处理中<span class="tip">12</span></div>
+                  <div class="item">待处理</div>
+                </div>
+                <table class="table">
+                  <tr>
+                    <td>序号</td>
+                    <td>地址</td>
+                    <td>原因</td>
+                    <td>状态</td>
+                  </tr>
+                  <tr>
+                    <td>01</td>
+                    <td>德育楼德育楼…</td>
+                    <td>电流过载</td>
+                    <td>待处理</td>
+                  </tr>
+                  <tr>
+                    <th>02</th>
+                    <td>文史楼304</td>
+                    <td>跳闸</td>
+                    <td>处理中</td>
+                  </tr>
+                  <tr>
+                    <th>03</th>
+                    <td>文史楼304</td>
+                    <td>跳闸</td>
+                    <td>处理中</td>
+                  </tr>
+                  <tr>
+                    <th>04</th>
+                    <td>文史楼304</td>
+                    <td>跳闸</td>
+                    <td>处理中</td>
+                  </tr>
+                  <tr>
+                    <th>05</th>
+                    <td>文史楼304</td>
+                    <td>跳闸</td>
+                    <td>处理中</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="chart-block__bd">
-          <div class="class-assets-content" id="class-assets-content"></div>
-        </div>
-      </div>
-      <div class="chart-block chart-4">
-        <div class="chart-block__hd">
-          <p>
-            <span class="js-building-name" data-school="实验室"></span>资产排行榜
-          </p>
-        </div>
-        <div class="chart-block__bd">
-          <table class="ranking-assets-content">
-            <tr>
-              <td>
-                <div class="number">01</div>
-              </td>
-              <td>物理实验室1201</td>
-              <td>720万</td>
-            </tr>
-            <tr>
-              <td>
-                <div class="number">02</div>
-              </td>
-              <td>物理实验室809</td>
-              <td>630万</td>
-            </tr>
-            <tr>
-              <td>
-                <div class="number">03</div>
-              </td>
-              <td>化学实验室302</td>
-              <td>488万</td>
-            </tr>
-            <tr>
-              <td>
-                <div class="number">04</div>
-              </td>
-              <td>化学实验室408</td>
-              <td>336万</td>
-            </tr>
-            <tr>
-              <td>
-                <div class="number">05</div>
-              </td>
-              <td>生物实验室809</td>
-              <td>140万</td>
-            </tr>
-          </table>
-        </div>
-      </div>
-      <div class="chart-block chart-5">
-        <div class="chart-block__hd">
-          <p>
-            <span class="js-building-name" data-school="学校"></span>资产总额统计
-          </p>
-        </div>
-        <div class="chart-block__bd">
-          <div class="total-assets-content" id="total-assets-content">折线图</div>
-        </div>
-      </div>
       </div>
 `

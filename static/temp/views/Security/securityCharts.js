@@ -20,7 +20,7 @@ function securitySchoolVisitorsChart() {
       top: 14,
       left: 0,
       right: 30,
-      bottom: 0,
+      bottom: 12,
       containLabel: true,
     },
     tooltip: {

@@ -46,11 +46,11 @@
   );
   opacity: 0.5;
 }
-.page-energy .ranking-content .ranking-chart {
-  height: 257px;
-}
+// .page-energy .ranking-content .ranking-chart {
+//   height: 257px;
+// }
 .page-energy .classification-content .classification-chart {
-  width: 111px;
+  width: 35%;
   height: 161px;
 }
 .page-energy .chart-main {
@@ -104,7 +104,7 @@
   text-align: center;
 }
 .page-energy .call-police-content .call-police-count {
-  display: table;
+  display: flex;
   margin-bottom: 30px;
   width: 100%;
 }
@@ -113,6 +113,7 @@
   width: 135px;
   height: 135px;
   background-image: url('../image/else/ring-bk.png');
+  background-repeat: no-repeat;
   background-size: 100%;
   display: table-cell;
   vertical-align: middle;
@@ -123,11 +124,15 @@
   font-family: MicrosoftYaHei-Bold, MicrosoftYaHei;
   font-weight: bold;
   color: #ffffff;
+  margin-top: 45px;
 }
 .page-energy .call-police-content .call-police-count .count div:last-child {
   font-size: 14px;
   font-family: MicrosoftYaHei;
   color: #7eadc0;
+}
+.page-energy .call-police-content .call-police-count .each-count-main {
+  flex: 1;
 }
 .page-energy .call-police-content .call-police-count .each-count {
   // width: 166px;
@@ -295,6 +300,7 @@ color: red;
   color: #d1d4d9;
   line-height: 25px;
   margin: 0px -1px -1px 0px;
+  cursor: pointer;
 }
 .page-energy .call-police-content .call-police-list .tab .tab-active {
   border: 1px solid #2dc0e5;

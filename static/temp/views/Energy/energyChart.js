@@ -101,7 +101,17 @@ function energyClassificationChart() {
   let option = {
     tooltip: {
       trigger: 'item',
-      formatter: '{a} <br/>{b}: {c} ({d}%)',
+      // formatter: '{a} <br/>{b}: {c} ({d}%)',
+      position: ['50%', '50%'],
+      className: 'echarts-tooltip-dark',
+      formatter: function (params) {
+        console.log('params',params)
+        return `<p class="caption">${params.data.name}</p>
+          <p class="item">
+            <span class="mark" style="background-color: #228AE1;"></span>
+            <span class="value">占比${Math.round(params.percent)}%</span>
+          </p>`
+      },
     },
     color: ['#228AE1', '#F2679A', '#FCE569'],
     series: [
@@ -167,7 +177,7 @@ function energyStatisticsChart() {
           fontSize: 12,
           color: '#7EADC0',
         },
-      },
+      }, 
       splitLine:{ //网格线
         show:false,
       },

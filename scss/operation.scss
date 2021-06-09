@@ -293,3 +293,27 @@
   top: 50%;
   transform: translateY(-50%);
 }
+.clearfix:after {
+  content: '020';
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.clearfix {
+  zoom: 1;
+}
+.line {
+  width: calc(100% - 37px);
+  height: 1px;
+  background: linear-gradient(
+    270deg,
+    rgba(111, 127, 174, 0) 0%,
+    #6f7fae 52%,
+    rgba(111, 127, 174, 0) 100%
+  );
+  opacity: 0.5;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}

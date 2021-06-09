@@ -1,13 +1,29 @@
+.page-operation {
+  .chart-block-2,
+  .chart-block-3 {
+    overflow: hidden;
+    .chart-block__bd {
+      overflow: hidden;
+    }
+  }
+  .vtable-wrapper {
+    flex: 1;
+    overflow: auto;
+  }
+}
 .page-operation .operation-maintenance-content {
   height: 147px;
   display: flex;
-  padding-top: 18px;
+  padding-bottom: 18px;
   box-sizing: border-box;
 }
 .page-operation .operation-maintenance-content .info-bk {
-  width: 100px;
+  flex: 1;
   height: 109px;
   background-size: 100px 109px;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 100% 100%;
 }
 .page-operation .operation-maintenance-content .info-bk:first-child {
   background-image: url('../image/else/ring-bk2-red.png');
@@ -44,13 +60,16 @@
   color: #2de2e5;
 }
 .page-operation .event-list-content {
-  height: 211px;
-  padding-top: 12px;
-  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  .vtable-wrapper {
+    margin-top: 10px;
+  }
 }
 .page-operation .event-list-content .tab {
   display: flex;
-  width: 320px;
+  width: 100%;
   height: 25px;
 }
 .page-operation .event-list-content .tip {
@@ -63,9 +82,9 @@
   margin-left: 3px;
 }
 .page-operation .event-list-content .tab .item {
-  width: 106px;
+  width: calc(100% - 212px);
   height: 25px;
-  background: #1e4e6b;
+  background: #1D2A42;
   border: 1px solid #263752;
   font-size: 14px;
   font-family: MicrosoftYaHei;
@@ -73,44 +92,42 @@
   line-height: 25px;
   margin: 0px -1px -1px 0px;
   text-align: center;
+  cursor: pointer;
 }
 .page-operation .event-list-content .tab .tab-active {
-  border: 1px solid #2dc0e5;
+  background: #1E4E6B;
+  border: 1px solid #2DC0E5;
   color: #ffffff;
   margin: 0;
 }
-.page-operation .event-list-content .table {
-  width: 320px;
-  text-align: left;
-  table-layout: fixed;
+.page-operation .event-list-content .vtable {
+  width: 100%;
   font-size: 14px;
-  margin-top: 10px;
   color: #ffffff;
 }
-.page-operation .event-list-content .table tr {
+.page-operation .event-list-content .vtable tr {
   height: 34px;
   line-height: 34px;
   box-shadow: 0px 1px 0px 0px #172335;
 }
-.page-operation .event-list-content .table tr:last-child {
+.page-operation .event-list-content .vtable tr:last-child {
   box-shadow: none;
 }
-.page-operation .event-list-content .table tr td:first-child {
-  width: 62px;
+.page-operation .event-list-content .vtable tr td:first-child {
+  width: 21%;
   padding-left: 20px;
   box-sizing: border-box;
 }
-.page-operation .event-list-content .table tr td:nth-child(2) {
-  width: 96px;
-}
-.page-operation .event-list-content .table tr td:last-child {
+// .page-operation .event-list-content .vtable tr td:nth-child(2) {
+//   width: 96px;
+// }
+.page-operation .event-list-content .vtable tr td:last-child {
   color: #fce569;
 }
 .page-operation .duty-personnel-content {
   height: 219px;
-  width: 320px;
+  width: 100%;
   table-layout: fixed;
-  margin-top: 10px;
 }
 .page-operation .duty-personnel-content tr {
   height: 50px;
@@ -126,6 +143,7 @@
   height: 36px;
   border-radius: 50%;
   vertical-align: middle;
+  overflow: hidden;
 }
 .page-operation .duty-personnel-content tr td:first-child {
   width: 74px;
@@ -136,52 +154,142 @@
   height: 252px;
   display: flex;
   align-items: center;
+  padding-bottom: 10px;
 }
 .page-operation .device-status-content .device-status-ring {
-  width: 154px;
+  flex: 1;
   height: 100%;
 }
 .page-operation .device-status-content .device-status-info .each-count {
-  width: 166px;
+  // width: 166px;
   height: 62px;
   background-size: 100%;
   font-size: 14px;
   font-family: MicrosoftYaHei;
   color: #ffffff;
+  position: relative;
 }
-.page-operation
-  .device-status-content
-  .device-status-info
-  .each-count:first-child {
-  background-image: url('../image/else/ring-info-bk-red.png');
+.page-operation .device-status-content .device-status-info .square-card {
+  height: 62px;
+  display: block;
 }
+.page-operation .device-status-content .device-status-info .caret-circle {
+  width: 10px;
+  height: 10px;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 50%;
+  box-sizing: border-box;
+  margin-right: 6px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+.page-operation .device-status-content .device-status-info .caret-circle-red {
+  border-color: #f2679a;
+}
+.page-operation .device-status-content .device-status-info .caret-circle-yellow {
+  border-color: #FCE569;
+}
+.page-operation .device-status-content .device-status-info .caret-circle-green {
+  border-color: #2DE2E5;
+}
+.page-operation .device-status-content .device-status-info {
+  width: 52%;
+  margin-left: 35px;
+  position: relative;
+  .square-card::before {
+    left: -24px;
+  }
+  &.square-card--hasline {
+    &::before {
+      left: -46px;
+      top: 22px;
+    }
+    &::after {
+      left: -46px;
+      bottom: 22px;
+    }
+  }
+}
+// .page-operation
+//   .device-status-content
+//   .device-status-info
+//   .each-count:first-child {
+//   background-image: url('../image/else/ring-info-bk-red.png');
+// }
 .page-operation
   .device-status-content
   .device-status-info
   .each-count:nth-child(2) {
-  background-image: url('../image/else/ring-info-bk-yellow.png');
+  // background-image: url('../image/else/ring-info-bk-yellow.png');
   margin: 10px 0;
+}
+// .page-operation
+//   .device-status-content
+//   .device-status-info
+//   .each-count:last-child {
+//   background-image: url('../image/else/ring-info-bk-blue.png');
+// }
+.page-operation .device-status-content .device-status-info .each-count .info {
+  margin-left: 8px;
+  // height: 31px;
+  // line-height: 31px;
+  padding-top: 6px;
 }
 .page-operation
   .device-status-content
   .device-status-info
-  .each-count:last-child {
-  background-image: url('../image/else/ring-info-bk-blue.png');
+  .each-count
+  .info-center {
+  text-align: center;
+  padding-top: 10px;
 }
-.page-operation .device-status-content .device-status-info .each-count .info {
-  margin-left: 28px;
-  height: 31px;
-  line-height: 31px;
-}
-.page-operation .device-status-content .device-status-info .each-count .info .percentage {
+.page-operation
+  .device-status-content
+  .device-status-info
+  .each-count
+  .info
+  .percentage {
   color: #2de2e5;
 }
-.page-operation .device-status-content .device-status-info .each-count .info  .align-left {
-  margin-right: 69px;
+.page-operation
+  .device-status-content
+  .device-status-info
+  .each-count
+  .info
+  .align-left {
+  float: left;
 }
-.page-operation .device-maintenance-content {
-  height: 184px;
+.page-operation
+  .device-status-content
+  .device-status-info
+  .each-count
+  .info
+  .align-right {
+  float: right;
 }
-.page-operation .regional-statistics-content {
-  height: 141px;
+.clearfix:after {
+  content: '020';
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.clearfix {
+  zoom: 1;
+}
+.line {
+  width: calc(100% - 37px);
+  height: 1px;
+  background: linear-gradient(
+    270deg,
+    rgba(111, 127, 174, 0) 0%,
+    #6f7fae 52%,
+    rgba(111, 127, 174, 0) 100%
+  );
+  opacity: 0.5;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }

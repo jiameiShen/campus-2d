@@ -1,0 +1,403 @@
+.page-security .school-visitors-content {
+  height: 207px;
+}
+.page-security .school-visitors-count {
+  height: 58px !important;
+  display: flex;
+  box-sizing: border-box;
+}
+.page-security .school-visitors-count .square-card {
+  height: 30px;
+
+}
+.page-security .square-card {
+  margin-top: 0;
+}
+.page-security .square-card:first-child {
+  margin-right: 10px;
+}
+.page-security  .school-visitors-count div {
+  background-size: 155px 30px;
+  background-repeat: no-repeat;
+  width: 48%;
+  height: 30px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.page-security .school-visitors-content .school-visitors-count div:first-child {
+  background-image: url('../image/day-visitors.png');
+}
+.page-security .school-visitors-content .school-visitors-count div:last-child {
+  background-image: url('../image/week-visitors.png');
+}
+.page-security .school-visitors-content .school-visitors-count div .count-k {
+  font-size: 14px;
+  font-family: MicrosoftYaHei;
+  color: #7eadc0;
+  margin-left: 30px;
+}
+.page-security .school-visitors-content .school-visitors-count div .count-v {
+  font-size: 16px;
+  font-family: MicrosoftYaHei-Bold, MicrosoftYaHei;
+  font-weight: bold;
+  color: #ffffff;
+  margin-right: 12px;
+}
+.page-security .school-visitors-content .school-visitors-chart {
+  height: 128px;
+}
+.page-security .monitoring-alarms-content {
+  height: 206px;
+  box-sizing: border-box;
+}
+.page-security .tab {
+  display: flex;
+  width: 100%;
+  height: 25px;
+}
+.page-security .monitoring-alarms-content .tip {
+  padding: 0 4px;
+  background-color: #de4251;
+  font-size: 12px;
+  font-family: MicrosoftYaHei;
+  color: #ffffff;
+  border-radius: 50%;
+  margin-left: 3px;
+}
+.page-security .tab .item {
+  width: calc(100% - 212px);
+  height: 25px;
+  background: #1e4e6b;
+  border: 1px solid #263752;
+  font-size: 14px;
+  font-family: MicrosoftYaHei;
+  color: #d1d4d9;
+  line-height: 25px;
+  margin: 0px -1px -1px 0px;
+  text-align: center;
+}
+.page-security .tab .tab-active {
+  border: 1px solid #2dc0e5;
+  color: #ffffff;
+  margin: 0;
+}
+.page-security .monitoring-alarms-content .table {
+  width: 100%;
+  text-align: left;
+  table-layout: fixed;
+  font-size: 14px;
+  margin-top: 10px;
+  color: #ffffff;
+}
+.page-security .monitoring-alarms-content .table tr {
+  height: 34px;
+  line-height: 34px;
+  box-shadow: 0px 1px 0px 0px #172335;
+}
+.page-security .monitoring-alarms-content .table tr:last-child {
+  box-shadow: none;
+}
+.page-security .monitoring-alarms-content .table tr td:first-child {
+  width: 21%;
+  padding-left: 20px;
+  box-sizing: border-box;
+}
+// .page-security .monitoring-alarms-content .table tr td:nth-child(2) {
+//   width: 21%;
+// }
+.page-security .monitoring-alarms-content .table tr td:last-child {
+  color: #fce569;
+}
+.page-security .safety-control-content {
+  height: 206px;
+  width: 100%;
+  display: flex;
+}
+.page-security .safety-control-content .tab {
+  list-style-type: none;
+  width: 88px;
+  height: 100%;
+  max-height: 174px;
+  display: block;
+  padding: 0;
+  padding-right: 75px;
+  margin: 0;
+  overflow: auto;
+}
+.page-security .safety-control-content .safety-tab-active {
+  border: 1px solid #2dc0e5;
+  margin: 0 0 1px 0;
+}
+.page-security .safety-control-content .tab::-webkit-scrollbar,
+.page-security .safety-control-content .list::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.page-security .safety-control-content .tab::-webkit-scrollbar-thumb {
+  background: #276b86;
+}
+/*滚动条里面轨道样式*/
+.page-security .safety-control-content .tab::-webkit-scrollbar-track {
+  background: #1d2a42;
+  border-radius: 1px;
+  opacity: 0.6;
+}
+.page-security .safety-control-content .tab li {
+  width: 70px;
+  height: 25px;
+  line-height: 25px;
+  background-color: #1d2a42;
+  text-align: center;
+  font-size: 14px;
+  font-family: MicrosoftYaHei;
+  color: #ffffff;
+  box-shadow: 0px -1px 0px 0px #263752;
+}
+.page-security .safety-control-content .list {
+  height: 100%;
+  max-height: 174px;
+  display: block;
+  padding: 0;
+  overflow: auto;
+  margin-left: 10px;
+  width: 100%;
+}
+.page-security .safety-control-content .list li {
+  font-size: 14px;
+  font-family: MicrosoftYaHei;
+  color: #ffffff;
+  width: calc(100% - 20px);
+  height: 36px;
+  line-height: 36px;
+  box-shadow: 0px 1px 0px 0px #172335;
+  padding-left: 20px;
+  box-sizing: border-box;
+}
+.page-security .safety-control-content .list {
+  list-style-type: none;
+  margin: 0;
+}
+.page-security .camera-content {
+  height: 316px;
+}
+.page-security .camera-content .capture-pictures {
+  height: 99px;
+  width: 100%;
+  margin-top: 10px;
+}
+.page-security .camera-content .capture-pictures img {
+  width: 48%;
+  height: 99px;
+  object-fit: cover;
+}
+.page-security .camera-content .capture-pictures .img1 {
+  margin-right: 5px;
+}
+.page-security .camera-content .camera-ring-main {
+  height: 168px;
+  display: flex;
+  align-items: center;
+}
+.page-security .camera-content .camera-ring {
+  width: 45%;
+  height: 100%;
+}
+.page-security .camera-content .camera-ring-main .camera-ring-info {
+  width: calc(100% - 144px);
+}
+.page-security .camera-content .camera-ring-main .camera-ring-info .each-count {
+  width: 100%;
+  height: 62px;
+  background-size: 100%;
+  font-size: 14px;
+  font-family: MicrosoftYaHei;
+  color: #ffffff;
+  position: relative;
+}
+.page-security .square-card {
+  height: 62px;
+  display: block;
+}
+.page-security .caret-circle {
+  width: 10px;
+  height: 10px;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 50%;
+  box-sizing: border-box;
+  margin-right: 6px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+.page-security .caret-circle-red {
+  border-color: #f2679a;
+}
+.page-security .caret-circle-green {
+  border-color: #2de2e5;
+}
+.page-security
+  .camera-content
+  .camera-ring-main
+  .camera-ring-info
+  .each-count:first-child {
+  background-image: url('../image/ring-info-bk-red.png');
+  margin-bottom: 10px;
+}
+.page-security
+  .camera-content
+  .camera-ring-main
+  .camera-ring-info
+  .each-count:last-child {
+  background-image: url('../image/ring-info-bk-blue.png');
+}
+.page-security
+  .camera-content
+  .camera-ring-main
+  .camera-ring-info
+  .each-count
+  .info {
+  margin-left: 28px;
+  height: 31px;
+  line-height: 31px;
+}
+.page-security .info-center {
+  text-align: center;
+}
+.page-security
+  .camera-content
+  .camera-ring-main
+  .camera-ring-info
+  .each-count
+  .info
+  .percentage {
+  color: #2de2e5;
+}
+.page-security
+  .camera-content
+  .camera-ring-main
+  .camera-ring-info
+  .each-count
+  .info
+  .align-left {
+  float: left;
+}
+.page-security
+  .camera-content
+  .camera-ring-main
+  .camera-ring-info
+  .each-count
+  .info
+  .align-right {
+  float: right;
+}
+.page-security .fire-control-content {
+  min-height: 168px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.page-security .fire-control-content .fire-control-info {
+  width: calc(100% - 144px);
+}
+.page-security .fire-control-content .fire-control-info .each-count {
+  width: 100%;
+  height: 62px;
+  background-size: 100%;
+  font-size: 14px;
+  font-family: MicrosoftYaHei;
+  color: #ffffff;
+}
+.page-security
+  .fire-control-content
+  .fire-control-info
+  .each-count:first-child {
+  background-image: url('../image/ring-info-bk-red.png');
+  margin-bottom: 10px;
+}
+.page-security .fire-control-content .fire-control-info .each-count:last-child {
+  background-image: url('../image/ring-info-bk-blue.png');
+}
+.page-security .fire-control-content .fire-control-info .each-count .info {
+  margin-left: 28px;
+  height: 31px;
+  line-height: 31px;
+}
+.page-security
+  .fire-control-content
+  .fire-control-info
+  .each-count
+  .info
+  .percentage {
+  color: #2de2e5;
+}
+.page-security
+  .fire-control-content
+  .fire-control-info
+  .each-count
+  .info
+  .align-left {
+  float: left;
+}
+.page-security
+  .fire-control-content
+  .fire-control-info
+  .each-count
+  .info
+  .align-right {
+  float: right;
+}
+.page-security .fire-control-content .fire-control {
+  width: 45%;
+  height: 100%;
+}
+.page-security .personnel-info-content {
+  height: 99px;
+  width: 100%;
+  font-size: 14px;
+  font-family: MicrosoftYaHei;
+  color: #ffffff;
+  table-layout: fixed;
+}
+.page-security .personnel-info-content tr {
+  height: 36px;
+}
+.page-security .personnel-info-content tr td:first-child {
+  width: 54px;
+  box-sizing: border-box;
+  padding-left: 20px;
+}
+.page-security .personnel-info-content tr td:nth-child(2) {
+  width: auto;
+  text-align: center;
+}
+.page-security .personnel-info-content tr td:last-child {
+  width: 106px;
+  color: #fce569;
+}
+.clearfix:after {
+  content: '020';
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.clearfix {
+  zoom: 1;
+}
+.line {
+  width: calc(100% - 37px);
+  height: 1px;
+  background: linear-gradient(
+    270deg,
+    rgba(111, 127, 174, 0) 0%,
+    #6f7fae 52%,
+    rgba(111, 127, 174, 0) 100%
+  );
+  opacity: 0.5;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}

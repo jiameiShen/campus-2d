@@ -78,34 +78,34 @@
         <div class="page-aside page-aside-left animate__animated page-apartment page-apartment-detail">
           <div class="chart-block chart-room-count">
             <div class="chart-block__hd">
-              <p class="brand">1F</p>
+              <p class="brand js-floor-name">1F</p>
             </div>
             <div class="chart-block__bd">
               <div class="left room-count-wrapper">
                 <div class="inner">
-                  <p class="count js-rock-number">10</p>
+                  <p class="count js-rock-number">23</p>
                   <p class="desc">房间总数</p>
                 </div>
               </div>
               <div class="right square-card--hasline">
                 <div class="square-card">
                   <span class="caret-left"></span>
-                  <span class="dot"></span>空房间数<span class="text">2</span>
+                  <span class="dot"></span>空房间数<span class="text">0</span>
                   <span class="caret-right"></span>
                 </div>
                 <div class="square-card">
                   <span class="caret-left"></span>
-                  <span class="dot"></span>床位总数<span class="text">60</span>
+                  <span class="dot"></span>床位总数<span class="text">92</span>
                   <span class="caret-right"></span>
                 </div>
                 <div class="square-card">
                   <span class="caret-left"></span>
-                  <span class="dot"></span>空床位数<span class="text">10</span>
+                  <span class="dot"></span>空床位数<span class="text">0</span>
                   <span class="caret-right"></span>
                 </div>
                 <div class="square-card">
                   <span class="caret-left"></span>
-                  <span class="dot"></span>入住人数<span class="text">10</span>
+                  <span class="dot"></span>入住人数<span class="text">92</span>
                   <span class="caret-right"></span>
                 </div>
               </div>
@@ -115,37 +115,37 @@
             <div class="chart-block__hd">查寝统计</div>
             <div class="chart-block__bd" id="checkStatisticsChart">
               <ul class="list">
-                <li class="item">
+                <li class="item" data-key="inNumber">
                   <span class="icon icon-1"></span>
                   <span class="k">当前在寝</span>
                   <span class="v">20</span>
                   <span class="glyphicon glyphicon-menu-right"></span>
                 </li>
-                <li class="item">
+                <li class="item" data-key="outNumber">
                   <span class="icon icon-2"></span>
                   <span class="k">当前在外</span>
                   <span class="v">20</span>
                   <span class="glyphicon glyphicon-menu-right"></span>
                 </li>
-                <li class="item">
+                <li class="item" data-key="laterReturnNumber">
                   <span class="icon icon-3"></span>
                   <span class="k">昨日晚归</span>
                   <span class="v color-red">20</span>
                   <span class="glyphicon glyphicon-menu-right"></span>
                 </li>
-                <li class="item">
+                <li class="item" data-key="notReturnNumber">
                   <span class="icon icon-4"></span>
                   <span class="k">昨日未归</span>
                   <span class="v color-red">20</span>
                   <span class="glyphicon glyphicon-menu-right"></span>
                 </li>
-                <li class="item">
+                <li class="item" data-key="manyDayNotOutNumber">
                   <span class="icon icon-5"></span>
                   <span class="k">多天未出</span>
                   <span class="v color-red">20</span>
                   <span class="glyphicon glyphicon-menu-right"></span>
                 </li>
-                <li class="item">
+                <li class="item" data-key="manyDayNotInNumber">
                   <span class="icon icon-6"></span>
                   <span class="k">多天未归</span>
                   <span class="v color-red">20</span>
@@ -160,8 +160,8 @@
             <div class="chart-block__hd">
               <p><span class="js-building-name"></span>归寝趋势</p>
               <ul class="label-list">
-                <li class="label-item">归寝：<span id="roomUsageChartIn">7</span></li>
-                <li class="label-item">外出：<span id="roomUsageChartOut">1</span></li>
+                <li class="label-item">归寝：<span id="passChartIn">7</span></li>
+                <li class="label-item">外出：<span id="passChartOut">1</span></li>
               </ul>
             </div>
             <div class="chart-block__bd">

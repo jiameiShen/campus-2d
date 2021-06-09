@@ -10,7 +10,7 @@ const BAR_CHART_COLORS = ['#2DE2E5', '#228AE1', '#FCE569', '#F2679A']
 const LINE_CHART_COLORS = ['#2DE2E5', '#9095EC']
 const TEXTCOLOR = '#7EADC0'
 
-//   /* 未归寝率排行 */
+//   /* 归寝率排行 */
 //   notReturnChart = window.echarts.init(document.getElementById('notReturnChart'), null, {devicePixelRatio: 2.5})
 //   renderNotReturnChart()
 //   /* 异常预警 */
@@ -69,17 +69,11 @@ const TEXTCOLOR = '#7EADC0'
 //   interceptChart = window.echarts.init(document.getElementById('interceptChart'), null, {devicePixelRatio: 2.5})
 //   renderInterceptChart(interceptInfo.data)
 
-function renderNotReturnChart(notReturnChart_current) {
-  const inData = [320, 302, 301, 334, 390, 330, 320]
-  const outData = [120, 132, 101, 134, 90, 230, 210]
-  const categoryList =
-    notReturnChart_current === 'dormitory'
-      ? ['1#宿舍楼', '2#宿舍楼', '3#宿舍楼', '4#宿舍楼', '5#宿舍楼']
-      : ['管理学院', '计算机学院', '经济管理学院', '机电工程学院', '外语学院']
-  let rateData = []
-  inData.forEach((item, index) => {
-    rateData.push(item / (item + outData[index]))
-  })
+function renderNotReturnChart(data) {
+  const categoryList = data.map((item) => item.collegeName || item.dormitoryName)
+  const inNumber = data.map((item) => item.inNumber)
+  const outNumber = data.map((item) => item.outNumber)
+  const returnPercentage = data.map((item) => item.returnPercentage)
   const option = {
     backgroundColor: 'transparent',
     color: BAR_CHART_COLORS,
@@ -177,18 +171,28 @@ function renderNotReturnChart(notReturnChart_current) {
         type: 'bar',
         stack: 'total',
         label: {
-          show: true,
+          normal: {
+            show: true,
+            formatter: function (parmas) {
+              return parmas.data || ''
+            },
+          }
         },
-        data: inData,
+        data: inNumber,
       },
       {
         name: '当前未归',
         type: 'bar',
         stack: 'total',
         label: {
-          show: true,
+          normal: {
+            show: true,
+            formatter: function (parmas) {
+              return parmas.data || ''
+            },
+          }
         },
-        data: outData,
+        data: outNumber,
       },
       {
         name: '归寝率', // 归寝率显示，生成一个总数的柱状图，将颜色设为透明，造成一个总数显示在柱状图上方的假象
@@ -197,7 +201,7 @@ function renderNotReturnChart(notReturnChart_current) {
         label: {
           normal: {
             show: true,
-            position: 'right',
+            position: 'insideLeft',
             textStyle: { color: '#fff' },
             formatter: function (parmas) {
               return (parmas.data * 100).toFixed(1) + '%'
@@ -209,7 +213,7 @@ function renderNotReturnChart(notReturnChart_current) {
             color: 'transparent', // 柱状图颜色设为透明
           },
         },
-        data: rateData,
+        data: returnPercentage,
       },
     ],
   }
@@ -217,9 +221,13 @@ function renderNotReturnChart(notReturnChart_current) {
   notReturnChart && notReturnChart.setOption(option)
 }
 
-function renderAbnormalWarningChart() {
-  const inData = [320, 302, 301, 334, 390, 330, 320]
-  const outData = [120, 132, 101, 134, 90, 230, 210]
+function renderAbnormalWarningChart(data) {
+  const legendList = ['昨日晚归', '昨日未归', '多天未出', '多天未归']
+  const categoryList = data.map((item) => item.collegeName || item.dormitoryName)
+  const laterReturnNumber = data.map((item) => item.laterReturnNumber)
+  const notReturnNumber = data.map((item) => item.notReturnNumber)
+  const manyDayNotInNumber = data.map((item) => item.manyDayNotInNumber)
+  const manyDayNotOutNumber = data.map((item) => item.manyDayNotOutNumber)
   const option = {
     backgroundColor: 'transparent',
     color: BAR_CHART_COLORS,
@@ -240,7 +248,7 @@ function renderAbnormalWarningChart() {
         lineHeight: 16,
         color: '#fff',
       },
-      data: ['昨日晚归', '昨日未归', '多天未出', '多天未归'],
+      data: legendList,
     },
     grid: {
       top: 26,
@@ -284,7 +292,7 @@ function renderAbnormalWarningChart() {
     },
     xAxis: {
       type: 'category',
-      data: ['管理学院', '计算机学院', '经济管理学院', '机电工程学院', '外语学院'],
+      data: categoryList,
       axisLine: {
         lineStyle: {
           color: '#3C415B',
@@ -317,25 +325,25 @@ function renderAbnormalWarningChart() {
         name: '昨日晚归',
         type: 'bar',
         stack: 'total',
-        data: inData,
+        data: laterReturnNumber,
       },
       {
         name: '昨日未归',
         type: 'bar',
         stack: 'total',
-        data: outData,
+        data: notReturnNumber,
       },
       {
         name: '多天未出',
         type: 'bar',
         stack: 'total',
-        data: inData,
+        data: manyDayNotOutNumber,
       },
       {
         name: '多天未归',
         type: 'bar',
         stack: 'total',
-        data: outData,
+        data: manyDayNotInNumber,
       },
     ],
   }
@@ -393,6 +401,9 @@ function renderRoomUsageChart(data) {
           show: true,
           fontSize: 20,
           color: '#FFFFFF',
+          formatter: function (param) {
+            return param.value * 100 + '%';
+          }
         },
         emphasis: {
           itemStyle: {

@@ -1,17 +1,22 @@
 $(function () {
+  let floorNumber = 1
+  const ROOM_TOTAL = 23
+  const ROOM_BED = 4
   // 模拟楼层学生数据
   let dataList = Mock.mock({
-    'data|23': [
+    [`data|${ROOM_TOTAL}`]: [
       {
-        totalNumber: 4,
-        inNumber: 2, // 在寝
-        outNumber: 1, // 离寝
-        leaveNumber: 1, // 请假
-        floorNumber: 1,
+        totalNumber: ROOM_BED,
+        inNumber: 0, // 在寝
+        outNumber: 0, // 离寝
+        leaveNumber: 0, // 请假
+        floorNumber: floorNumber,
         roomId: '91865b3c250740829984d4f498839159',
         'roomNumber|+1': 1,
-        'bedDTOList|4': [
+        [`bedDTOList|${ROOM_BED}`]: [
           {
+            roomName: '',
+            bedNum: '',
             'isLeave|1': false, // 请假
             'status|0-1': 0, // 0外出 1在寝
             studentId: '@id',
@@ -28,10 +33,28 @@ $(function () {
     ],
   }).data
 
-
   // 房间分布
+  let roomMap = new Map()
   let roomList = []
   let roomTemplate = []
+
+  // 查寝统计
+  let checkData = {
+    inNumber: [],
+    outNumber: [],
+    laterReturnNumber: [],
+    notReturnNumber: [],
+    manyDayNotOutNumber: [],
+    manyDayNotInNumber: [],
+  }
+
+  let checkDataMap = new Map()
+    .set('inNumber', '当前在寝')
+    .set('outNumber', '当前在外')
+    .set('laterReturnNumber', '昨日晚归')
+    .set('notReturnNumber', '昨日未归')
+    .set('manyDayNotOutNumber', '多天未出')
+    .set('manyDayNotInNumber', '多天未归')
 
   // 房间统计
   let roomStatisticsList = []
@@ -39,13 +62,44 @@ $(function () {
 
   dataList.forEach(item => {
     // 房间名称
-    const roomName = `${item.floorNumber}${item.roomNumber.toString().padStart(2, '0')}`
-
+    item.roomNumber = item.roomNumber.toString().padStart(2, '0')
+    item.roomName = `${item.floorNumber}${item.roomNumber}`
+    item.bedDTOList.forEach((bed, bedIndex) => {
+      bed.roomName = item.roomName
+      bed.bedNum = bedIndex + 1 + '号床'
+      if (bed.status === 1) {
+        item.inNumber++
+        checkData.inNumber.push(bed)
+        if (checkData.laterReturnNumber.length < 10) {
+          checkData.laterReturnNumber.push(bed)
+        }
+        if (checkData.manyDayNotOutNumber.length < 10) {
+          checkData.manyDayNotOutNumber.push(bed)
+        }
+      } else if (bed.status === 0) {
+        item.outNumber++
+        checkData.outNumber.push(bed)
+        if (checkData.laterReturnNumber.length < 10) {
+          checkData.laterReturnNumber.push(bed)
+        }
+        if (checkData.notReturnNumber.length < 10) {
+          checkData.notReturnNumber.push(bed)
+        }
+        if (checkData.manyDayNotInNumber.length < 10) {
+          checkData.manyDayNotInNumber.push(bed)
+        }
+      }
+      if (bed.isLeave) {
+        item.leaveNumber++
+      }
+    })
     // 归寝率
-    const inRate = item.inNumber/item.totalNumber
+    item.inRate = item.inNumber / item.totalNumber
+
+    roomMap.set(item.roomNumber, item)
     roomList.push(
       `<li class="room-item js-room-item" data-room="${item.roomNumber}">
-        <span class="room-order">${roomName}</span>
+        <span class="room-order">${item.roomName}</span>
         <div class="bed-group bed-group-1" data-bed="01"></div>
         <div class="bed-group bed-group-2" data-bed="02"></div>
       </li>`
@@ -55,11 +109,11 @@ $(function () {
       `<li class="item">
         <div class="cell cell-1">
           <span class="icon icon-door"></span>
-          <span class="name">${roomName}</span>
-          <span class="rate">归寝率：${(inRate*100).toFixed(2)}%</span>
+          <span class="name">${item.roomName}</span>
+          <span class="rate">归寝率：${(item.inRate * 100).toFixed(2)}%</span>
         </div>
         <div class="cell cell-2">
-          <div class="inner" style="width: ${parseInt(inRate*100)}%"></div>
+          <div class="inner" style="width: ${parseInt(item.inRate * 100)}%"></div>
         </div>
         <div class="cell cell-3">
           <span class="count">入住：${item.totalNumber}</span>
@@ -73,9 +127,64 @@ $(function () {
 
   roomTemplate = `<ul class="level-mock" id="levelMock">${roomList.join('')}</ul>`
   roomStatisticsTemplate = `<ul class="list">${roomStatisticsList.join('')}</ul>`
-
   $('#div2d').append($(roomTemplate))
   $('#roomStatisticsChart').html($(roomStatisticsTemplate))
+
+  // 查寝统计
+  let checkDataTemplate = ''
+  let checkDataIndex = 1
+  for (let key in checkData) {
+    checkDataTemplate += `
+      <li class="item" data-key="${key}">
+        <span class="icon icon-${checkDataIndex}"></span>
+        <span class="k">${checkDataMap.get(key)}</span>
+        <span class="v ${checkDataIndex > 2 && 'color-red'}">${checkData[key].length}</span>
+        <span class="glyphicon glyphicon-menu-right"></span>
+      </li>
+    `
+    checkDataIndex++
+  }
+  $('#checkStatisticsChart').html($(`<ul class="list">${checkDataTemplate}</ul>`))
+  // 查寝统计弹窗
+  $('#checkStatisticsChart').on('click', '.item', function () {
+    // 持续天数和开始日期不要
+    const KEY = $(this).data('key')
+    const isMulti = ['manyDayNotOutNumber', 'manyDayNotInNumber'].includes(KEY)
+    const list = checkData[KEY]
+    let template = `
+      <table class="g-table">
+        <thead>
+          <tr>
+            <th>姓名</th>
+            <th>房间</th>
+            <th>床位</th>
+            ${isMulti ? `
+            <th>持续天数</th>
+            <th>开始日期</th>
+            `: ''}
+          </tr>
+        </thead>
+        <tbody>
+        ${list.map(item => {
+      return `<tr>
+              <td>${item.studentName}</td>
+              <td>${item.roomName}</td>
+              <td>${item.bedNum}</td>
+              ${isMulti ? `
+                <td>10</td>
+                <td>2021-04-23</td>
+              `: ''}
+            </tr>`
+    }).join('')
+      }
+        </tbody>
+      </table>
+    `
+    $('#checkStatisticsModal').find('.modal-body').html($(template))
+    console.log($(this).index())
+    $('#checkStatisticsModal .modal-title').text($(this).find('.k').text())
+    $('#checkStatisticsModal').modal()
+  })
 
   // 模拟3d放学生信息进去
   dataList.forEach((room) => {
@@ -95,44 +204,6 @@ $(function () {
         .find(`[data-bed="${bedNum}"]`)
         .append($(`<span class="bed-item bed-item-${bedIndex} ${color}" data-student-id="${bed.studentId}">${bedNum}${bed.studentName}</span>`))
     })
-  })
-
-  // 查寝统计弹窗
-  $('#checkStatisticsChart').on('click', '.item', function () {
-    // 持续天数和开始日期不要
-    const isMulti = $(this).index() > 3
-    let template = `
-      <table class="g-table">
-        <thead>
-          <tr>
-            <th>姓名</th>
-            <th>房间</th>
-            <th>床位</th>
-            ${isMulti ? `
-            <th>持续天数</th>
-            <th>开始日期</th>
-            `: ''}
-          </tr>
-        </thead>
-        <tbody>
-          ${
-            (`<tr>
-              <td>赵柳</td>
-              <td>101</td>
-              <td>02</td>
-              ${isMulti ? `
-                  <td>10</td>
-                  <td>2021-04-23</td>
-                  `: ''}
-            </tr>`).repeat(4)
-          }
-        </tbody>
-      </table>
-    `
-    $('#checkStatisticsModal').find('.modal-body').html($(template))
-    console.log($(this).index())
-    $('#checkStatisticsModal .modal-title').text($(this).find('.k').text())
-    $('#checkStatisticsModal').modal()
   })
 
   $('#levelMock').on('click', '.bed-item', function () {
@@ -200,7 +271,7 @@ $(function () {
 
   const LINE_CHART_COLORS = ['#2DE2E5', '#9095EC']
   const TEXTCOLOR = '#7EADC0'
-  
+
   /* 今日通行人数 */
   const passInfo = {
     data: [

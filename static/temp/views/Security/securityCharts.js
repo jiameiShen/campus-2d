@@ -30,13 +30,12 @@ function securitySchoolVisitorsChart() {
       },
       padding: 10,
       className: 'echarts-tooltip-dark',
-     
     },
     xAxis: [
       {
         type: 'category',
         boundaryGap: false,
-        data: ['周一','周二','周三','周四','周五','周六','周日'],
+        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
         axisLine: {
           lineStyle: {
             color: '#1D2538',
@@ -93,11 +92,12 @@ function securitySchoolVisitorsChart() {
         emphasis: {
           focus: 'series',
         },
-        data: [400,500,700,122,881,350,154],
+        data: [400, 500, 700, 122, 881, 350, 154],
       },
     ],
   }
-  securitySchoolVisitors.setOption(option)
+  securitySchoolVisitors.clear()
+  securitySchoolVisitors && securitySchoolVisitors.setOption(option)
 }
 
 // 安防摄像头
@@ -119,7 +119,7 @@ function securityCameraChart() {
       y: '35%',
     },
 
-    color: ['#F2679A','#2DE2E5'],
+    color: ['#F2679A', '#2DE2E5'],
     series: [
       {
         name: '访问来源',
@@ -149,7 +149,8 @@ function securityCameraChart() {
       },
     ],
   }
-  camera.setOption(option)
+  camera.clear()
+  camera && camera.setOption(option)
 }
 
 // 消防监控
@@ -168,10 +169,10 @@ function securityFireControl() {
         fontSize: 14,
       },
       x: 'center',//文字位置
-      y:'35%'//文字位置
+      y: '35%'//文字位置
     },
 
-    color: ['#F2679A','#2DE2E5'],
+    color: ['#F2679A', '#2DE2E5'],
     series: [
       {
         name: '访问来源',
@@ -201,5 +202,6 @@ function securityFireControl() {
       },
     ],
   }
-  fireControl.setOption(option)
-} 
+  fireControl.clear()
+  fireControl && fireControl.setOption(option)
+}

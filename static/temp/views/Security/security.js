@@ -1,6 +1,6 @@
 /**
- * @class CreatePageAssets
- * @desc 创建资产管理
+ * @class CreatePageSecurity
+ * @desc 创建安全管理
  * @param
  * @returns
  */
@@ -8,7 +8,7 @@ THING.Utils.dynamicLoad(
   '/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/views/Security/security.css'
 )
 THING.Utils.dynamicLoad(
-  '/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/views/Security/securityChart.js'
+  '/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/views/Security/securityCharts.js'
 )
 console.log('CreatePageSecurity')
 
@@ -37,6 +37,12 @@ class CreatePageSecurity {
     let _this = this
     // 插入到 ThingJS 内置的 2D 界面 #pageContainer 中
     $(`#page${this.pageId}`).html($(securityTemplate))
+    $(document).on('click', '.monitoring-alarms-content .tab .item', function () {
+      $(this).addClass('tab-active').siblings().removeClass('tab-active')
+    })
+    $(document).on('click', '.safety-control-content .tab li', function () {
+      $(this).addClass('safety-tab-active').siblings().removeClass('safety-tab-active')
+    })
     this.render()
   }
 
@@ -51,7 +57,7 @@ class CreatePageSecurity {
   render() {
     let _this = this
     $(`#page${this.pageId} .js-building-name`).each(function () {
-      $(this).text(_this.buildingName || $(this).data('school'))
+      $(this).text(_this.buildingName || $(this).data('school') || '')
     })
 
     securitySchoolVisitorsChart()
@@ -62,7 +68,7 @@ class CreatePageSecurity {
 
 var securityTemplate = `
       <div class="page-aside page-aside-left animate__animated page-security">
-        <div class="chart-block flex-none">
+        <div class="chart-block">
           <div class="chart-block__hd">
             <p><span class="js-building-name"></span>学校访客</p>
           </div>
@@ -138,7 +144,7 @@ var securityTemplate = `
           <div class="chart-block__bd">
             <div class="safety-control-content">
               <ul class="tab">
-                <li>生活区</li>
+                <li class="safety-tab-active">生活区</li>
                 <li>教学区</li>
                 <li>办公区</li>
                 <li>运动区</li>

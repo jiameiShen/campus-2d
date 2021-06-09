@@ -1,15 +1,13 @@
 /**
- * @class CreatePageAssets
- * @desc 创建资产管理
+ * @class CreatePageEnergy
+ * @desc 创建能耗管理
  * @param
  * @returns
  */
 THING.Utils.dynamicLoad(
   '/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/views/Energy/energy.css'
 )
-THING.Utils.dynamicLoad(
-  '/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/views/Energy/energyChart.js'
-)
+THING.Utils.dynamicLoad('/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/views/Energy/energyChart.js')
 console.log('CreatePageEnergy')
 
 class CreatePageEnergy {
@@ -37,6 +35,9 @@ class CreatePageEnergy {
     let _this = this
     // 插入到 ThingJS 内置的 2D 界面 #pageContainer 中
     $(`#page${this.pageId}`).html($(energyTemplate))
+    $(document).on('click', '.call-police-list .tab .item', function () {
+      $(this).addClass('tab-active').siblings().removeClass('tab-active')
+    })
     this.render()
   }
 
@@ -51,7 +52,7 @@ class CreatePageEnergy {
   render() {
     let _this = this
     $(`#page${this.pageId} .js-building-name`).each(function () {
-      $(this).text(_this.buildingName || $(this).data('school'))
+      $(this).text(_this.buildingName || $(this).data('school') || '')
     })
 
     energyRankingChart()
@@ -78,17 +79,15 @@ var energyTemplate = `
             </div>
           </div>
         </div>
-        <div class="chart-block flex-none">
+        <div class="chart-block">
           <div class="chart-block__hd">
             <p><span class="js-building-name"></span>能源消耗排行</p>
           </div>
           <div class="chart-block__bd">
-            <div class="ranking-content">
-              <div id="ranking-content" class="ranking-chart"></div>
-            </div>
+            <div id="ranking-content" class="ranking-chart"></div>
           </div>
         </div>
-        <div class="chart-block flex-none">
+        <div class="chart-block">
           <div class="chart-block__hd">
             <p><span class="js-building-name"></span>能源分类消耗</p>
           </div>
@@ -114,20 +113,6 @@ var energyTemplate = `
                   <span class="dot"></span>多媒体用电<span class="text">727 <span class="info-unit"> (Kw·H)</span></span>
                   <span class="caret-right"></span>
                 </div>
-                <!-- <div>
-                  <span class="info-k">空调用电</span>
-                  <span class="info-v">
-                    727
-                    <span class="info-unit"> (Kw·H)</span>
-                  </span>
-                </div>
-                <div>
-                  <span class="info-k">空调用电</span>
-                  <span class="info-v">
-                    727
-                    <span class="info-unit"> (Kw·H)</span>
-                  </span>
-                </div> -->
               </div>
             </div>
           </div>
@@ -139,9 +124,7 @@ var energyTemplate = `
             <p><span class="js-building-name"></span>月度能耗消耗统计</p>
           </div>
           <div class="chart-block__bd">
-            <div class="statistics-content">
-              <div class="statistics-chart" id="statistics-content"></div>
-            </div>
+            <div class="statistics-chart" id="statistics-content"></div>
           </div>
         </div>
         <div class="chart-block">
@@ -152,51 +135,51 @@ var energyTemplate = `
             <div class="call-police-content">
               <div class="call-police-count">
                 <div class="count">
-                  <div class="count js-rock-number">109</div>
+                  <div class="js-rock-number">109</div>
                   <div>总数(单位)</div>
                 </div>
-                <div>
-                  <div class="each-count">
-                    <span class="ring-info-bk caret-left caret-red-left"></span>
-                    <div class="caret-circle caret-circle-red"></div>
-                    <div class="line"></div>
-                    <div class="info clearfix">
-                      <span class="align-left">警报</span
-                      ><span class="align-right">32</span>
+                <div class="each-count-main">
+                    <div class="each-count">
+                        <span class="ring-info-bk caret-left caret-red-left"></span>
+                        <div class="caret-circle caret-circle-red"></div>
+                        <div class="line"></div>
+                        <div class="info clearfix">
+                        <span class="align-left">警报</span
+                        ><span class="align-right">32</span>
+                        </div>
+                        <div class="info">
+                        <span>同比上周：</span
+                        ><span class="percentage">↓10%</span>
+                        </div>
+                        <span
+                        class="ring-info-bk caret-right caret-red-right"
+                        ></span>
                     </div>
-                    <div class="info">
-                      <span>同比上周：</span
-                      ><span class="percentage">↓10%</span>
-                    </div>
-                    <span
-                      class="ring-info-bk caret-right caret-red-right"
+                    <div class="each-count">
+                        <span class="ring-info-bk caret-left caret-blue-left"></span>
+                        <div class="caret-circle caret-circle-blue"></div>
+                        <div class="line"></div>
+                        <div class="info clearfix">
+                        <span class="align-left">处理中</span
+                        ><span class="align-right">77</span>
+                        </div>
+                        <div class="info">
+                        <span>同比上周：</span
+                        ><span class="percentage">↑10%</span>
+                        </div>
+                        <span
+                        class="ring-info-bk caret-right caret-blue-right"
                     ></span>
-                  </div>
-                  <div class="each-count">
-                    <span class="ring-info-bk caret-left caret-blue-left"></span>
-                    <div class="caret-circle caret-circle-blue"></div>
-                    <div class="line"></div>
-                    <div class="info clearfix">
-                      <span class="align-left">处理中</span
-                      ><span class="align-right">77</span>
                     </div>
-                    <div class="info">
-                      <span>同比上周：</span
-                      ><span class="percentage">↑10%</span>
-                    </div>
-                    <span
-                    class="ring-info-bk caret-right caret-blue-right"
-                  ></span>
-                  </div>
                 </div>
               </div>
               <div class="call-police-list">
                 <div class="tab">
-                  <div class="item tab-active">
+                 <div class="item tab-active" data-val="alert">
                     警报 <span class="tip">2</span>
                   </div>
-                  <div class="item">处理中<span class="tip">12</span></div>
-                  <div class="item">待处理</div>
+                  <div class="item" data-val="inProcess">处理中<span class="tip">12</span></div>
+                  <div class="item" data-val="pending">待处理</div>
                 </div>
                 <table class="table">
                   <tr>
@@ -212,25 +195,25 @@ var energyTemplate = `
                     <td>待处理</td>
                   </tr>
                   <tr>
-                    <th>02</th>
+                    <td>02</td>
                     <td>文史楼304</td>
                     <td>跳闸</td>
                     <td>处理中</td>
                   </tr>
                   <tr>
-                    <th>03</th>
+                    <td>03</td>
                     <td>文史楼304</td>
                     <td>跳闸</td>
                     <td>处理中</td>
                   </tr>
                   <tr>
-                    <th>04</th>
+                    <td>04</td>
                     <td>文史楼304</td>
                     <td>跳闸</td>
                     <td>处理中</td>
                   </tr>
                   <tr>
-                    <th>05</th>
+                    <td>05</td>
                     <td>文史楼304</td>
                     <td>跳闸</td>
                     <td>处理中</td>

@@ -1,6 +1,6 @@
 /**
- * @class CreatePageAssets
- * @desc 创建资产管理
+ * @class CreatePageOperations
+ * @desc 创建运维管理
  * @param
  * @returns
  */

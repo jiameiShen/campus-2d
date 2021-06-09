@@ -1,5 +1,8 @@
 .page-assets .school-assets-content {
   height: 310px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .page-assets .school-assets-content .ring {
   width: 320px;
@@ -65,7 +68,6 @@
 } 
 .page-assets .ranking-assets-content tr td:last-child {
   width: 39px;
-  padding-right: 50px;
 } 
 
 .page-assets .ranking-assets-content .number{

@@ -100,7 +100,9 @@ $(function () {
   /* 层级变化 */
   app.on(THING.EventType.LevelChange, function (ev) {
     const object = ev.current
-    ctrlGTabList.showTab()
+    if (!(object instanceof THING.Room)) {
+      ctrlGTabList.showTab()
+    }
     if (object instanceof THING.Campus) {
       console.log('Campus: ' + object)
       $('.u-building-marker').show()

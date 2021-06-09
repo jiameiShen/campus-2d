@@ -9,7 +9,7 @@ function energyRankingChart() {
   let energyRanking = echarts.init(document.getElementById('ranking-content'))
   let option = {
     grid: {
-      top: 31,
+      top: 5,
       left: '3%',
       right: '11%',
       bottom: 0,
@@ -49,7 +49,6 @@ function energyRankingChart() {
     series: [
       {
         type: 'bar',
-        barWidth: 26,
         data: [97, 518, 212, 486, 427, 284, 502],
         label: {
           normal: {
@@ -85,12 +84,12 @@ function energyRankingChart() {
             shadowBlur: 3,
             shadowOffsetY: 3,
           },
-        },
-        barWidth: 12, //柱子宽度
+        }
       },
     ],
   }
-  energyRanking.setOption(option)
+  energyRanking.clear()
+  energyRanking && energyRanking.setOption(option)
 }
 
 // 能源分类消耗
@@ -101,17 +100,15 @@ function energyClassificationChart() {
   let option = {
     tooltip: {
       trigger: 'item',
-      // formatter: '{a} <br/>{b}: {c} ({d}%)',
       position: ['50%', '50%'],
       className: 'echarts-tooltip-dark',
       formatter: function (params) {
-        console.log('params',params)
         return `<p class="caption">${params.data.name}</p>
           <p class="item">
             <span class="mark" style="background-color: #228AE1;"></span>
-            <span class="value">占比${Math.round(params.percent)}%</span>
+            <span class="value">占比：${Math.round(params.percent)}%</span>
           </p>`
-      },
+      }
     },
     color: ['#228AE1', '#F2679A', '#FCE569'],
     series: [
@@ -142,7 +139,8 @@ function energyClassificationChart() {
       },
     ],
   }
-  energyClassification.setOption(option)
+  energyClassification.clear()
+  energyClassification && energyClassification.setOption(option)
 }
 
 //月度能耗消耗统计
@@ -156,10 +154,10 @@ function energyStatisticsChart() {
   }
   let option = {
     tooltip: {
-        trigger: 'axis',
-        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-            type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-        }
+      trigger: 'axis',
+      axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+        type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+      }
     },
     grid: {
       top: 31,
@@ -177,9 +175,9 @@ function energyStatisticsChart() {
           fontSize: 12,
           color: '#7EADC0',
         },
-      }, 
-      splitLine:{ //网格线
-        show:false,
+      },
+      splitLine: { //网格线
+        show: false,
       },
     },
     yAxis: {
@@ -191,8 +189,8 @@ function energyStatisticsChart() {
           color: '#7EADC0',
         },
       },
-      splitLine:{ //网格线
-        show:false,
+      splitLine: { //网格线
+        show: false,
       },
     },
     series: [
@@ -201,7 +199,7 @@ function energyStatisticsChart() {
         type: 'bar',
         itemStyle: {
           normal: {
-            color: new echarts.graphic.LinearGradient( 0,0,0,1,
+            color: new echarts.graphic.LinearGradient(0, 0, 0, 1,
               [
                 {
                   offset: 0,
@@ -218,10 +216,10 @@ function energyStatisticsChart() {
             shadowBlur: 3,
             shadowOffsetY: 3,
           },
-        },
-        barWidth: 12, //柱子宽度
+        }
       },
     ],
   }
-  energyStatistics.setOption(option)
+  energyStatistics.clear()
+  energyStatistics && energyStatistics.setOption(option)
 }

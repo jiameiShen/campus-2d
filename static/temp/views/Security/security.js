@@ -164,7 +164,6 @@ var securityTemplate = `
                 <li>办公区</li>
                 <li>运动区</li>
                 <li>实验区</li>
-                <li>运动区</li>
               </ul>
               <ul class="list">
                 <li>1#教学楼</li>

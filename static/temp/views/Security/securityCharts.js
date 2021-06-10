@@ -69,7 +69,7 @@ function securitySchoolVisitorsChart() {
     ],
     series: [
       {
-        name: '资产总额',
+        name: '访客人数',
         type: 'line',
         smooth: true,
         lineStyle: {
@@ -106,7 +106,7 @@ function securityCameraChart() {
   let option = {
     title: {
       text: '1,682',
-      subtext: '总数(单位)',
+      subtext: '总数',
       textStyle: {
         color: '#FFFFFF',
         fontSize: 20,
@@ -122,9 +122,9 @@ function securityCameraChart() {
     color: ['#F2679A', '#2DE2E5'],
     series: [
       {
-        name: '访问来源',
+        name: '访客人数',
         type: 'pie',
-        radius: ['60%', '80%'],
+        radius: ['75%', '100%'],
         center: ['50%', '50%'],
         avoidLabelOverlap: false,
         label: {
@@ -159,7 +159,7 @@ function securityFireControl() {
   let option = {
     title: {
       text: '82',
-      subtext: '总数(单位)',
+      subtext: '总数',
       textStyle: {
         color: '#FFFFFF',
         fontSize: 20,
@@ -177,7 +177,7 @@ function securityFireControl() {
       {
         name: '访问来源',
         type: 'pie',
-        radius: ['60%', '80%'],
+        radius: ['75%', '100%'],
         center: ['50%', '50%'],
         avoidLabelOverlap: false,
         label: {

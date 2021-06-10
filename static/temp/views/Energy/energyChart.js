@@ -5,7 +5,7 @@
 })()
 
 // 能源消耗排行
-function energyRankingChart() {
+function energyRankingChart(yAxisData) {
   let energyRanking = echarts.init(document.getElementById('ranking-content'))
   let option = {
     grid: {
@@ -18,15 +18,7 @@ function energyRankingChart() {
     yAxis: [
       {
         type: 'category',
-        data: [
-          '管理学院',
-          '计算机学院',
-          '经济管理学院',
-          '机电工程学院',
-          '自动化学院',
-          '轻工化工学院',
-          '外国语学院',
-        ],
+        data: yAxisData,
         inverse: true,
         // axisTick: {
         //     alignWithLabel: true,
@@ -93,7 +85,7 @@ function energyRankingChart() {
 }
 
 // 能源分类消耗
-function energyClassificationChart() {
+function energyClassificationChart(data) {
   let energyClassification = echarts.init(
     document.getElementById('classification-content')
   )
@@ -115,7 +107,7 @@ function energyClassificationChart() {
       {
         name: '访问来源',
         type: 'pie',
-        radius: ['60%', '80%'],
+        radius: ['75%', '100%'],
         avoidLabelOverlap: false,
         label: {
           normal: {
@@ -131,11 +123,7 @@ function energyClassificationChart() {
             show: false,
           },
         },
-        data: [
-          { value: 727, name: '照明用电' },
-          { value: 727, name: '空调用电' },
-          { value: 727, name: '多媒体用电' },
-        ],
+        data:data,
       },
     ],
   }

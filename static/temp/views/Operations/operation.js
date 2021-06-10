@@ -37,6 +37,9 @@ class CreatePageOperations {
     let _this = this
     // 插入到 ThingJS 内置的 2D 界面 #pageContainer 中
     $(`#page${this.pageId}`).html($(operationTemplate))
+    $(document).on('click', '.event-list-content .tab .item', function () {
+      $(this).addClass('tab-active').siblings().removeClass('tab-active')
+    })
     this.render()
   }
 
@@ -50,13 +53,36 @@ class CreatePageOperations {
 
   render() {
     let _this = this
+    let regionaStatisticsData = []
     $(`#page${this.pageId} .js-building-name`).each(function () {
       $(this).text(_this.buildingName || $(this).data('school') || '')
     })
-
+    this.changeRegionaStatistics(regionaStatisticsData)
     operationDeviceStatusChart()
-    operationRegionalStatisticsChart()
+    operationRegionalStatisticsChart(regionaStatisticsData)
     operationDeviceMaintenanceChart()
+  }
+
+  changeRegionaStatistics(regionaStatisticsData) {
+    if (this.buildingName) {
+      let arr = ['1L', '2L', '3L', '4L', '5L', '6L']
+      for (let key in arr) {
+        regionaStatisticsData.push(arr[key])
+      }
+    } else {
+      let arr = [
+        '管理学院',
+        '计算机学院',
+        '经济管理学院',
+        '机电工程学院',
+        '自动化学院',
+        '轻工化工学院',
+        '外国语学院',
+      ]
+      for (let key in arr) {
+        regionaStatisticsData.push(arr[key])
+      }
+    }
   }
 }
 
@@ -91,31 +117,36 @@ var operationTemplate = `
             <div class="event-list-content">
               <div class="tab">
                 <div class="item tab-active">
-                  警报 <span class="tip">2</span>
+                  待处理 <span class="tip">5</span>
                 </div>
-                <div class="item">处理中<span class="tip">2</span></div>
-                <div class="item">待处理<span class="tip">2</span></div>
+                <div class="item">处理中<span class="tip">5</span></div>
+                <div class="item">已解决<span class="tip">5</span></div>
               </div>
               <div class="vtable-wrapper">
                 <table class="vtable">
                   <tr>
                     <td>01</td>
-                    <td>德育楼201</td>
+                    <td>图书馆201</td>
                     <td>多媒体损坏</td>
                   </tr>
                   <tr>
                     <td>02</td>
-                    <td>德育楼202</td>
+                    <td>图书馆202</td>
                     <td>空调无法开启</td>
                   </tr>
                   <tr>
                     <td>03</td>
-                    <td>德育楼203</td>
+                    <td>图书馆203</td>
                     <td>传真机损坏</td>
                   </tr>
                   <tr>
                     <td>04</td>
-                    <td>德育楼205</td>
+                    <td>图书馆205</td>
+                    <td>椅子缺失</td>
+                  </tr>
+                  <tr>
+                    <td>05</td>
+                    <td>图书馆206</td>
                     <td>椅子缺失</td>
                   </tr>
                 </table>

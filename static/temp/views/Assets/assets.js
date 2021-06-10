@@ -46,14 +46,48 @@ class CreatePageAssets {
 
   render() {
     let _this = this
+    let collegeAssetsData = []
+    let schoolAssetsData = [
+      { value: 4933, name: '软件资产' },
+      { value: 1890, name: '硬件资产' },
+    ]
     $(`#page${this.pageId} .js-building-name`).each(function () {
       $(this).text(_this.buildingName || $(this).data('school') || '')
     })
-
+    
+    this.changeRegionaStatistics(collegeAssetsData,schoolAssetsData)
     schoolAssetsChart()
-    collegeAssetsChart()
+    collegeAssetsChart(collegeAssetsData)
     classAssetsChart()
     totalAssetsChart()
+  }
+
+  changeRegionaStatistics(collegeAssetsData,schoolAssetsData) {
+  
+    if (this.buildingName) {
+      let arr = ['1L', '2L', '3L', '4L', '5L', '6L','7L']
+      let schoolAssetsArr=['523','300']
+      for (let key in arr) {
+        schoolAssetsData[key].value = schoolAssetsArr[key]
+      }
+    } else {
+      let arr = [
+        '管理学院',
+        '计算机学院',
+        '经济管理学院',
+        '机电工程学院',
+        '自动化学院',
+        '轻工化工学院',
+        '外国语学院',
+      ]
+      let schoolAssetsArr=['1890','4933']
+      for (let key in arr) {
+        collegeAssetsData.push(arr[key])
+      }
+      for (let key in schoolAssetsData) {
+        schoolAssetsData[key].value = schoolAssetsArr[key]
+      }
+    }
   }
 }
 
@@ -71,11 +105,11 @@ var assetsTemplate = `
               <div class="ring-info">
                 <div class="info-bk">
                   <div>软件资产(万元）</div>
-                  <div class="software">1,890</div>
+                  <div class="software">523</div>
                 </div>
                 <div class="info-bk">
                   <div>硬件资产(万元）</div>
-                  <div class="hardware">4,933</div>
+                  <div class="hardware">300</div>
                 </div>
               </div>
             </div>

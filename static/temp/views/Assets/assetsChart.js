@@ -6,13 +6,17 @@
 })()
 
 // 学校资产统计
-function schoolAssetsChart() {
+function schoolAssetsChart(data) {
+  let text = ''
+  for (let i=0; i<data.legend; i++) {
+    text += data[i].value
+  } 
   let schoolAssets = echarts.init(
     document.getElementById('school-assets-content')
   )
   let option = {
     title: {
-      text: '6,823',
+      text: text,
       subtext: '总资产(万元)',
       textStyle: {
         color: '#FFFFFF',
@@ -60,8 +64,7 @@ function schoolAssetsChart() {
           },
         },
         data: [
-          { value: 4933, name: '软件资产' },
-          { value: 1890, name: '硬件资产' },
+          
 
         ],
         hoverAnimation: false
@@ -73,7 +76,7 @@ function schoolAssetsChart() {
 }
 
 // 各学院资产统计
-function collegeAssetsChart() {
+function collegeAssetsChart(data) {
   let AssetsRanking = echarts.init(document.getElementById('college-assets-content'))
   let option = {
     grid: {
@@ -86,15 +89,7 @@ function collegeAssetsChart() {
     yAxis: [
       {
         type: 'category',
-        data: [
-          '管理学院',
-          '计算机学院',
-          '经济管理学院',
-          '机电工程学院',
-          '自动化学院',
-          '轻工化工学院',
-          '外国语学院',
-        ],
+        data: data,
         inverse: true,
         // axisTick: {
         //     alignWithLabel: true,
@@ -117,7 +112,6 @@ function collegeAssetsChart() {
     series: [
       {
         type: 'bar',
-        barWidth: 26,
         data: [97, 518, 212, 486, 427, 284, 502],
         label: {
           normal: {
@@ -154,7 +148,6 @@ function collegeAssetsChart() {
             shadowOffsetY: 3,
           },
         },
-        barWidth: 12, //柱子宽度
       },
     ],
   }
@@ -241,7 +234,6 @@ function classAssetsChart() {
             shadowOffsetY: 3,
           },
         },
-        barWidth: 18, //柱子宽度
       },
     ],
   }

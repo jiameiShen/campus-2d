@@ -110,7 +110,7 @@ function operationDeviceMaintenanceChart() {
 }
 
 // 运维情况区域统计
-function operationRegionalStatisticsChart() {
+function operationRegionalStatisticsChart(data) {
   let regionalStatistics = echarts.init(
     document.getElementById('regional-statistics-content')
   )
@@ -144,15 +144,7 @@ function operationRegionalStatisticsChart() {
     yAxis: [
       {
         type: 'category',
-        data: [
-          '管理学院',
-          '计算机学院',
-          '经济管理学院',
-          '机电工程学院',
-          '自动化学院',
-          '轻工化工学院',
-          '外国语学院',
-        ],
+        data: data,
         inverse: true,
         // axisTick: {
         //     alignWithLabel: true,

@@ -81,8 +81,8 @@ function collegeAssetsChart(data) {
   let option = {
     grid: {
       top: 31,
-      left: '3%',
-      right: '11%',
+      left: 0,
+      right: 10,
       bottom: 0,
       containLabel: true,
     },
@@ -178,8 +178,8 @@ function classAssetsChart() {
     },
     grid: {
       top: 31,
-      left: '3%',
-      right: '11%',
+      left: 0,
+      right: 10,
       bottom: 0,
       containLabel: true,
     },

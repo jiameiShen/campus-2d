@@ -10,8 +10,8 @@ function energyRankingChart(yAxisData) {
   let option = {
     grid: {
       top: 5,
-      left: '3%',
-      right: '11%',
+      left: 0,
+      right: 10,
       bottom: 0,
       containLabel: true,
     },
@@ -149,9 +149,9 @@ function energyStatisticsChart() {
     },
     grid: {
       top: 31,
-      left: '3%',
-      right: '11%',
-      bottom: 14,
+      left: 0,
+      right: 10,
+      bottom: 0,
       containLabel: true,
     },
     xAxis: {

@@ -19,8 +19,8 @@ function securitySchoolVisitorsChart() {
     grid: {
       top: 14,
       left: 0,
-      right: 30,
-      bottom: 12,
+      right: 10,
+      bottom: 0,
       containLabel: true,
     },
     tooltip: {

@@ -43,6 +43,21 @@ class CreatePageSecurity {
     $(document).on('click', '.safety-control-content .tab li', function () {
       $(this).addClass('safety-tab-active').siblings().removeClass('safety-tab-active')
     })
+    // 安防摄像头
+    $(document).on('click', '.js-capture-trigger .item', function () {
+      const KEY = $(this).data('key')
+      $(this).addClass('tab-active').siblings().removeClass('tab-active')
+      $('.capture-pictures .img-front').html(`<img src="/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/static/image/temp/front-${KEY}.png" />`)
+      $('.capture-pictures .img-back').html(`<img src="/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/static/image/temp/back-${KEY}.png" />`)
+    })
+    let gVideoPlayer = null
+    const videoUrl = window.$videoUrl
+    $(document).on('click', '.js-show-video', function () {
+      $('#gVideoModal').modal()
+      gVideoPlayer && gVideoPlayer.stop()
+      $('#gVideoPlayer').attr("src", videoUrl);
+      gVideoPlayer = new EZUIKit.EZUIPlayer('gVideoPlayer');
+    });
     this.render()
   }
 
@@ -70,7 +85,7 @@ var securityTemplate = `
       <div class="page-aside page-aside-left animate__animated page-security">
         <div class="chart-block">
           <div class="chart-block__hd">
-            <p><span class="js-building-name"></span>学校访客</p>
+            <p><span class="js-building-name" data-school="学校"></span>访客</p>
           </div>
           <div class="chart-block__bd">
             <div class="school-visitors-count">
@@ -139,7 +154,7 @@ var securityTemplate = `
         </div>
         <div class="chart-block">
           <div class="chart-block__hd">
-            <p><span class="js-building-name"></span>学校区域安全管控</p>
+            <p><span class="js-building-name" data-school="学校"></span>区域安全管控</p>
           </div>
           <div class="chart-block__bd">
             <div class="safety-control-content">
@@ -214,15 +229,21 @@ var securityTemplate = `
                 </div>
               </div>
               <div>
-                <div class="tab">
-                  <div class="item tab-active">东门</div>
-                  <div class="item">西门</div>
-                  <div class="item">南门</div>
-                  <div class="item">北门</div>
+                <div class="tab js-capture-trigger">
+                  <div class="item tab-active" data-key="01">东门</div>
+                  <div class="item" data-key="02">西门</div>
+                  <div class="item" data-key="03">南门</div>
+                  <div class="item" data-key="04">北门</div>
                 </div>
                 <div class="capture-pictures">
-                  <img src="../image/ring-bk2-blue.png" class="img1" />
-                  <img src="../image/ring-bk2-blue.png" class="img2" />
+                  <div class="img-wrapper img-front js-show-video">
+                    <!-- <img src="../../static/image/temp/front-01.png" /> -->
+                    <img src="/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/static/image/temp/front-01.png" />
+                  </div>
+                  <div class="img-wrapper img-back js-show-video">
+                    <!-- <img src="../../static/image/temp/front-01.png" /> -->
+                    <img src="/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/static/image/temp/back-01.png" />
+                  </div>
                 </div>
               </div>
             </div>
@@ -298,4 +319,28 @@ var securityTemplate = `
           </div>
         </div>
       </div>
+      <!-- Modal -->
+      <div class="modal fade g-dialog" id="gVideoModal" data-opend="0">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <p class="modal-title">东门</p>
+            </div>
+            <div class="modal-body">
+              <video
+                id="gVideoPlayer"
+                autoplay
+                src=""
+                playsInline
+                webkit-playsinline
+              >
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 `

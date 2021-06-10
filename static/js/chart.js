@@ -9,6 +9,7 @@ $(function () {
   const BAR_CHART_COLORS = ['#2DE2E5', '#228AE1', '#FCE569', '#F2679A']
   const LINE_CHART_COLORS = ['#2DE2E5', '#9095EC']
   const TEXTCOLOR = '#7EADC0'
+  const LINECOLOR = '#31384D'
 
   /* 归寝率排行 */
   notReturnChart = window.echarts.init(document.getElementById('notReturnChart'), null, {devicePixelRatio: 2.5})
@@ -92,7 +93,7 @@ $(function () {
       grid: {
         top: 26,
         left: 0,
-        right: 32,
+        right: 40,
         bottom: 0,
         containLabel: true,
       },
@@ -123,12 +124,16 @@ $(function () {
       },
       xAxis: {
         type: 'value',
+        name: '(人)',
+        nameTextStyle: {
+          color: TEXTCOLOR,
+        },
         axisLabel: {
           color: TEXTCOLOR,
         },
         axisLine: {
           lineStyle: {
-            color: '#3C415B',
+            color: LINECOLOR,
           },
         },
         splitLine: {
@@ -140,7 +145,7 @@ $(function () {
         data: ['管理学院', '计算机学院', '经济管理学院', '机电工程学院', '外语学院'],
         axisLine: {
           lineStyle: {
-            color: '#3C415B',
+            color: LINECOLOR,
           },
         },
         minInterval: 2,
@@ -149,7 +154,7 @@ $(function () {
         },
         splitLine: {
           lineStyle: {
-            color: ['#3C415B'],
+            color: [LINECOLOR],
           },
         },
       },
@@ -248,7 +253,7 @@ $(function () {
         data: ['昨日晚归', '昨日未归', '多天未出', '多天未归'],
       },
       grid: {
-        top: 26,
+        top: 40,
         left: 0,
         bottom: 40,
         containLabel: true,
@@ -275,12 +280,16 @@ $(function () {
       },
       yAxis: {
         type: 'value',
+        name: '(人)',
+        nameTextStyle: {
+          color: TEXTCOLOR,
+        },
         axisLabel: {
           color: TEXTCOLOR,
         },
         axisLine: {
           lineStyle: {
-            color: '#3C415B',
+            color: LINECOLOR,
           },
         },
         splitLine: {
@@ -292,7 +301,7 @@ $(function () {
         data: ['管理学院', '计算机学院', '经济管理学院', '机电工程学院', '外语学院'],
         axisLine: {
           lineStyle: {
-            color: '#3C415B',
+            color: LINECOLOR,
           },
         },
         minInterval: 2,
@@ -302,7 +311,7 @@ $(function () {
         },
         splitLine: {
           lineStyle: {
-            color: ['#3C415B'],
+            color: [LINECOLOR],
           },
         },
       },
@@ -420,7 +429,7 @@ $(function () {
         show: false,
       },
       grid: {
-        top: 20,
+        top: 30,
         left: 20,
         right: 10,
         bottom: 0,
@@ -453,7 +462,7 @@ $(function () {
           data: timeList,
           axisLine: {
             lineStyle: {
-              color: '#1D2538',
+              color: LINECOLOR,
             },
           },
           axisLabel: {
@@ -466,9 +475,13 @@ $(function () {
       yAxis: [
         {
           type: 'value',
+          name: '(人)',
+          nameTextStyle: {
+            color: TEXTCOLOR,
+          },
           axisLine: {
             lineStyle: {
-              color: '#1D2538',
+              color: LINECOLOR,
             },
           },
           minInterval: 1,
@@ -477,7 +490,7 @@ $(function () {
           },
           splitLine: {
             lineStyle: {
-              color: ['#1D2538'],
+              color: [LINECOLOR],
             },
           },
         },

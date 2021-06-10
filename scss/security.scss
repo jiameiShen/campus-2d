@@ -26,12 +26,7 @@
   justify-content: space-between;
   align-items: center;
 }
-.page-security .school-visitors-content .school-visitors-count div:first-child {
-  background-image: url('../image/day-visitors.png');
-}
-.page-security .school-visitors-content .school-visitors-count div:last-child {
-  background-image: url('../image/week-visitors.png');
-}
+
 .page-security .school-visitors-content .school-visitors-count div .count-k {
   font-size: 14px;
   font-family: MicrosoftYaHei;
@@ -69,7 +64,7 @@
 .page-security .tab .item {
   width: calc(100% - 212px);
   height: 25px;
-  background: #1e4e6b;
+  background: #1D2A42;
   border: 1px solid #263752;
   font-size: 14px;
   font-family: MicrosoftYaHei;
@@ -77,9 +72,11 @@
   line-height: 25px;
   margin: 0px -1px -1px 0px;
   text-align: center;
+  cursor: pointer;
 }
 .page-security .tab .tab-active {
-  border: 1px solid #2dc0e5;
+  background: #1E4E6B;
+  border: 1px solid #2DC0E5;
   color: #ffffff;
   margin: 0;
 }
@@ -183,17 +180,21 @@
   height: 316px;
 }
 .page-security .camera-content .capture-pictures {
-  height: 99px;
-  width: 100%;
   margin-top: 10px;
+  display: flex;
+  font-size: 0;
+  img {
+    width: 100%;
+    cursor: pointer;
+    margin-top: -64%;
+  }
 }
-.page-security .camera-content .capture-pictures img {
-  width: 48%;
-  height: 99px;
-  object-fit: cover;
+.page-security .camera-content .capture-pictures .img-wrapper {
+  flex: 1;
+  padding-top: 31%; // 占位用
 }
-.page-security .camera-content .capture-pictures .img1 {
-  margin-right: 5px;
+.page-security .camera-content .capture-pictures .img-wrapper + .img-wrapper {
+  margin-left: 10px;
 }
 .page-security .camera-content .camera-ring-main {
   height: 168px;
@@ -237,21 +238,6 @@
 }
 .page-security .caret-circle-green {
   border-color: #2de2e5;
-}
-.page-security
-  .camera-content
-  .camera-ring-main
-  .camera-ring-info
-  .each-count:first-child {
-  background-image: url('../image/ring-info-bk-red.png');
-  margin-bottom: 10px;
-}
-.page-security
-  .camera-content
-  .camera-ring-main
-  .camera-ring-info
-  .each-count:last-child {
-  background-image: url('../image/ring-info-bk-blue.png');
 }
 .page-security
   .camera-content
@@ -309,16 +295,6 @@
   font-size: 14px;
   font-family: MicrosoftYaHei;
   color: #ffffff;
-}
-.page-security
-  .fire-control-content
-  .fire-control-info
-  .each-count:first-child {
-  background-image: url('../image/ring-info-bk-red.png');
-  margin-bottom: 10px;
-}
-.page-security .fire-control-content .fire-control-info .each-count:last-child {
-  background-image: url('../image/ring-info-bk-blue.png');
 }
 .page-security .fire-control-content .fire-control-info .each-count .info {
   margin-left: 28px;

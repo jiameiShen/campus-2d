@@ -6,12 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
     <link rel="stylesheet" href="../../static/css/global.css" />
     <link rel="stylesheet" href="../../static/css/page.css" />
     <link rel="stylesheet" href="../../static/css/security.css" />
     <link rel="stylesheet" href="../../static/css/common.css" />
+    <script src="../../lib/ezuikit.js"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   </head>
   <body>
+  <script>
+    let gVideoPlayer = null
+    const videoUrl = 'https://open.ys7.com/v3/openlive/E24387991_1_1.m3u8?expire=1654329247&id=322765312709029888&t=951578e960971000d5b713e310d24fe964aeaf0a780570204771986e84943967&ev=100'
+    $(document).on('click', '.js-show-video', function () {
+      $('#gVideoModal').modal()
+      gVideoPlayer && gVideoPlayer.stop()
+      $('#gVideoPlayer').attr("src", videoUrl);
+      gVideoPlayer = new EZUIKit.EZUIPlayer('gVideoPlayer');
+    });
+  </script>
     <div class="page-container">
       <div class="page-aside page-aside-left animate__animated page-security">
         <div class="chart-block">
@@ -160,15 +176,21 @@
                 </div>
               </div>
               <div>
-                <div class="tab">
-                  <div class="item tab-active">东门</div>
-                  <div class="item">西门</div>
-                  <div class="item">南门</div>
-                  <div class="item">北门</div>
+                <div class="tab js-capture-trigger">
+                  <div class="item tab-active" data-key="01">东门</div>
+                  <div class="item" data-key="02">西门</div>
+                  <div class="item" data-key="03">南门</div>
+                  <div class="item" data-key="04">北门</div>
                 </div>
                 <div class="capture-pictures">
-                  <img src="../image/ring-bk2-blue.png" class="img1" />
-                  <img src="../image/ring-bk2-blue.png" class="img2" />
+                  <div class="img-wrapper img-front js-show-video">
+                    <img src="../../static/image/temp/front-01.png" />
+                    <!-- <img src="/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/static/image/temp/front-01.png" /> -->
+                  </div>
+                  <div class="img-wrapper img-back js-show-video">
+                    <img src="../../static/image/temp/front-01.png" />
+                    <!-- <img src="/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/static/image/temp/back-01.png" /> -->
+                  </div>
                 </div>
               </div>
             </div>
@@ -244,8 +266,30 @@
           </div>
         </div>
       </div>
+      <!-- Modal -->
+      <div class="modal fade g-dialog" id="gVideoModal" data-opend="0">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <p class="modal-title">东门</p>
+            </div>
+            <div class="modal-body">
+              <video 
+                id="gVideoPlayer"
+                autoplay
+                src=""
+                playsInline 
+                webkit-playsinline
+              >
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
     <script src="../../static/temp/views/Security/securityCharts.js"></script>
   </body>
 </html>

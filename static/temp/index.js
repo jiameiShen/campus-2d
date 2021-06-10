@@ -12,6 +12,8 @@ THING.Utils.dynamicLoad([
 
   // Mock数据
   'https://cdn.bootcdn.net/ajax/libs/Mock.js/1.0.1-beta3/mock-min.js',
+  // 视频
+  '/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/lib/ezuikit.js',
 ])
 
 // 加载完成事件 
@@ -22,12 +24,19 @@ app.on('load', function (ev) {
   */
   var campus = ev.campus;
   console.log('after load ' + campus.id);
+  document.title = '航信天工智慧校园'
+  var link = document.createElement('link');
+  link.type = 'image/x-icon';
+  link.rel = 'shortcut icon';
+  link.href = 'https://www.thingjs.com/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/static/image/logo-icon.png';
+  document.getElementsByTagName('head')[0].appendChild(link);
   // 切换层级到园区
   app.level.change(campus);
   THING.Utils.dynamicLoad([
     '/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/global/GHeader/index.js',
     '/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/global/GBackNavigator/index.js',
     '/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/global/GLevelSwitch/index.js',
+    '/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/global/GMockWarning/index.js',
 
     // js加载顺序比较重要
     '/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/views/Apartment/apartment.js',
@@ -40,6 +49,7 @@ app.on('load', function (ev) {
     '/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/init.js',
   ])
   app.background = '#030303';
+  app.camera.xAngleLimitRange = [0, 90];  // 设置摄像机俯仰角度范围[最小值, 最大值]
 });
 
 // 数字滚动

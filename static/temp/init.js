@@ -82,15 +82,16 @@ $(function () {
     // 公寓管理--不能进入其他楼栋
     // 其他--不能进入宿舍楼栋层级
     if (currentTab === 'Apartment') {
-      if (!(object instanceof THING.Thing)) {
+      if (object instanceof THING.Campus
+        || object instanceof THING.Building
+        || object instanceof THING.Floor
+        || object instanceof THING.Room) {
         object.app.level.change(object)
       }
     } else {
-      if (object instanceof THING.Thing) {
-        if (object.name === '建筑') {
-          object.app.level.change(object)
-        }
-      } else if (!(object instanceof THING.Floor)) {
+      if (object instanceof THING.Thing && object.name === '建筑') {
+        object.app.level.change(object)
+      } else if (object instanceof THING.Campus || object instanceof THING.Building) {
         object.app.level.change(object)
       }
     }

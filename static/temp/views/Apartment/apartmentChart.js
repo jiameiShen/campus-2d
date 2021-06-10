@@ -9,6 +9,7 @@ const PIE_CHART_COLORS = ['#9095EC', '#228AE1', '#2DE2E5', '#F2679A']
 const BAR_CHART_COLORS = ['#2DE2E5', '#228AE1', '#FCE569', '#F2679A']
 const LINE_CHART_COLORS = ['#2DE2E5', '#9095EC']
 const TEXTCOLOR = '#7EADC0'
+const LINECOLOR = '#31384D'
 
 //   /* 归寝率排行 */
 //   notReturnChart = window.echarts.init(document.getElementById('notReturnChart'), null, {devicePixelRatio: 2.5})
@@ -92,7 +93,7 @@ function renderNotReturnChart(data) {
     grid: {
       top: 26,
       left: 0,
-      right: 32,
+      right: 40,
       bottom: 0,
       containLabel: true,
     },
@@ -123,12 +124,16 @@ function renderNotReturnChart(data) {
     },
     xAxis: {
       type: 'value',
+      name: '(人)',
+      nameTextStyle: {
+        color: TEXTCOLOR,
+      },
       axisLabel: {
         color: TEXTCOLOR,
       },
       axisLine: {
         lineStyle: {
-          color: '#3C415B',
+          color: LINECOLOR,
         },
       },
       splitLine: {
@@ -140,7 +145,7 @@ function renderNotReturnChart(data) {
       data: categoryList,
       axisLine: {
         lineStyle: {
-          color: '#3C415B',
+          color: LINECOLOR,
         },
       },
       minInterval: 2,
@@ -149,7 +154,7 @@ function renderNotReturnChart(data) {
       },
       splitLine: {
         lineStyle: {
-          color: ['#3C415B'],
+          color: [LINECOLOR],
         },
       },
     },
@@ -251,7 +256,7 @@ function renderAbnormalWarningChart(data) {
       data: legendList,
     },
     grid: {
-      top: 26,
+      top: 40,
       left: 0,
       bottom: 40,
       containLabel: true,
@@ -278,12 +283,16 @@ function renderAbnormalWarningChart(data) {
     },
     yAxis: {
       type: 'value',
+      name: '(人)',
+      nameTextStyle: {
+        color: TEXTCOLOR,
+      },
       axisLabel: {
         color: TEXTCOLOR,
       },
       axisLine: {
         lineStyle: {
-          color: '#3C415B',
+          color: LINECOLOR,
         },
       },
       splitLine: {
@@ -295,7 +304,7 @@ function renderAbnormalWarningChart(data) {
       data: categoryList,
       axisLine: {
         lineStyle: {
-          color: '#3C415B',
+          color: LINECOLOR,
         },
       },
       minInterval: 2,
@@ -305,7 +314,7 @@ function renderAbnormalWarningChart(data) {
       },
       splitLine: {
         lineStyle: {
-          color: ['#3C415B'],
+          color: [LINECOLOR],
         },
       },
     },
@@ -459,7 +468,7 @@ function renderPassChart(timeList, inList, outList) {
         data: timeList,
         axisLine: {
           lineStyle: {
-            color: '#1D2538',
+            color: LINECOLOR,
           },
         },
         axisLabel: {
@@ -472,9 +481,13 @@ function renderPassChart(timeList, inList, outList) {
     yAxis: [
       {
         type: 'value',
+        name: '(人)',
+        nameTextStyle: {
+          color: TEXTCOLOR,
+        },
         axisLine: {
           lineStyle: {
-            color: '#1D2538',
+            color: LINECOLOR,
           },
         },
         minInterval: 1,
@@ -483,7 +496,7 @@ function renderPassChart(timeList, inList, outList) {
         },
         splitLine: {
           lineStyle: {
-            color: ['#1D2538'],
+            color: [LINECOLOR],
           },
         },
       },
@@ -601,7 +614,7 @@ function renderFloorPassChart(timeList, inList, outList) {
       show: false,
     },
     grid: {
-      top: 20,
+      top: 30,
       left: 20,
       right: 10,
       bottom: 0,
@@ -634,7 +647,7 @@ function renderFloorPassChart(timeList, inList, outList) {
         data: timeList,
         axisLine: {
           lineStyle: {
-            color: '#1D2538',
+            color: LINECOLOR,
           },
         },
         axisLabel: {
@@ -647,9 +660,13 @@ function renderFloorPassChart(timeList, inList, outList) {
     yAxis: [
       {
         type: 'value',
+        name: '(人)',
+        nameTextStyle: {
+          color: TEXTCOLOR,
+        },
         axisLine: {
           lineStyle: {
-            color: '#1D2538',
+            color: LINECOLOR,
           },
         },
         minInterval: 1,
@@ -658,7 +675,7 @@ function renderFloorPassChart(timeList, inList, outList) {
         },
         splitLine: {
           lineStyle: {
-            color: ['#1D2538'],
+            color: [LINECOLOR],
           },
         },
       },

@@ -1,16 +1,13 @@
-(function () {
-  schoolAssetsChart()
-  collegeAssetsChart()
-  classAssetsChart()
-  totalAssetsChart()
-})()
+// (function () {
+//   schoolAssetsChart()
+//   collegeAssetsChart()
+//   classAssetsChart()
+//   totalAssetsChart()
+// })()
 
 // 学校资产统计
 function schoolAssetsChart(data) {
-  let text = ''
-  for (let i=0; i<data.legend; i++) {
-    text += data[i].value
-  } 
+  let text = Number(data[0].value) + Number(data[1].value)
   let schoolAssets = echarts.init(
     document.getElementById('school-assets-content')
   )
@@ -20,14 +17,14 @@ function schoolAssetsChart(data) {
       subtext: '总资产(万元)',
       textStyle: {
         color: '#FFFFFF',
-        fontSize: 20
+        fontSize: 20,
       },
       subtextStyle: {
         color: '#7EADC0',
-        fontSize: 14
+        fontSize: 14,
       },
       x: 'center',
-      y: '26%'
+      y: '26%',
     },
     legend: {
       orient: 'horizontal',
@@ -38,7 +35,7 @@ function schoolAssetsChart(data) {
       itemHeight: 4,
       textStyle: {
         color: '#FFFFFF',
-        fontSize: 12
+        fontSize: 12,
       },
     },
     color: ['#2DE2E5', '#FCE569'],
@@ -63,11 +60,8 @@ function schoolAssetsChart(data) {
             show: false,
           },
         },
-        data: [
-          
-
-        ],
-        hoverAnimation: false
+        data: data,
+        hoverAnimation: false,
       },
     ],
   }
@@ -76,13 +70,15 @@ function schoolAssetsChart(data) {
 }
 
 // 各学院资产统计
-function collegeAssetsChart(data) {
-  let AssetsRanking = echarts.init(document.getElementById('college-assets-content'))
+function collegeAssetsChart(data,seriesData) {
+  let AssetsRanking = echarts.init(
+    document.getElementById('college-assets-content')
+  )
   let option = {
     grid: {
       top: 31,
-      left: '3%',
-      right: '11%',
+      left: 0,
+      right: 10,
       bottom: 0,
       containLabel: true,
     },
@@ -112,7 +108,7 @@ function collegeAssetsChart(data) {
     series: [
       {
         type: 'bar',
-        data: [97, 518, 212, 486, 427, 284, 502],
+        data: seriesData,
         label: {
           normal: {
             show: true,
@@ -163,8 +159,9 @@ function classAssetsChart() {
   let option = {
     tooltip: {
       trigger: 'axis',
-      axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-        type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+      axisPointer: {
+        // 坐标轴指示器，坐标轴触发有效
+        type: 'shadow', // 默认为直线，可选为：'line' | 'shadow'
       },
       padding: 10,
       className: 'echarts-tooltip-dark',
@@ -174,12 +171,12 @@ function classAssetsChart() {
             <span class="mark" style="background-color: #228AE1;"></span>
             <span class="value">${params[0].value}</span>
           </p>`
-      }
+      },
     },
     grid: {
       top: 31,
-      left: '3%',
-      right: '11%',
+      left: 0,
+      right: 10,
       bottom: 0,
       containLabel: true,
     },
@@ -193,7 +190,8 @@ function classAssetsChart() {
           color: '#7EADC0',
         },
       },
-      splitLine: { //网格线
+      splitLine: {
+        //网格线
         show: false,
       },
     },
@@ -206,7 +204,8 @@ function classAssetsChart() {
           color: '#7EADC0',
         },
       },
-      splitLine: { //网格线
+      splitLine: {
+        //网格线
         show: false,
       },
     },
@@ -216,7 +215,11 @@ function classAssetsChart() {
         type: 'bar',
         itemStyle: {
           normal: {
-            color: new echarts.graphic.LinearGradient(0, 0, 0, 1,
+            color: new echarts.graphic.LinearGradient(
+              0,
+              0,
+              0,
+              1,
               [
                 {
                   offset: 0,
@@ -273,7 +276,7 @@ function totalAssetsChart() {
             <span class="mark" style="background-color: ${params[0].color};"></span>
             <span class="value">${params[0].value}</span>
           </p>`
-      }
+      },
     },
     xAxis: [
       {
@@ -288,14 +291,13 @@ function totalAssetsChart() {
         axisLabel: {
           color: '#7EADC0',
           interval: 0,
-
         },
       },
     ],
     yAxis: [
       {
         type: 'value',
-        name: "(万元)",
+        name: '(万元)',
         nameTextStyle: {
           color: '#7EADC0',
         },

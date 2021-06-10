@@ -234,7 +234,7 @@ class CreatePageEnergy {
   changeData(classificationData, rankingYAxis) {
     if (this.buildingName) {
       let arr = [1710, 1321, 1779]
-      let yAxis = ['1L', '2L', '3L', '4L', '5L', '6L', '7L']
+      let yAxis = ['1F', '2F', '3F', '4F', '5F', '6F', '7F']
       for (let key in classificationData) {
         classificationData[key].value = arr[key]
       }

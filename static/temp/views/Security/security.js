@@ -165,20 +165,12 @@ var securityTemplate = `
                 <li>运动区</li>
                 <li>实验区</li>
                 <li>运动区</li>
-                <li>实验区</li>
-                <li>运动区</li>
-                <li>实验区</li>
-                <li>运动区</li>
               </ul>
               <ul class="list">
-                <li>文科教学楼A</li>
-                <li>文科教学楼A</li>
-                <li>文科教学楼A</li>
-                <li>文科教学楼A</li>
-                <li>文科教学楼A</li>
-                <li>文科教学楼A</li>
-                <li>文科教学楼A</li>
-                <li>文科教学楼A</li>
+                <li>1#教学楼</li>
+                <li>2#教学楼</li>
+                <li>3#教学楼</li>
+                <li>4#教学楼</li>
               </ul>
             </div>
           </div>

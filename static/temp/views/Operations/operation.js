@@ -117,10 +117,10 @@ var operationTemplate = `
             <div class="event-list-content">
               <div class="tab">
                 <div class="item tab-active">
-                  待处理 <span class="tip">5</span>
+                  待处理 <span class="tip">8</span>
                 </div>
-                <div class="item">处理中<span class="tip">5</span></div>
-                <div class="item">已解决<span class="tip">5</span></div>
+                <div class="item">处理中<span class="tip">8</span></div>
+                <div class="item">已解决<span class="tip">8</span></div>
               </div>
               <div class="vtable-wrapper">
                 <table class="vtable">
@@ -141,13 +141,28 @@ var operationTemplate = `
                   </tr>
                   <tr>
                     <td>04</td>
-                    <td>图书馆205</td>
+                    <td>图书馆204</td>
                     <td>椅子缺失</td>
                   </tr>
                   <tr>
                     <td>05</td>
-                    <td>图书馆206</td>
+                    <td>图书馆205</td>
                     <td>椅子缺失</td>
+                  </tr>
+                  <tr>
+                    <td>06</td>
+                    <td>图书馆206</td>
+                    <td>多媒体损坏</td>
+                  </tr>
+                  <tr>
+                    <td>07</td>
+                    <td>图书馆207</td>
+                    <td>空调无法开启</td>
+                  </tr>
+                  <tr>
+                    <td>08</td>
+                    <td>图书馆208</td>
+                    <td>传真机损坏</td>
                   </tr>
                 </table>
               </div>

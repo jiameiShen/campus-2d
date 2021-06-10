@@ -84,8 +84,8 @@ function operationDeviceMaintenanceChart() {
       {
         name: '维修设备分类统计',
         type: 'pie',
-        radius: '60%',
-        center: ['38%', '50%'],
+        radius: '65%',
+        right: '10%',
         label: {
           formatter: '{font|{b}}\n{font|{c}}',
           rich: {
@@ -117,8 +117,8 @@ function operationRegionalStatisticsChart(data) {
   let option = {
     grid: {
       top: 18,
-      left: '3%',
-      right: '11%',
+      left: 0,
+      right: 10,
       bottom: 0,
       containLabel: true,
     },

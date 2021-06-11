@@ -64,7 +64,7 @@ class CreatePageEnergy {
     $(`#page${this.pageId} .js-building-name`).each(function () {
       $(this).text(_this.buildingName || $(this).data('school') || '')
     })
-
+    $('.call-police-list .tab .item').eq(0).trigger('click') 
     this.changeData(classificationData, rankingYAxis)
     this.changePowerList(0)
     energyRankingChart(rankingYAxis)

@@ -116,7 +116,7 @@ function operationRegionalStatisticsChart(data) {
   )
   let option = {
     grid: {
-      top: 18,
+      top: 31,
       left: 0,
       right: 10,
       bottom: 0,
@@ -145,10 +145,10 @@ function operationRegionalStatisticsChart(data) {
       {
         type: 'category',
         data: data,
-        inverse: true,
-        // axisTick: {
-        //     alignWithLabel: true,
-        // },
+        name: '(单)',
+        nameTextStyle: {
+            color: '#7EADC0',
+        },
         axisLabel: {
           margin: 10,
           textStyle: {

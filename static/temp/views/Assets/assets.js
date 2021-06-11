@@ -91,7 +91,7 @@ class CreatePageAssets {
         schoolAssetsData[key].value = schoolAssetsArr[key]
       }
     } else {
-      let schoolAssetsArr = ['4933', '1890']
+      let schoolAssetsArr = ['1890','4933']
       let arr2 = [97, 518, 212, 486, 427, 284, 502]
       let arr = [
         '管理学院',

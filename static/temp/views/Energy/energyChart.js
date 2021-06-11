@@ -15,6 +15,21 @@ function energyRankingChart(yAxisData) {
       bottom: 0,
       containLabel: true,
     },
+    tooltip: {
+      trigger: 'item',
+      axisPointer: {
+        type: 'line',
+      },
+      padding: 10,
+      className: 'echarts-tooltip-dark',
+      formatter: function (params) {
+        return `<p class="caption">${params.name}</p>
+          <p class="item">
+            <span class="mark" style="background-color: #228AE1;"></span>
+            <span class="value">${params.data}</span>
+          </p>`
+      }
+    },
     yAxis: [
       {
         type: 'category',
@@ -137,14 +152,23 @@ function energyStatisticsChart() {
     document.getElementById('statistics-content')
   )
   let xAxisData = []
-  for (let i = 0; i <= 12; i++) {
+  for (let i = 1; i <= 12; i++) {
     xAxisData.push(i)
   }
   let option = {
     tooltip: {
-      trigger: 'axis',
-      axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-        type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+      trigger: 'item',
+      axisPointer: {
+        type: 'line',
+      },
+      padding: 10,
+      className: 'echarts-tooltip-dark',
+      formatter: function (params) {
+        return `<p class="caption">${params.name}月</p>
+          <p class="item">
+            <span class="mark" style="background-color: #228AE1;">能耗</span>
+            <span class="value">${params.data}</span>
+          </p>`
       }
     },
     grid: {
@@ -170,6 +194,10 @@ function energyStatisticsChart() {
     },
     yAxis: {
       type: 'value',
+      name: '(万元)',
+      nameTextStyle: {
+        color: '#7EADC0',
+      },
       axisLabel: {
         margin: 10,
         textStyle: {

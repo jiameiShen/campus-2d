@@ -82,6 +82,23 @@ function collegeAssetsChart(data,seriesData) {
       bottom: 0,
       containLabel: true,
     },
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        // 坐标轴指示器，坐标轴触发有效
+        type: 'shadow', // 默认为直线，可选为：'line' | 'shadow'
+      },
+      padding: 10,
+      className: 'echarts-tooltip-dark',
+      formatter: function (params) {
+        return `<p class="caption">${params[0].name}</p>
+          <p class="item">
+            <span class="mark" style="background-color: #228AE1;"></span>
+              <span class="name">总资产</span>
+            <span class="value">${params[0].value}</span>
+          </p>`
+      },
+    },
     yAxis: [
       {
         type: 'category',
@@ -169,6 +186,7 @@ function classAssetsChart() {
         return `<p class="caption">${params[0].name}</p>
           <p class="item">
             <span class="mark" style="background-color: #228AE1;"></span>
+              <span class="name">总资产</span>
             <span class="value">${params[0].value}</span>
           </p>`
       },
@@ -197,6 +215,10 @@ function classAssetsChart() {
     },
     yAxis: {
       type: 'value',
+      name: '(万元)',
+      nameTextStyle: {
+        color: '#7EADC0',
+      },
       axisLabel: {
         margin: 10,
         textStyle: {

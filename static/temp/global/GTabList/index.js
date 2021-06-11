@@ -73,6 +73,11 @@ class CreateGTabList {
     $(`#page${this.currentTab}`).show()
     $_dom.addClass('active').siblings().removeClass('active')
     this.showPage()
+    /* 临时处理，只是想暂停公寓数据请求 */
+    /* 后续请优化，后续请优化，后续请优化 */
+    if (this.currentTab !== 'Apartment') {
+      G_TAbLIST_ARR[0].pageCtrl.stopFetch()
+    }
   }
 
   showPage() {
@@ -100,7 +105,7 @@ class CreateGTabList {
     // 数字滚动
     $(".js-rock-number").each(function () {
       $(this).numberRock({
-        lastNumber: parseInt($(this).text()),
+        lastNumber: Number($(this).text().replaceAll(',', '')),
       });
     })
   }

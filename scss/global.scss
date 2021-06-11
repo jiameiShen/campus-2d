@@ -173,6 +173,13 @@
   background-color: #0b1931 !important;
   border-color: #263752 !important;
   color: #fff !important;
+  /* 权宜之计，记得优化 */
+  div {
+    color: #fff !important;
+    span {
+      color: #fff !important;
+    }
+  }
   .caption {
     padding-bottom: 10px;
     font-size: 16px;

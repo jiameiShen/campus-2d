@@ -12,12 +12,10 @@
 }
 .modular-title {
   font-size: 16px;
-  font-family: MicrosoftYaHei-Bold, MicrosoftYaHei;
   font-weight: bold;
   color: #ffffff;
 }
 .line {
-  width: 320px;
   height: 1px;
   background: linear-gradient(270deg, rgba(111, 127, 174, 0) 0%, #6F7FAE 52%, rgba(111, 127, 174, 0) 100%);
   opacity: 0.5;
@@ -27,4 +25,7 @@ video {
 }
 #gVideoModal .modal-body {
   background: url("	https://www.thingjs.com/uploads/wechat/oLX7p0y-mbN…-hlSFOGzv_uQ/file/campus/static/image/loading.gif") no-repeat center center/ 48px 48px;
+}
+.table>tbody>tr>td {
+  border-top: 0;
 }

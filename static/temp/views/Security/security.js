@@ -53,6 +53,7 @@ class CreatePageSecurity {
     let gVideoPlayer = null
     const videoUrl = window.$videoUrl
     $(document).on('click', '.js-show-video', function () {
+      $('#gVideoModal .modal-title').text($('.js-capture-trigger .tab-active')[0].innerHTML)
       $('#gVideoModal').modal()
       gVideoPlayer && gVideoPlayer.stop()
       $('#gVideoPlayer').attr("src", videoUrl);
@@ -83,7 +84,7 @@ class CreatePageSecurity {
 
 var securityTemplate = `
 <div class="page-aside page-aside-left animate__animated page-security">
-        <div class="chart-block">
+        <div class="chart-block chart-block-1">
           <div class="chart-block__hd">
             <p><span class="js-building-name" data-school="学校"></span>访客</p>
           </div>
@@ -109,7 +110,7 @@ var securityTemplate = `
             <div class="school-visitors-chart" id="school-visitors-chart"></div>
           </div>
         </div>
-        <div class="chart-block">
+        <div class="chart-block chart-block-2">
           <div class="chart-block__hd">
             <p><span class="js-building-name"></span>监控警报</p>
           </div>
@@ -122,37 +123,39 @@ var securityTemplate = `
                 <div class="item">门禁<span class="tip">5</span></div>
                 <div class="item">摄像头<span class="tip">5</span></div>
               </div>
-              <table class="table">
-                <tr>
-                  <td>01</td>
-                  <td>图书馆201</td>
-                  <td>多媒体损坏</td>
-                </tr>
-                <tr>
-                  <td>02</td>
-                  <td>图书馆202</td>
-                  <td>空调无法开启</td>
-                </tr>
-                <tr>
-                  <td>03</td>
-                  <td>图书馆203</td>
-                  <td>传真机损坏</td>
-                </tr>
-                <tr>
-                  <td>04</td>
-                  <td>图书馆205</td>
-                  <td>摄椅子缺失</td>
-                </tr>
-                <tr>
-                  <td>04</td>
-                  <td>图书馆206</td>
-                  <td>摄椅子缺失</td>
-                </tr>
-              </table>
+              <div class="vtable-wrapper">
+                <table class="vtable">
+                  <tr>
+                    <td>01</td>
+                    <td>图书馆201</td>
+                    <td>多媒体损坏</td>
+                  </tr>
+                  <tr>
+                    <td>02</td>
+                    <td>图书馆202</td>
+                    <td>空调无法开启</td>
+                  </tr>
+                  <tr>
+                    <td>03</td>
+                    <td>图书馆203</td>
+                    <td>传真机损坏</td>
+                  </tr>
+                  <tr>
+                    <td>04</td>
+                    <td>图书馆204</td>
+                    <td>椅子缺失</td>
+                  </tr>
+                  <tr>
+                    <td>05</td>
+                    <td>图书馆205</td>
+                    <td>椅子缺失</td>
+                  </tr>
+                </table>
+              </div>
             </div>
           </div>
         </div>
-        <div class="chart-block">
+        <div class="chart-block chart-block-3">
           <div class="chart-block__hd">
             <p><span class="js-building-name" data-school="学校"></span>区域安全管控</p>
           </div>
@@ -280,33 +283,35 @@ var securityTemplate = `
             </div>
           </div>
         </div>
-        <div class="chart-block">
+        <div class="chart-block chart-block-6">
           <div class="chart-block__hd">
             <p><span class="js-building-name"></span>值班保卫信息</p>
           </div>
           <div class="chart-block__bd">
-            <table class="personnel-info-content">
-              <tr>
-                <td>张毅</td>
-                <td>18038009393</td>
-                <td>南门安保</td>
-              </tr>
-              <tr>
-                <td>黄新</td>
-                <td>17890098768</td>
-                <td>南门安保</td>
-              </tr>
-              <tr>
-                <td>刘广</td>
-                <td>15820099878</td>
-                <td>北门安保</td>
-              </tr>
-              <tr>
-                <td>赵柳</td>
-                <td>15678877987</td>
-                <td>北门安保</td>
-              </tr>
-            </table>
+            <div class="vtable-wrapper">
+              <table class="personnel-info-content">
+                <tr>
+                  <td>张毅</td>
+                  <td>18038009393</td>
+                  <td>南门安保</td>
+                </tr>
+                <tr>
+                  <td>黄新</td>
+                  <td>17890098768</td>
+                  <td>南门安保</td>
+                </tr>
+                <tr>
+                  <td>刘广</td>
+                  <td>15820099878</td>
+                  <td>北门安保</td>
+                </tr>
+                <tr>
+                  <td>赵柳</td>
+                  <td>15678877987</td>
+                  <td>北门安保</td>
+                </tr>
+              </table>
+            </div>
           </div>
         </div>
       </div>
@@ -321,11 +326,11 @@ var securityTemplate = `
               <p class="modal-title">东门</p>
             </div>
             <div class="modal-body">
-              <video 
+              <video
                 id="gVideoPlayer"
                 autoplay
                 src=""
-                playsInline 
+                playsInline
                 webkit-playsinline
               >
               </video>

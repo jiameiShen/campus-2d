@@ -236,7 +236,7 @@ function renderAbnormalWarningChart(data) {
   const option = {
     backgroundColor: 'transparent',
     color: BAR_CHART_COLORS,
-    barMaxWidth: 12,
+    barMaxWidth: 40,
     legend: {
       type: 'scroll',
       pageIconColor: '#ddd',
@@ -435,7 +435,7 @@ function renderPassChart(timeList, inList, outList) {
       show: false,
     },
     grid: {
-      top: 20,
+      top: 30,
       left: 20,
       right: 10,
       bottom: 0,

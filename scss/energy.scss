@@ -1,4 +1,10 @@
 /*  能源消耗情况 */
+.page-energy{
+  &.page-aside-right {
+    display: grid;
+    grid-template-rows: 36% 64%;
+  }
+}
 .page-energy .situation-content {
   height: 159px;
   box-sizing: border-box;
@@ -12,7 +18,6 @@
   position: relative;
 }
 .page-energy .situation-content .bk .number-main {
-  font-family: MicrosoftYaHei-Bold, MicrosoftYaHei;
   font-weight: bold;
   color: #fce569;
   text-align: center;
@@ -29,7 +34,6 @@
 }
 .page-energy .situation-content .time {
   font-size: 13px;
-  font-family: MicrosoftYaHei;
   color: #d1d4d9;
   margin-top: 12px;
   margin-left: 72px;
@@ -57,13 +61,16 @@
   display: flex;
   align-items: center;
 }
+.page-energy .chart-main .classification-chart {
+  width: 125px;
+}
 .page-energy .chart-main .info-main div {
   width: 100%;
   height: 30px;
 }
 .page-energy .chart-main .info-main {
-  width: calc(100% - 111px);
-    padding-right: 30px;
+  flex: 1;
+  margin-left: 30px;
 }
 // .page-energy .chart-main .info-main div:nth-child(2) {
 //   background-image: url('../image/else/ring-bk-red.png');
@@ -77,13 +84,11 @@
 .page-energy .chart-main .info-main .info-k {
   color: #7eadc0;
   font-size: 14px;
-  font-family: MicrosoftYaHei;
   margin-left: 30px;
   line-height: 30px;
 }
 .page-energy .chart-main .info-main .info-v {
   font-size: 16px;
-  font-family: MicrosoftYaHei-Bold, MicrosoftYaHei;
   font-weight: bold;
   color: #ffffff;
   line-height: 30px;
@@ -121,14 +126,12 @@
 }
 .page-energy .call-police-content .call-police-count .count div:first-child {
   font-size: 20px;
-  font-family: MicrosoftYaHei-Bold, MicrosoftYaHei;
   font-weight: bold;
   color: #ffffff;
   margin-top: 45px;
 }
 .page-energy .call-police-content .call-police-count .count div:last-child {
   font-size: 14px;
-  font-family: MicrosoftYaHei;
   color: #7eadc0;
 }
 .page-energy .call-police-content .call-police-count .each-count-main {
@@ -239,7 +242,6 @@
 .page-energy .call-police-content .call-police-count .each-count .info {
   color: #ffffff;
   font-size: 14px;
-  font-family: MicrosoftYaHei;
   height: 50%;
   padding-top: 6px;
   box-sizing: border-box;
@@ -293,25 +295,26 @@ color: red;
 .page-energy .call-police-content .call-police-list .tab .item {
   width: 100%;
   height: 25px;
-  background: #1e4e6b;
+  background: #1D2A42;
   border: 1px solid #263752;
   font-size: 14px;
-  font-family: MicrosoftYaHei;
   color: #d1d4d9;
-  line-height: 25px;
+  line-height: 23px;
   margin: 0px -1px -1px 0px;
   cursor: pointer;
 }
 .page-energy .call-police-content .call-police-list .tab .tab-active {
-  border: 1px solid #2dc0e5;
+  background: #1E4E6B;
+  border-color: #2dc0e5;
   color: #ffffff;
-  margin: 0;
+  & + .item {
+    border-left-color: #2dc0e5;
+  }
 }
 .page-energy .call-police-content .call-police-list .tab .tip {
   padding: 0 4px;
   background-color: #de4251;
   font-size: 12px;
-  font-family: MicrosoftYaHei;
   color: #ffffff;
   border-radius: 50%;
   margin-left: 3px;

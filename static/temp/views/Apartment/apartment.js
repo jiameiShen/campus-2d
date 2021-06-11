@@ -15,6 +15,8 @@ class CreatePageApartment {
   floorName = ''
   notReturnChart_current = 'dormitory'
   abnormalWarningChart_current = 'dormitory'
+  fetchTimer = null
+  fetchInterval = 15000
   constructor(data) {
     if (data) {
       this.pageId = data.pageId || this.pageId
@@ -100,11 +102,7 @@ class CreatePageApartment {
     $(`#page${this.pageId} .js-building-name`).each(function () {
       $(this).text(_this.buildingName || $(this).data('school') || '')
     })
-    let notReturnChart_current = ''
-    let abnormalWarningChart_current = ''
     if (this.buildingName) {
-      notReturnChart_current = 'college'
-      abnormalWarningChart_current = 'college'
       $('#notReturnChartButton').hide()
       $('#abnormalWarningChartButton').hide()
     } else {
@@ -113,57 +111,7 @@ class CreatePageApartment {
       $('#notReturnChartButton').show()
       $('#abnormalWarningChartButton').show()
     }
-
-    /* 归寝率排行 */
-    this.$_renderNotReturnChart(notReturnChart_current)
-
-    /* 异常预警 */
-    this.$_renderAbnormalWarningChart(abnormalWarningChart_current)
-
-    $_ajaxPromise({
-      type: "get",
-      url: `${window.$baseUrl}/queryIndexData`,
-      data: {
-        dormitoryId: this.dormitoryId
-      },
-      dataType: "json"
-    }).then(res => {
-      const { message } = res
-      if (message) {
-        const { roomtInfo, trafficInfo, warning } = message
-        /* 基础信息 */
-        this.changeChartBasicCaption(roomtInfo)
-
-        /* 房间使用率 */
-        $('#roomUsageChartFree').numberRock({ lastNumber: roomtInfo.bedFreeNumber })
-        $('#roomUsageChartTotal').numberRock({ lastNumber: roomtInfo.bedNumber })
-        roomUsageChart = window.echarts.init(document.getElementById('roomUsageChart'), null, { devicePixelRatio: 2.5 })
-        renderRoomUsageChart(roomtInfo.bedUsePercentage / 100)
-
-        /* 今日通行人数 */
-        const passTimeList = trafficInfo.todayTrafficInfo.map((item) => item.time)
-        const passInList = trafficInfo.todayTrafficInfo.map((item) => item.in)
-        const passOutList = trafficInfo.todayTrafficInfo.map((item) => item.out)
-        $('#passChartIn').text(trafficInfo.inNumber)
-        $('#passChartOut').text(trafficInfo.outNumber)
-        passChart = window.echarts.init(document.getElementById('passChart'), null, { devicePixelRatio: 2.5 })
-        renderPassChart(passTimeList, passInList, passOutList)
-
-        /* 今日通行拦截 */
-        const interceptInfo = {
-          data: [
-            { name: '体温异常', value: warning.temperatureUnusualNumber },
-            { name: '非活体', value: warning.todayNotLivingNumber },
-            { name: '陌生人', value: warning.todayStrangerNumber },
-            { name: '黑名单', value: warning.todayBlacklistNumber },
-          ],
-          total: warning.todayAbnormalNumber,
-        }
-        $('#interceptChartTotal').text(interceptInfo.total)
-        interceptChart = window.echarts.init(document.getElementById('interceptChart'), null, { devicePixelRatio: 2.5 })
-        renderInterceptChart(interceptInfo.data)
-      }
-    })
+    this.startFetch()
   }
 
   renderFloor() {
@@ -518,6 +466,78 @@ class CreatePageApartment {
         renderAbnormalWarningChart(message)
       }
     })
+  }
+
+  fetchData() {
+    let notReturnChart_current = ''
+    let abnormalWarningChart_current = ''
+    if (this.buildingName) {
+      notReturnChart_current = 'college'
+      abnormalWarningChart_current = 'college'
+    }
+
+    /* 归寝率排行 */
+    this.$_renderNotReturnChart(notReturnChart_current)
+
+    /* 异常预警 */
+    this.$_renderAbnormalWarningChart(abnormalWarningChart_current)
+
+    $_ajaxPromise({
+      type: "get",
+      url: `${window.$baseUrl}/queryIndexData`,
+      data: {
+        dormitoryId: this.dormitoryId
+      },
+      dataType: "json"
+    }).then(res => {
+      const { message } = res
+      if (message) {
+        const { roomtInfo, trafficInfo, warning } = message
+        /* 基础信息 */
+        this.changeChartBasicCaption(roomtInfo)
+
+        /* 房间使用率 */
+        $('#roomUsageChartFree').numberRock({ lastNumber: roomtInfo.bedFreeNumber })
+        $('#roomUsageChartTotal').numberRock({ lastNumber: roomtInfo.bedNumber })
+        roomUsageChart = window.echarts.init(document.getElementById('roomUsageChart'), null, { devicePixelRatio: 2.5 })
+        renderRoomUsageChart(roomtInfo.bedUsePercentage / 100)
+
+        /* 今日通行人数 */
+        const passTimeList = trafficInfo.todayTrafficInfo.map((item) => item.time)
+        const passInList = trafficInfo.todayTrafficInfo.map((item) => item.in)
+        const passOutList = trafficInfo.todayTrafficInfo.map((item) => item.out)
+        $('#passChartIn').text(trafficInfo.inNumber)
+        $('#passChartOut').text(trafficInfo.outNumber)
+        passChart = window.echarts.init(document.getElementById('passChart'), null, { devicePixelRatio: 2.5 })
+        renderPassChart(passTimeList, passInList, passOutList)
+
+        /* 今日通行拦截 */
+        const interceptInfo = {
+          data: [
+            { name: '体温异常', value: warning.temperatureUnusualNumber },
+            { name: '非活体', value: warning.todayNotLivingNumber },
+            { name: '陌生人', value: warning.todayStrangerNumber },
+            { name: '黑名单', value: warning.todayBlacklistNumber },
+          ],
+          total: warning.todayAbnormalNumber,
+        }
+        $('#interceptChartTotal').text(interceptInfo.total)
+        interceptChart = window.echarts.init(document.getElementById('interceptChart'), null, { devicePixelRatio: 2.5 })
+        renderInterceptChart(interceptInfo.data)
+      }
+    })
+  }
+
+  startFetch() {
+    this.stopFetch()
+    this.fetchData()
+    this.fetchTimer = setInterval(() => {
+      this.fetchData()
+    }, this.fetchInterval)
+  }
+
+  stopFetch() {
+    this.fetchTimer && clearInterval(this.fetchTimer)
   }
 
   changeChartBasicCaption(roomtInfo) {

@@ -12,9 +12,7 @@
   }
 }
 .page-operation .operation-maintenance-content {
-  height: 147px;
   display: flex;
-  padding-bottom: 18px;
   box-sizing: border-box;
 }
 .page-operation .operation-maintenance-content .info-bk {
@@ -37,7 +35,6 @@
 }
 .page-operation .operation-maintenance-content .info-bk .title {
   font-size: 14px;
-  font-family: MicrosoftYaHei;
   color: #ffffff;
   height: 47px;
   line-height: 47px;
@@ -45,7 +42,6 @@
 }
 .page-operation .operation-maintenance-content .info-bk .color {
   font-size: 20px;
-  font-family: MicrosoftYaHei-Bold, MicrosoftYaHei;
   font-weight: bold;
   text-align: center;
   margin-top: 15px;
@@ -76,7 +72,6 @@
   padding: 0 4px;
   background-color: #de4251;
   font-size: 12px;
-  font-family: MicrosoftYaHei;
   color: #ffffff;
   border-radius: 50%;
   margin-left: 3px;
@@ -87,18 +82,19 @@
   background: #1D2A42;
   border: 1px solid #263752;
   font-size: 14px;
-  font-family: MicrosoftYaHei;
   color: #d1d4d9;
-  line-height: 25px;
+  line-height: 23px;
   margin: 0px -1px -1px 0px;
   text-align: center;
   cursor: pointer;
 }
 .page-operation .event-list-content .tab .tab-active {
   background: #1E4E6B;
-  border: 1px solid #2DC0E5;
+  border-color: #2dc0e5;
   color: #ffffff;
-  margin: 0;
+  & + .item {
+    border-left-color: #2dc0e5;
+  }
 }
 .page-operation .event-list-content .vtable {
   width: 100%;
@@ -135,7 +131,6 @@
   line-height: 50px;
   box-shadow: 0px 1px 0px 0px #172335;
   font-size: 14px;
-  font-family: MicrosoftYaHei;
   color: #ffffff;
 }
 .page-operation .duty-personnel-content tr .pic {
@@ -157,7 +152,7 @@
   padding-bottom: 10px;
 }
 .page-operation .device-status-content .device-status-ring {
-  flex: 1;
+  width: 125px;
   height: 100%;
 }
 .page-operation .device-status-content .device-status-info .each-count {
@@ -165,7 +160,6 @@
   height: 62px;
   background-size: 100%;
   font-size: 14px;
-  font-family: MicrosoftYaHei;
   color: #ffffff;
   position: relative;
 }
@@ -195,8 +189,8 @@
   border-color: #2DE2E5;
 }
 .page-operation .device-status-content .device-status-info {
-  width: 52%;
-  margin-left: 35px;
+  flex: 1;
+  margin-left: 30px;
   position: relative;
   .square-card::before {
     left: -24px;

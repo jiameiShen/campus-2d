@@ -71,7 +71,7 @@ $(function () {
 
   /* 修改层级背景 */
   app.on(THING.EventType.EnterLevel, function (ev) {
-    app.background = '#030303';
+    app.background = '#031432';
   }, 'customLevelSetBackground');
   app.pauseEvent(THING.EventType.EnterLevel, THING.EventTag.LevelSetBackground);
 

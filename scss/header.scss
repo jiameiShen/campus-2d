@@ -1,8 +1,13 @@
 .g-header {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
   display: flex;
   padding: 20px 30px 22px;
   justify-content: space-between;
-  font-size: 14px;
+  align-items: center;
+  font-size: 16px;
   color: #fff;
   background: linear-gradient( 90deg, #021131 0%, rgba(2, 17, 49, 0.76) 24%, rgba(3, 17, 49, 0) 50%, rgba(2, 17, 49, 0.76) 76%, #021131 100%);
   .left {

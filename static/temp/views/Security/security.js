@@ -82,7 +82,7 @@ class CreatePageSecurity {
 }
 
 var securityTemplate = `
-      <div class="page-aside page-aside-left animate__animated page-security">
+<div class="page-aside page-aside-left animate__animated page-security">
         <div class="chart-block">
           <div class="chart-block__hd">
             <p><span class="js-building-name" data-school="学校"></span>访客</p>
@@ -117,37 +117,37 @@ var securityTemplate = `
             <div class="monitoring-alarms-content">
               <div class="tab">
                 <div class="item tab-active">
-                  消防 <span class="tip">2</span>
+                  消防 <span class="tip">5</span>
                 </div>
-                <div class="item">门禁<span class="tip">2</span></div>
-                <div class="item">摄像头<span class="tip">2</span></div>
+                <div class="item">门禁<span class="tip">5</span></div>
+                <div class="item">摄像头<span class="tip">5</span></div>
               </div>
               <table class="table">
                 <tr>
                   <td>01</td>
-                  <td>德育楼201</td>
-                  <td>摄像头灭火报警</td>
+                  <td>图书馆201</td>
+                  <td>多媒体损坏</td>
                 </tr>
                 <tr>
                   <td>02</td>
-                  <td>德育楼202</td>
-                  <td>摄像头灭火报警</td>
+                  <td>图书馆202</td>
+                  <td>空调无法开启</td>
                 </tr>
                 <tr>
                   <td>03</td>
-                  <td>德育楼203</td>
-                  <td>摄像头灭火报警</td>
+                  <td>图书馆203</td>
+                  <td>传真机损坏</td>
                 </tr>
                 <tr>
                   <td>04</td>
-                  <td>德育楼205</td>
-                  <td>摄像头灭火报警</td>
+                  <td>图书馆205</td>
+                  <td>摄椅子缺失</td>
                 </tr>
-                <!-- <tr>
-              <td>05</td>
-              <td>德育楼206</td>
-              <td>椅子缺失</td>
-            </tr> -->
+                <tr>
+                  <td>04</td>
+                  <td>图书馆206</td>
+                  <td>摄椅子缺失</td>
+                </tr>
               </table>
             </div>
           </div>
@@ -174,8 +174,8 @@ var securityTemplate = `
             </div>
           </div>
         </div>
-        </div>
-        <div class="page-aside page-aside-right animate__animated page-security">
+      </div>
+      <div class="page-aside page-aside-right animate__animated page-security">
         <div class="chart-block flex-none">
           <div class="chart-block__hd">
             <p><span class="js-building-name"></span>安防摄像头</p>
@@ -321,11 +321,11 @@ var securityTemplate = `
               <p class="modal-title">东门</p>
             </div>
             <div class="modal-body">
-              <video
+              <video 
                 id="gVideoPlayer"
                 autoplay
                 src=""
-                playsInline
+                playsInline 
                 webkit-playsinline
               >
               </video>
@@ -333,5 +333,4 @@ var securityTemplate = `
           </div>
         </div>
       </div>
-    </div>
 `

@@ -321,9 +321,14 @@ function renderAbnormalWarningChart(data) {
     dataZoom: [
       {
         type: 'slider',
-        height: 20,
+        height: 12,
         backgroundColor: '#1D2A42',
         fillerColor: '#276B86',
+        borderColor: 'transparent',
+        handleSize: 0,
+        moveHandleSize: 0,
+        showDetail: false,
+        showDataShadow: false,
         minValueSpan: 1,
         maxValueSpan: 3,
         bottom: 10,

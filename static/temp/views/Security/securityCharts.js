@@ -101,11 +101,11 @@ function securitySchoolVisitorsChart() {
 }
 
 // 安防摄像头
-function securityCameraChart() {
+function securityCameraChart(text) {
   let camera = echarts.init(document.getElementById('camera-ring'))
   let option = {
     title: {
-      text: '1,682',
+      text: text,
       subtext: '总数',
       textStyle: {
         color: '#FFFFFF',

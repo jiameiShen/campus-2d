@@ -10,7 +10,7 @@ function operationDeviceStatusChart() {
   let option = {
     title: {
       text: '1,682',
-      subtext: '总数(单位)',
+      subtext: '总数',
       textStyle: {
         color: '#FFFFFF',
         fontSize: 20,
@@ -122,6 +122,21 @@ function operationRegionalStatisticsChart(data) {
       bottom: 0,
       containLabel: true,
     },
+    tooltip: {
+      trigger: 'item',
+      axisPointer: {
+        type: 'line',
+      },
+      padding: 10,
+      className: 'echarts-tooltip-dark',
+      formatter: function (params) {
+        return `<p class="caption">${params.name}</p>
+          <p class="item">
+            <span class="mark" style="background-color: #228AE1;"></span>
+            <span class="value">${params.data}</span>
+          </p>`
+      }
+    },
     dataZoom: [
       {
         start: 0,//默认为0
@@ -129,25 +144,27 @@ function operationRegionalStatisticsChart(data) {
         type: 'slider',
         show: true,
         yAxisIndex: [0],
-        handleSize: 0,//滑动条的 左右2个滑动条的大小 
-        borderColor: "#000",
+        width: 10,
+        backgroundColor: '#1D2A42',
         fillerColor: '#276B86',
-        width: 12,
-        borderRadius: 5,
-        backgroundColor: '#1D2A42',//两边未选中的滑动条区域的颜色
-        showDataShadow: false,//是否显示数据阴影 默认auto
-        showDetail: false,//即拖拽时候是否显示详细数值信息 默认true
-        realtime: true, //是否实时更新
-        filterMode: 'filter',
+        borderColor: 'transparent',
+        handleSize: 0,
+        moveHandleSize: 0,
+        showDetail: false,
+        showDataShadow: false,
+        right: 0,
       },
     ],
     yAxis: [
       {
         type: 'category',
         data: data,
+        // axisTick: {
+        //     alignWithLabel: true,
+        // },
         name: '(单)',
         nameTextStyle: {
-            color: '#7EADC0',
+          color: '#7EADC0',
         },
         axisLabel: {
           margin: 10,

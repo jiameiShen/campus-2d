@@ -4,7 +4,7 @@
  * @param
  * @returns
  */
-THING.Utils.dynamicLoad(
+ THING.Utils.dynamicLoad(
   '/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/views/Security/security.css'
 )
 THING.Utils.dynamicLoad(
@@ -39,9 +39,11 @@ class CreatePageSecurity {
     $(`#page${this.pageId}`).html($(securityTemplate))
     $(document).on('click', '.monitoring-alarms-content .tab .item', function () {
       $(this).addClass('tab-active').siblings().removeClass('tab-active')
+      _this.changeMonitorList($(this).index())
     })
     $(document).on('click', '.safety-control-content .tab li', function () {
       $(this).addClass('safety-tab-active').siblings().removeClass('safety-tab-active')
+      _this.changeSafetyControl($(this).index())
     })
     // 安防摄像头
     $(document).on('click', '.js-capture-trigger .item', function () {
@@ -72,13 +74,252 @@ class CreatePageSecurity {
 
   render() {
     let _this = this
+    let securityCameraText = !this.buildingName ? '1682' : '1450'
     $(`#page${this.pageId} .js-building-name`).each(function () {
       $(this).text(_this.buildingName || $(this).data('school') || '')
     })
-
+    $('.monitoring-alarms-content .tab .item').eq(0).trigger('click') 
+    $('.safety-control-content .tab li').eq(0).trigger('click') 
+    $('.camera-content .tab .item').eq(0).trigger('click') 
     securitySchoolVisitorsChart()
-    securityCameraChart()
+    securityCameraChart(securityCameraText)
     securityFireControl()
+    this.changeMonitorList(0)
+    this.changeSafetyControl(0)
+    this.changeCameraTab()
+  }
+
+  changeMonitorList(type) {
+    let templater = ''
+    if (!this.buildingName) {
+      if (type == 0) {
+        templater = `
+          <tr>
+            <td>01</td>
+            <td>图书馆201</td>
+            <td>消防报警</td>
+          </tr>
+          <tr>
+            <td>02</td>
+            <td>图书馆202</td>
+            <td>消防报警</td>
+          </tr>
+          <tr>
+            <td>03</td>
+            <td>图书馆203</td>
+            <td>消防报警</td>
+          </tr>
+          <tr>
+            <td>04</td>
+            <td>图书馆205</td>
+            <td>消防报警</td>
+          </tr>
+          <tr>
+            <td>05</td>
+            <td>图书馆206</td>
+            <td>消防报警</td>
+          </tr>
+        `
+      } else if(type == 1) {
+        templater = `
+          <tr>
+            <td>01</td>
+            <td>图书馆201</td>
+            <td>摄像头报警</td>
+          </tr>
+          <tr>
+            <td>02</td>
+            <td>图书馆202</td>
+            <td>摄像头报警</td>
+          </tr>
+          <tr>
+            <td>03</td>
+            <td>图书馆203</td>
+            <td>摄像头报警</td>
+          </tr>
+          <tr>
+            <td>04</td>
+            <td>图书馆205</td>
+            <td>摄像头报警</td>
+          </tr>
+          <tr>
+            <td>05</td>
+            <td>图书馆206</td>
+            <td>摄像头报警</td>
+          </tr>
+       `
+      }else if(type == 2) {
+        templater = `
+          <tr>
+            <td>01</td>
+            <td>图书馆201</td>
+            <td>门禁报警</td>
+          </tr>
+          <tr>
+            <td>02</td>
+            <td>图书馆202</td>
+            <td>门禁报警</td>
+          </tr>
+          <tr>
+            <td>03</td>
+            <td>图书馆203</td>
+            <td>门禁报警</td>
+          </tr>
+          <tr>
+            <td>04</td>
+            <td>图书馆205</td>
+            <td>门禁报警</td>
+          </tr>
+          <tr>
+            <td>05</td>
+            <td>图书馆206</td>
+            <td>门禁报警</td>
+          </tr>
+       `
+      }
+    } else {
+      if (type == 0) {
+        templater = `
+          <tr>
+            <td>01</td>
+            <td>201</td>
+            <td>消防报警</td>
+          </tr>
+          <tr>
+            <td>02</td>
+            <td>202</td>
+            <td>消防报警</td>
+          </tr>
+          <tr>
+            <td>03</td>
+            <td>203</td>
+            <td>消防报警</td>
+          </tr>
+          <tr>
+            <td>04</td>
+            <td>204</td>
+            <td>消防报警</td>
+          </tr>
+          <tr>
+            <td>05</td>
+            <td>205</td>
+            <td>消防报警</td>
+          </tr>
+        `
+      } else if(type == 1) {
+        templater = `
+          <tr>
+            <td>01</td>
+            <td>201</td>
+            <td>摄像头报警</td>
+          </tr>
+          <tr>
+            <td>02</td>
+            <td>202</td>
+            <td>摄像头报警</td>
+          </tr>
+          <tr>
+            <td>03</td>
+            <td>203</td>
+            <td>摄像头报警</td>
+          </tr>
+          <tr>
+            <td>04</td>
+            <td>204</td>
+            <td>摄像头报警</td>
+          </tr>
+          <tr>
+            <td>05</td>
+            <td>205</td>
+            <td>摄像头报警</td>
+          </tr>
+       `
+      }else if(type == 2) {
+        templater = `
+          <tr>
+            <td>01</td>
+            <td>201</td>
+            <td>门禁报警</td>
+          </tr>
+          <tr>
+            <td>02</td>
+            <td>202</td>
+            <td>门禁报警</td>
+          </tr>
+          <tr>
+            <td>03</td>
+            <td>203</td>
+            <td>门禁报警</td>
+          </tr>
+          <tr>
+            <td>04</td>
+            <td>204</td>
+            <td>门禁报警</td>
+          </tr>
+          <tr>
+            <td>05</td>
+            <td>205</td>
+            <td>门禁报警</td>
+          </tr>
+       `
+      }
+    }
+    $(this).addClass('tab-active').siblings().removeClass('tab-active')
+    $('.vtable').empty()
+    $('.vtable').append(templater)
+  }
+
+  changeSafetyControl(type) {
+    let templater = ''
+    if (!this.buildingName) {
+      let arr = ['生活区','教学区','办公区','运动区','实验区']
+       $(".safety-control-content .tab li").html(function(i){
+           return arr[i]; 
+         })
+      for (let i =0;i<arr.length;i++) {
+        if (type === i) {
+          templater = `
+            <li>1#${arr[i]}</li>
+            <li>2#${arr[i]}</li>
+            <li>3#${arr[i]}</li>
+            <li>4#${arr[i]}</li>
+            <li>5#${arr[i]}</li>
+          `
+        }
+      }
+    } else {
+      let arr = ['1楼','2楼','3楼','4楼','5楼']
+      $(".safety-control-content .tab li").html(function(i){
+        return arr[i]; 
+      })
+      templater = `
+      <li>东边走廊</li>
+      <li>西边走廊</li>
+      <li>北边走廊</li>
+      <li>南边走廊</li>
+    `
+    }
+    $(this).addClass('safety-tab-active').siblings().removeClass('safety-tab-active')
+    $('.list').empty()
+    $('.list').append(templater)
+  }
+
+  changeCameraTab() {
+    let tabArr = []
+    if (!this.buildingName) {
+      let arr = ['东门','西门','南门','北门']
+      for (let key in arr) {
+        tabArr.push(arr[key])
+      }
+    } else {
+      let arr =['入口1','入口2','入口3','入口4']
+      for (let key in arr) {
+        tabArr.push(arr[key])
+      }
+    }
+    $(".camera-content .tab .item").html(function(i){
+      return tabArr[i]; 
+    })
   }
 }
 
@@ -128,27 +369,27 @@ var securityTemplate = `
                   <tr>
                     <td>01</td>
                     <td>图书馆201</td>
-                    <td>多媒体损坏</td>
+                    <td>消防报警</td>
                   </tr>
                   <tr>
                     <td>02</td>
                     <td>图书馆202</td>
-                    <td>空调无法开启</td>
+                    <td>消防报警</td>
                   </tr>
                   <tr>
                     <td>03</td>
                     <td>图书馆203</td>
-                    <td>传真机损坏</td>
+                    <td>消防报警</td>
                   </tr>
                   <tr>
                     <td>04</td>
                     <td>图书馆204</td>
-                    <td>椅子缺失</td>
+                    <td>消防报警</td>
                   </tr>
                   <tr>
                     <td>05</td>
                     <td>图书馆205</td>
-                    <td>椅子缺失</td>
+                    <td>消防报警</td>
                   </tr>
                 </table>
               </div>

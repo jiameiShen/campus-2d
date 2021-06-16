@@ -1,8 +1,8 @@
-(function () {
-  energyRankingChart()
-  energyClassificationChart()
-  energyStatisticsChart()
-})()
+// (function () {
+//   energyRankingChart()
+//   energyClassificationChart()
+//   energyStatisticsChart()
+// })()
 
 // 能源消耗排行
 function energyRankingChart(yAxisData) {
@@ -15,7 +15,7 @@ function energyRankingChart(yAxisData) {
       bottom: 0,
       containLabel: true,
     },
-    tooltip: {
+     tooltip: {
       trigger: 'item',
       axisPointer: {
         type: 'line',
@@ -25,7 +25,7 @@ function energyRankingChart(yAxisData) {
       formatter: function (params) {
         return `<p class="caption">${params.name}</p>
           <p class="item">
-            <span class="mark" style="background-color: #228AE1;"></span>
+            <span class="mark" style="background-color: ${params.color};"></span>
             <span class="value">${params.data}</span>
           </p>`
       }
@@ -166,7 +166,7 @@ function energyStatisticsChart() {
       formatter: function (params) {
         return `<p class="caption">${params.name}月</p>
           <p class="item">
-            <span class="mark" style="background-color: #228AE1;">能耗</span>
+            <span>能耗</span>
             <span class="value">${params.data}</span>
           </p>`
       }

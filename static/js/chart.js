@@ -255,7 +255,7 @@ $(function () {
       grid: {
         top: 40,
         left: 0,
-        bottom: 40,
+        bottom: 20,
         containLabel: true,
       },
       tooltip: {
@@ -318,12 +318,17 @@ $(function () {
       dataZoom: [
         {
           type: 'slider',
-          height: 20,
+          height: 10,
           backgroundColor: '#1D2A42',
           fillerColor: '#276B86',
+          borderColor: 'transparent',
+          handleSize: 0,
+          moveHandleSize: 0,
+          showDetail: false,
+          showDataShadow: false,
           minValueSpan: 1,
           maxValueSpan: 3,
-          bottom: 10,
+          bottom: 0,
         },
       ],
       series: [
@@ -431,7 +436,7 @@ $(function () {
       grid: {
         top: 30,
         left: 20,
-        right: 10,
+        right: 0,
         bottom: 0,
         containLabel: true,
       },
@@ -586,7 +591,7 @@ $(function () {
             rich: {
               font: {
                 color: '#fff',
-                fontSize: 14,
+                fontSize: 12,
                 lineHeight: 20,
               },
             },

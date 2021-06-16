@@ -308,7 +308,7 @@ $(function () {
       grid: {
         top: 20,
         left: 20,
-        right: 10,
+        right: 0,
         bottom: 0,
         containLabel: true,
       },

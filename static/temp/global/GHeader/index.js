@@ -40,12 +40,26 @@ class CreateGHeader {
 
     // 全屏展示
     $('.full-screen').on('click', function () {
-      _this.toggleFullScreen()
+      if (_this.fullscreenEnabled) {
+        _this.toggleFullScreen()
+      } else {
+        window.parent.postMessage({ message: 'toggleFullScreen' }, '*')
+        $('.js-full-screen').toggleClass('full')
+      }
     })
 
     if (!this.fullscreenEnabled) {
-      $('.js-full-screen').remove()
+      window.addEventListener('message', e => {
+        if (e.data && e.data.message === 'toggleFullScreen') {
+          if (e.data.fullScreen) {
+            $('.js-full-screen').addClass('full')
+          } else {
+            $('.js-full-screen').removeClass('full')
+          }
+        }
+      }, false)
     }
+
     document.addEventListener("fullscreenchange", function (event) {
       if (document.fullscreenElement) {
         $('.js-full-screen').addClass('full');

@@ -125,27 +125,27 @@ class CreatePageSecurity {
           <tr>
             <td>01</td>
             <td>图书馆201</td>
-            <td>摄像头报警</td>
+            <td>门禁报警</td>
           </tr>
           <tr>
             <td>02</td>
             <td>图书馆202</td>
-            <td>摄像头报警</td>
+            <td>门禁报警</td>
           </tr>
           <tr>
             <td>03</td>
             <td>图书馆203</td>
-            <td>摄像头报警</td>
+            <td>门禁报警</td>
           </tr>
           <tr>
             <td>04</td>
             <td>图书馆205</td>
-            <td>摄像头报警</td>
+            <td>门禁报警</td>
           </tr>
           <tr>
             <td>05</td>
             <td>图书馆206</td>
-            <td>摄像头报警</td>
+            <td>门禁报警</td>
           </tr>
        `
       }else if(type == 2) {
@@ -153,27 +153,27 @@ class CreatePageSecurity {
           <tr>
             <td>01</td>
             <td>图书馆201</td>
-            <td>门禁报警</td>
+            <td>摄像头报警</td>
           </tr>
           <tr>
             <td>02</td>
             <td>图书馆202</td>
-            <td>门禁报警</td>
+            <td>摄像头报警</td>
           </tr>
           <tr>
             <td>03</td>
             <td>图书馆203</td>
-            <td>门禁报警</td>
+            <td>摄像头报警</td>
           </tr>
           <tr>
             <td>04</td>
             <td>图书馆205</td>
-            <td>门禁报警</td>
+            <td>摄像头报警</td>
           </tr>
           <tr>
             <td>05</td>
             <td>图书馆206</td>
-            <td>门禁报警</td>
+            <td>摄像头报警</td>
           </tr>
        `
       }
@@ -211,27 +211,27 @@ class CreatePageSecurity {
           <tr>
             <td>01</td>
             <td>201</td>
-            <td>摄像头报警</td>
+            <td>门禁报警</td>
           </tr>
           <tr>
             <td>02</td>
             <td>202</td>
-            <td>摄像头报警</td>
+            <td>门禁报警</td>
           </tr>
           <tr>
             <td>03</td>
             <td>203</td>
-            <td>摄像头报警</td>
+            <td>门禁报警</td>
           </tr>
           <tr>
             <td>04</td>
             <td>204</td>
-            <td>摄像头报警</td>
+            <td>门禁报警</td>
           </tr>
           <tr>
             <td>05</td>
             <td>205</td>
-            <td>摄像头报警</td>
+            <td>门禁报警</td>
           </tr>
        `
       }else if(type == 2) {
@@ -239,27 +239,27 @@ class CreatePageSecurity {
           <tr>
             <td>01</td>
             <td>201</td>
-            <td>门禁报警</td>
+            <td>摄像头报警</td>
           </tr>
           <tr>
             <td>02</td>
             <td>202</td>
-            <td>门禁报警</td>
+            <td>摄像头报警</td>
           </tr>
           <tr>
             <td>03</td>
             <td>203</td>
-            <td>门禁报警</td>
+            <td>摄像头报警</td>
           </tr>
           <tr>
             <td>04</td>
             <td>204</td>
-            <td>门禁报警</td>
+            <td>摄像头报警</td>
           </tr>
           <tr>
             <td>05</td>
             <td>205</td>
-            <td>门禁报警</td>
+            <td>摄像头报警</td>
           </tr>
        `
       }

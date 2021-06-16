@@ -75,7 +75,7 @@ class CreatePageEnergy {
   changePowerList(type) {
     let templater = ''
     if (!this.buildingName) {
-      if (type == 0) {
+      if (type == 0 || type == 2) {
         templater = `  <tr>
           <td>序号</td>
           <td>地址</td>
@@ -112,7 +112,7 @@ class CreatePageEnergy {
           <td>短路</td>
           <td>待处理</td>
         </tr>`
-      } else if (type == 1 || type == 2) {
+      } else if (type == 1) {
         templater = `  <tr>
           <td>序号</td>
           <td>地址</td>
@@ -188,7 +188,7 @@ class CreatePageEnergy {
           <td>短路</td>
           <td>待处理</td>
         </tr>`
-      } else if (type == 1 || type == 2) {
+      } else if (type == 1 ) {
         templater = `  <tr>
           <td>序号</td>
           <td>地址</td>

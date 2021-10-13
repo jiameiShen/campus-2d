@@ -76,7 +76,8 @@ class CreatePageSecurity {
     let _this = this
     let securityCameraText = !this.buildingName ? '1682' : '1450'
     $(`#page${this.pageId} .js-building-name`).each(function () {
-      $(this).text(_this.buildingName || $(this).data('school') || '')
+      const schoolOrClassName = window.$modelType === 'K12' ? $(this).data('class') : $(this).data('school')
+      $(this).text(_this.buildingName || schoolOrClassName || '')
     })
     $('.monitoring-alarms-content .tab .item').eq(0).trigger('click') 
     $('.safety-control-content .tab li').eq(0).trigger('click') 

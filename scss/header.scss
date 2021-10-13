@@ -9,7 +9,14 @@
   align-items: center;
   font-size: 16px;
   color: #fff;
-  background: linear-gradient( 90deg, #021131 0%, rgba(2, 17, 49, 0.76) 24%, rgba(3, 17, 49, 0) 50%, rgba(2, 17, 49, 0.76) 76%, #021131 100%);
+  background: linear-gradient(
+    90deg,
+    #021131 0%,
+    rgba(2, 17, 49, 0.76) 24%,
+    rgba(3, 17, 49, 0) 50%,
+    rgba(2, 17, 49, 0.76) 76%,
+    #021131 100%
+  );
   .left {
     font-size: 0;
     .logo {
@@ -27,8 +34,25 @@
       vertical-align: middle;
     }
   }
+  .dropdown {
+    margin-left: 10px;
+    cursor: pointer;
+    .dropdown-menu {
+      background-color: #02193f;
+    }
+    .dropdown-menu-item {
+      padding: 5px 10px;
+      cursor: pointer;
+      &.active {
+        color: #01d5ed;
+      }
+      &:hover {
+        background-color: #132d56;
+      }
+    }
+  }
   .full-screen {
-    margin-left: 20px;
+    margin-left: 10px;
     display: inline-block;
     width: 16px;
     height: 16px;

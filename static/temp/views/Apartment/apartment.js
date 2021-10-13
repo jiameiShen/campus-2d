@@ -100,8 +100,16 @@ class CreatePageApartment {
     this.dormitoryId = currentObj.userData.dormitoryId || ''
     let _this = this
     $(`#page${this.pageId} .js-building-name`).each(function () {
-      $(this).text(_this.buildingName || $(this).data('school') || '')
+      const schoolOrClassName = window.$modelType === 'K12' ? $(this).data('class') : $(this).data('school')
+      $(this).text(_this.buildingName || schoolOrClassName || '')
     })
+
+    $(`#page${this.pageId} .js-tab-item-college`).each(function () {
+      const schoolOrClassName = window.$modelType === 'K12' ? '班级' : '院系'
+      $(this).text(schoolOrClassName)
+    })
+
+    
     if (this.buildingName) {
       $('#notReturnChartButton').hide()
       $('#abnormalWarningChartButton').hide()
@@ -122,6 +130,7 @@ class CreatePageApartment {
     const ROOM_TOTAL = 23
     const ROOM_BED = 4
     // 模拟楼层学生数据
+    const CLASS_NAME_STR = window.$modelType === 'K12' ? '高三1班' : '管理学院-信息管理-2017-信管1班'
     let dataList = Mock.mock({
       [`data|${ROOM_TOTAL}`]: [
         {
@@ -142,7 +151,7 @@ class CreatePageApartment {
               studentName: '@cname',
               documentId: '@natural',
               mobileNumber: '15822189120',
-              classNameStr: '管理学院-信息管理-2017-信管1班',
+              classNameStr: CLASS_NAME_STR,
               personIdentityCard: '441581199408045974',
               personCard: '324234',
               personTypeName: '普通人员',
@@ -370,7 +379,7 @@ class CreatePageApartment {
           <span class="content">${studentInfo.mobileNumber}</span>
         </li>
         <li class="item">
-          <span class="subject">院系班级</span>
+          <span class="subject">${window.$modelType === 'K12' ? '班级' : '院系班级'}</span>
           <span class="content">${studentInfo.classNameStr}</span>
         </li>
         <li class="item">
@@ -623,7 +632,7 @@ var apartmentTemplate = `
               <p><span class="js-building-name"></span>归寝率排行</p>
               <ul class="tab-list" id="notReturnChartButton">
                 <li class="tab-item active" data-val="dormitory">楼栋</li>
-                <li class="tab-item" data-val="college">院系</li>
+                <li class="tab-item js-tab-item-college" data-val="college">院系</li>
               </ul>
             </div>
             <div class="chart-block__bd">
@@ -635,7 +644,7 @@ var apartmentTemplate = `
               <p><span class="js-building-name"></span>异常预警</p>
               <ul class="tab-list" id="abnormalWarningChartButton">
                 <li class="tab-item active" data-val="dormitory">楼栋</li>
-                <li class="tab-item" data-val="college">院系</li>
+                <li class="tab-item js-tab-item-college" data-val="college">院系</li>
               </ul>
             </div>
             <div class="chart-block__bd">

@@ -62,7 +62,8 @@ class CreatePageEnergy {
     ]
     let rankingYAxis = []
     $(`#page${this.pageId} .js-building-name`).each(function () {
-      $(this).text(_this.buildingName || $(this).data('school') || '')
+      const schoolOrClassName = window.$modelType === 'K12' ? $(this).data('class') : $(this).data('school')
+      $(this).text(_this.buildingName || schoolOrClassName || '')
     })
     $('.call-police-list .tab .item').eq(0).trigger('click') 
     this.changeData(classificationData, rankingYAxis)
@@ -243,7 +244,15 @@ class CreatePageEnergy {
       }
       $('.situation-content .count').numberRock({ lastNumber: 4810 })
     } else {
-      let yAxis = [
+      let yAxis = window.$modelType === 'K12' ? [
+        '高三1班',
+        '高三2班',
+        '高三3班',
+        '高二2班',
+        '高一1班',
+        '高一2班',
+        '高一3班',
+      ] : [
         '管理学院',
         '计算机学院',
         '经济管理学院',

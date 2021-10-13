@@ -30,6 +30,13 @@ class CreateGHeader {
         </div>
         <div class="right">
             <span class="time js-timer"></span>
+            <span class="dropdown">
+              <span class="glyphicon glyphicon-cog dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></span>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li class="dropdown-menu-item js-toogle-model ${window.$modelType === 'DEFAULT' ? 'active' : ''}" data-model="DEFAULT">普通模式</li>
+                <li class="dropdown-menu-item js-toogle-model ${window.$modelType === 'K12' ? 'active' : ''}" data-model="K12">K12模式</li>
+              </ul>
+            </span>
             <span class="full-screen js-full-screen"></span>
         </div>
     </div>`)

@@ -71,7 +71,19 @@ const LINECOLOR = '#31384D'
 //   renderInterceptChart(interceptInfo.data)
 
 function renderNotReturnChart(data) {
-  const categoryList = data.map((item) => item.collegeName || item.dormitoryName)
+  const arr = [
+    '高三1班',
+    '高三2班',
+    '高三3班',
+    '高二2班',
+    '高二1班',
+  ]
+  const categoryList = data.map((item, index) => {
+    if (window.$modelType === 'K12' && item.collegeName) {
+      return arr[index]
+    }
+    return item.collegeName || item.dormitoryName
+  })
   const inNumber = data.map((item) => item.inNumber)
   const outNumber = data.map((item) => item.outNumber)
   const returnPercentage = data.map((item) => item.returnPercentage)
@@ -228,7 +240,19 @@ function renderNotReturnChart(data) {
 
 function renderAbnormalWarningChart(data) {
   const legendList = ['昨日晚归', '昨日未归', '多天未出', '多天未归']
-  const categoryList = data.map((item) => item.collegeName || item.dormitoryName)
+  const arr = [
+    '高三1班',
+    '高三2班',
+    '高三3班',
+    '高二2班',
+    '高二1班',
+  ]
+  const categoryList = data.map((item, index) => {
+    if (window.$modelType === 'K12' && item.collegeName) {
+      return arr[index]
+    }
+    return item.collegeName || item.dormitoryName
+  })
   const laterReturnNumber = data.map((item) => item.laterReturnNumber)
   const notReturnNumber = data.map((item) => item.notReturnNumber)
   const manyDayNotInNumber = data.map((item) => item.manyDayNotInNumber)

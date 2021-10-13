@@ -55,7 +55,8 @@ class CreatePageOperations {
     let _this = this
     let regionaStatisticsData = []
     $(`#page${this.pageId} .js-building-name`).each(function () {
-      $(this).text(_this.buildingName || $(this).data('school') || '')
+      const schoolOrClassName = window.$modelType === 'K12' ? $(this).data('class') : $(this).data('school')
+      $(this).text(_this.buildingName || schoolOrClassName || '')
     })
     this.changeRegionaStatistics(regionaStatisticsData)
     operationDeviceStatusChart()
@@ -70,7 +71,15 @@ class CreatePageOperations {
         regionaStatisticsData.push(arr[key])
       }
     } else {
-      let arr = [
+      let arr = window.$modelType === 'K12' ? [
+        '高三1班',
+        '高三2班',
+        '高三3班',
+        '高二2班',
+        '高一1班',
+        '高一2班',
+        '高一3班',
+      ] : [
         '管理学院',
         '计算机学院',
         '经济管理学院',

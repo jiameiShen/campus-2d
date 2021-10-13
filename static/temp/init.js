@@ -1,4 +1,7 @@
 $(function () {
+  /* 展示模式 */
+  window.$modelType = localStorage.getItem('modelType') || 'DEFAULT'
+
   /* 添加顶部信息栏 */
   const ctrlGHeader = app.addControl(new CreateGHeader())
 
@@ -19,6 +22,17 @@ $(function () {
       app.level.change(app.root.campuses[0])
     }
     ctrlGTabList.showTab(pageId)
+  })
+
+  /* 切换模式 */
+  $(document).on('click', '.js-toogle-model', function () {
+    const model = $(this).data('model')
+    $(this).addClass('active').siblings().removeClass('active')
+    if (model !== localStorage.getItem('modelType')) {
+      localStorage.setItem('modelType', model)
+      window.$modelType = model
+      ctrlGTabList.showPage()()
+    }
   })
 
   let ctrlGMockWarning = null

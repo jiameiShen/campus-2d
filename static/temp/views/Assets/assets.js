@@ -58,7 +58,8 @@ class CreatePageAssets {
     ]
 
     $(`#page${this.pageId} .js-building-name`).each(function () {
-      $(this).text(_this.buildingName || $(this).data('school') || '')
+      const schoolOrClassName = window.$modelType === 'K12' ? $(this).data('class') : $(this).data('school')
+      $(this).text(_this.buildingName || schoolOrClassName || '')
     })
 
     this.changeRegionaStatistics(
@@ -67,7 +68,7 @@ class CreatePageAssets {
       schoolAssetsData
     )
     schoolAssetsChart(schoolAssetsData)
-    collegeAssetsChart(collegeAssetsData,collegeAssetsSeriesData)
+    collegeAssetsChart(collegeAssetsData, collegeAssetsSeriesData)
     classAssetsChart()
     totalAssetsChart()
   }
@@ -91,9 +92,17 @@ class CreatePageAssets {
         schoolAssetsData[key].value = schoolAssetsArr[key]
       }
     } else {
-      let schoolAssetsArr = ['1890','4933']
+      let schoolAssetsArr = ['1890', '4933']
       let arr2 = [97, 518, 212, 486, 427, 284, 502]
-      let arr = [
+      let arr = window.$modelType === 'K12' ? [
+        '高三1班',
+        '高三2班',
+        '高三3班',
+        '高二2班',
+        '高一1班',
+        '高一2班',
+        '高一3班',
+      ] : [
         '管理学院',
         '计算机学院',
         '经济管理学院',
@@ -148,7 +157,7 @@ var assetsTemplate = `
       <div class="chart-block chart-2">
         <div class="chart-block__hd">
           <p>
-            <span class="js-building-name"></span>各学院资产统计
+            <span class="js-building-name" data-school="各学院" data-class="各班级"></span>资产统计
           </p>
         </div>
         <div class="chart-block__bd">
@@ -160,7 +169,7 @@ var assetsTemplate = `
       <div class="chart-block chart-3">
         <div class="chart-block__hd">
           <p>
-            <span class="js-building-name" data-school="学院"></span>各类资产统计
+            <span class="js-building-name" data-school="学院" data-class="班级"></span>各类资产统计
           </p>
         </div>
         <div class="chart-block__bd">

@@ -70,7 +70,35 @@ class CreatePageAssets {
     schoolAssetsChart(schoolAssetsData)
     collegeAssetsChart(collegeAssetsData, collegeAssetsSeriesData)
     classAssetsChart()
+    this.changeRankingAssets()
     totalAssetsChart()
+  }
+
+  changeRankingAssets() {
+    const arr = this.buildingName ? [
+      { name: '1201', desc: '720万' },
+      { name: '809', desc: '630万' },
+      { name: '302', desc: '488万' },
+      { name: '408', desc: '336万' },
+      { name: '809', desc: '140万' },
+    ] : [
+      { name: '物理实验室1201', desc: '720万' },
+      { name: '物理实验室809', desc: '630万' },
+      { name: '化学实验室302', desc: '488万' },
+      { name: '化学实验室408', desc: '336万' },
+      { name: '生物实验室809', desc: '140万' },
+    ]
+    const templater = `
+      ${arr.map((item, index) => {
+      return `<tr>
+        <td>
+          <div class="number">${(index + 1).toString().padStart(2, 0)}</div>
+        </td>
+        <td>${item.name}</td>
+        <td>${item.desc}</td>
+      </tr>`
+    }).join('')}`
+    $('.ranking-assets-content').empty().append(templater)
   }
 
   changeRegionaStatistics(

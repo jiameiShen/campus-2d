@@ -59,9 +59,41 @@ class CreatePageOperations {
       $(this).text(_this.buildingName || schoolOrClassName || '')
     })
     this.changeRegionaStatistics(regionaStatisticsData)
+    this.changeOperationEventList()
     operationDeviceStatusChart()
     operationRegionalStatisticsChart(regionaStatisticsData)
     operationDeviceMaintenanceChart()
+  }
+
+  changeOperationEventList() {
+    const arr = this.buildingName ? [
+      { name: '201', desc: '多媒体损坏' },
+      { name: '202', desc: '空调无法开启' },
+      { name: '203', desc: '传真机损坏' },
+      { name: '204', desc: '椅子缺失' },
+      { name: '205', desc: '椅子缺失' },
+      { name: '206', desc: '多媒体损坏' },
+      { name: '207', desc: '空调无法开启' },
+      { name: '208', desc: '传真机损坏' },
+    ] : [
+      { name: '图书馆201', desc: '多媒体损坏' },
+      { name: '图书馆202', desc: '空调无法开启' },
+      { name: '图书馆203', desc: '传真机损坏' },
+      { name: '图书馆204', desc: '椅子缺失' },
+      { name: '图书馆205', desc: '椅子缺失' },
+      { name: '图书馆206', desc: '多媒体损坏' },
+      { name: '图书馆207', desc: '空调无法开启' },
+      { name: '图书馆208', desc: '传真机损坏' },
+    ]
+    const templater = `
+      ${arr.map((item, index) => {
+      return `<tr>
+        <td>${(index + 1).toString().padStart(2, 0)}</td>
+        <td>${item.name}</td>
+        <td>${item.desc}</td>
+      </tr>`
+    }).join('')}`
+    $('.event-list-content .vtable').empty().append(templater)
   }
 
   changeRegionaStatistics(regionaStatisticsData) {

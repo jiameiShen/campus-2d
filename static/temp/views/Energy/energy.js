@@ -4,7 +4,7 @@
  * @param
  * @returns
  */
- THING.Utils.dynamicLoad(
+THING.Utils.dynamicLoad(
   '/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/views/Energy/energy.css'
 )
 THING.Utils.dynamicLoad(
@@ -65,7 +65,7 @@ class CreatePageEnergy {
       const schoolOrClassName = window.$modelType === 'K12' ? $(this).data('class') : $(this).data('school')
       $(this).text(_this.buildingName || schoolOrClassName || '')
     })
-    $('.call-police-list .tab .item').eq(0).trigger('click') 
+    $('.call-police-list .tab .item').eq(0).trigger('click')
     this.changeData(classificationData, rankingYAxis)
     this.changePowerList(0)
     energyRankingChart(rankingYAxis)
@@ -74,163 +74,35 @@ class CreatePageEnergy {
   }
 
   changePowerList(type) {
-    let templater = ''
-    if (!this.buildingName) {
-      if (type == 0 || type == 2) {
-        templater = `  <tr>
-          <td>序号</td>
-          <td>地址</td>
-          <td>原因</td>
-          <td>状态</td>
-        </tr>
-        <tr>
-          <td>01</td>
-          <td>1#教学楼201</td>
-          <td>电流过载</td>
-          <td>待处理</td>
-        </tr>
-        <tr>
-          <td>02</td>
-          <td>1#教学楼202</td>
-          <td>超负荷</td>
-          <td>待处理</td>
-        </tr>
-        <tr>
-          <td>03</td>
-          <td>图书馆202</td>
-          <td>跳闸</td>
-          <td>待处理</td>
-        </tr>
-        <tr>
-          <td>04</td>
-          <td>图书馆202</td>
-          <td>跳闸</td>
-          <td>待处理</td>
-        </tr>
-        <tr>
-          <td>05</td>
-          <td>图书馆202</td>
-          <td>短路</td>
-          <td>待处理</td>
-        </tr>`
-      } else if (type == 1) {
-        templater = `  <tr>
-          <td>序号</td>
-          <td>地址</td>
-          <td>原因</td>
-          <td>状态</td>
-        </tr>
-        <tr>
-          <td>01</td>
-          <td>2#教学楼201</td>
-          <td>电流过载</td>
-          <td>处理中</td>
-        </tr>
-        <tr>
-          <td>02</td>
-          <td>2#教学楼202</td>
-          <td>超负荷</td>
-          <td>处理中</td>
-        </tr>
-        <tr>
-          <td>03</td>
-          <td>图书馆202</td>
-          <td>跳闸</td>
-          <td>处理中</td>
-        </tr>
-        <tr>
-          <td>04</td>
-          <td>图书馆203</td>
-          <td>跳闸</td>
-          <td>处理中</td>
-        </tr>
-        <tr>
-          <td>05</td>
-          <td>图书馆204</td>
-          <td>短路</td>
-          <td>处理中</td>
-        </tr>`
-      }
-    } else {
-      if (type == 0 || type == 2) {
-        templater = `  <tr>
+    const arr = this.buildingName ? [
+      { name: '201', desc: '电流过载', status: type },
+      { name: '202', desc: '电流过载', status: type },
+      { name: '203', desc: '超负荷', status: type },
+      { name: '204', desc: '跳闸', status: type },
+      { name: '205', desc: '短路', status: type },
+    ] : [
+      { name: '#教学楼201', desc: '电流过载', status: type },
+      { name: '#教学楼202', desc: '电流过载', status: type },
+      { name: '图书馆203', desc: '超负荷', status: type },
+      { name: '图书馆204', desc: '跳闸', status: type },
+      { name: '图书馆205', desc: '短路', status: type },
+    ]
+    const templater = `<tr>
         <td>序号</td>
-          <td>地址</td>
-          <td>原因</td>
-          <td>状态</td>
-        </tr>
-        <tr>
-          <td>01</td>
-          <td>201</td>
-          <td>电流过载</td>
-          <td>待处理</td>
-        </tr>
-        <tr>
-          <td>02</td>
-          <td>202</td>
-          <td>超负荷</td>
-          <td>待处理</td>
-        </tr>
-        <tr>
-          <td>03</td>
-          <td>203</td>
-          <td>跳闸</td>
-          <td>待处理</td>
-        </tr>
-        <tr>
-          <td>04</td>
-          <td>205</td>
-          <td>跳闸</td>
-          <td>待处理</td>
-        </tr>
-        <tr>
-          <td>05</td>
-          <td>206</td>
-          <td>短路</td>
-          <td>待处理</td>
-        </tr>`
-      } else if (type == 1 ) {
-        templater = `  <tr>
-          <td>序号</td>
-          <td>地址</td>
-          <td>原因</td>
-          <td>状态</td>
-        </tr>
-        <tr>
-          <td>01</td>
-          <td>201</td>
-          <td>电流过载</td>
-          <td>处理中</td>
-        </tr>
-        <tr>
-          <td>02</td>
-          <td>202</td>
-          <td>超负荷</td>
-          <td>处理中</td>
-        </tr>
-        <tr>
-          <td>03</td>
-          <td>203</td>
-          <td>跳闸</td>
-          <td>处理中</td>
-        </tr>
-        <tr>
-          <td>04</td>
-          <td>205</td>
-          <td>跳闸</td>
-          <td>处理中</td>
-        </tr>
-        <tr>
-          <td>05</td>
-          <td>206</td>
-          <td>短路</td>
-          <td>处理中</td>
-        </tr>`
-      }
-    }
+        <td>地址</td>
+        <td>原因</td>
+        <td>状态</td>
+      </tr>
+      ${arr.map((item, index) => {
+      return `<tr>
+        <td>${(index + 1).toString().padStart(2, 0)}</td>
+        <td>${item.name}</td>
+        <td>${item.desc}</td>
+        <td>${item.status === 1 ? '处理中' : '待处理'}</td>
+      </tr>`
+    }).join('')}`
     $(this).addClass('tab-active').siblings().removeClass('tab-active')
-    $('.table').empty()
-    $('.table').append(templater)
+    $('.table').empty().append(templater)
   }
   changeData(classificationData, rankingYAxis) {
     if (this.buildingName) {
@@ -416,19 +288,19 @@ var energyTemplate = `
               </tr>
               <tr>
                 <td>03</td>
-                <td>图书馆202</td>
+                <td>图书馆203</td>
                 <td>跳闸</td>
                 <td>待处理</td>
               </tr>
               <tr>
                 <td>04</td>
-                <td>图书馆202</td>
+                <td>图书馆204</td>
                 <td>跳闸</td>
                 <td>待处理</td>
               </tr>
               <tr>
                 <td>05</td>
-                <td>图书馆202</td>
+                <td>图书馆205</td>
                 <td>短路</td>
                 <td>待处理</td>
               </tr>

@@ -15,7 +15,7 @@ function energyRankingChart(yAxisData) {
       bottom: 0,
       containLabel: true,
     },
-     tooltip: {
+    tooltip: {
       trigger: 'item',
       axisPointer: {
         type: 'line',
@@ -25,7 +25,7 @@ function energyRankingChart(yAxisData) {
       formatter: function (params) {
         return `<p class="caption">${params.name}</p>
           <p class="item">
-            <span class="mark" style="background-color: ${params.color};"></span>
+            <span class="mark" style="background-color: #228AE1;"></span>
             <span class="value">${params.data}</span>
           </p>`
       }
@@ -56,7 +56,7 @@ function energyRankingChart(yAxisData) {
     series: [
       {
         type: 'bar',
-        data: [97, 518, 212, 486, 427, 284, 502],
+        data: [97, 518, 212, 486, 427, 284, 502].sort((a, b) => { return b - a }),
         label: {
           normal: {
             show: true,
@@ -138,7 +138,7 @@ function energyClassificationChart(data) {
             show: false,
           },
         },
-        data:data,
+        data: data,
       },
     ],
   }

@@ -78,7 +78,7 @@ function operationDeviceMaintenanceChart() {
         lineHeight: 16,
         color: '#fff',
       },
-      data: ['摄像机', '办公桌椅', '智能穿戴', '监控设备'],
+      data: ['摄像机', '桌椅', '智能穿戴', '监控设备'],
     },
     series: [
       {
@@ -98,7 +98,7 @@ function operationDeviceMaintenanceChart() {
         },
         data: [
           { value: '336', name: '摄像机' },
-          { value: '400', name: '办公桌椅' },
+          { value: '400', name: '桌椅' },
           { value: '480', name: '智能穿戴' },
           { value: '880', name: '监控设备' },
         ],

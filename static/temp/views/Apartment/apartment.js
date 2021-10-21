@@ -501,7 +501,35 @@ class CreatePageApartment {
     }).then(res => {
       const { message } = res
       if (message) {
-        const { roomtInfo, trafficInfo, warning } = message
+        var { roomtInfo, trafficInfo, warning } = message
+        if (window.$modelType === 'K12') {
+          trafficInfo = {
+            todayTrafficInfo: [
+              { time: "08:30", in: 4, out: 37 },
+              { time: "09:00", in: 4, out: 22 },
+              { time: "09:30", in: 6, out: 28 },
+              { time: "10:00", in: 51, out: 31 },
+              { time: "10:30", in: 42, out: 35 },
+              { time: "11:00", in: 21, out: 36 },
+              { time: "11:30", in: 54, out: 58 },
+              { time: "12:00", in: 115, out: 61 },
+              { time: "12:30", in: 181, out: 48 },
+              { time: "13:00", in: 124, out: 62 },
+              { time: "13:30", in: 46, out: 50 },
+              { time: "14:00", in: 21, out: 220 },
+            ],
+            inNumber: 679,
+            outNumber: 1011
+          }
+          warning = {
+            temperatureUnusualNumber: 1,
+            todayNotLivingNumber: 0,
+            todayStrangerNumber: 52,
+            todayBlacklistNumber: 2,
+            todayAbnormalNumber: 55,
+          }
+        }
+        
         /* 基础信息 */
         this.changeChartBasicCaption(roomtInfo)
 

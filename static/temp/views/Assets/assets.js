@@ -76,17 +76,17 @@ class CreatePageAssets {
 
   changeRankingAssets() {
     const arr = this.buildingName ? [
-      { name: '1201', desc: '720万' },
-      { name: '809', desc: '630万' },
-      { name: '302', desc: '488万' },
-      { name: '408', desc: '336万' },
-      { name: '809', desc: '140万' },
+      { name: '201', desc: '88万' },
+      { name: '209', desc: '63万' },
+      { name: '302', desc: '48万' },
+      { name: '408', desc: '36万' },
+      { name: '509', desc: '20万' },
     ] : [
-      { name: '物理实验室1201', desc: '720万' },
-      { name: '物理实验室809', desc: '630万' },
+      { name: '物理实验室201', desc: '720万' },
+      { name: '物理实验室209', desc: '630万' },
       { name: '化学实验室302', desc: '488万' },
       { name: '化学实验室408', desc: '336万' },
-      { name: '生物实验室809', desc: '140万' },
+      { name: '生物实验室509', desc: '140万' },
     ]
     const templater = `
       ${arr.map((item, index) => {
@@ -216,14 +216,14 @@ var assetsTemplate = `
               <td>
                 <div class="number">01</div>
               </td>
-              <td>物理实验室1201</td>
+              <td>物理实验室201</td>
               <td>720万</td>
             </tr>
             <tr>
               <td>
                 <div class="number">02</div>
               </td>
-              <td>物理实验室809</td>
+              <td>物理实验室209</td>
               <td>630万</td>
             </tr>
             <tr>
@@ -244,7 +244,7 @@ var assetsTemplate = `
               <td>
                 <div class="number">05</div>
               </td>
-              <td>生物实验室809</td>
+              <td>生物实验室509</td>
               <td>140万</td>
             </tr>
           </table>

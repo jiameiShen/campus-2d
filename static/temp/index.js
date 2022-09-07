@@ -1,19 +1,19 @@
 THING.Utils.dynamicLoad('https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css')
-THING.Utils.dynamicLoad('https://cdn.bootcdn.net/ajax/libs/animate.css/4.1.1/animate.min.css')
+THING.Utils.dynamicLoad('/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/lib/animate@4.1.1.min.css')
 THING.Utils.dynamicLoad('/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/static/css/common.css')
 THING.Utils.dynamicLoad('/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/static/css/global.css')
 THING.Utils.dynamicLoad('/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/static/css/page.css')
 
 THING.Utils.dynamicLoad([
   // 水球图形
-  'https://cdn.bootcdn.net/ajax/libs/echarts/5.1.1/echarts.min.js',
+  '/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/lib/echarts@5.1.1.min.js',
   '/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/lib/echarts-liquidfill.min.js',
   'https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js',
 
   // Mock数据
-  'https://cdn.bootcdn.net/ajax/libs/Mock.js/1.0.1-beta3/mock-min.js',
+  '/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/lib/mock.min.js',
   // 视频
-  '/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/lib/ezuikit.js',
+  '/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/lib/ezuikit.js'
 ])
 
 // 加载完成事件 

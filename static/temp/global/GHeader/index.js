@@ -8,8 +8,8 @@ THING.Utils.dynamicLoad([
   '/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/global/GHeader/index.css'
 ])
 THING.Utils.dynamicLoad([
-  'https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/moment.min.js',
-  'https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js'
+  '/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/lib/moment@2.24.0.min.js',
+  '/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/lib/moment-with-locales@2.24.0.min.js'
 ])
 
 console.log('初始化：CreateGHeader')

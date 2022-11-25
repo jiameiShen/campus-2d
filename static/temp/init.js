@@ -73,8 +73,9 @@ $(function () {
     }
   })
 
-  const buildings2 = app.query('建筑');
-  buildings2.forEach(function (obj) {
+  const buildings2 = buildings.filter(item => {
+    return item.getAttribute("userData/name")
+  }).forEach(function (obj) {
     // 创建标注
     app.create({
       type: 'UIAnchor',

@@ -77,6 +77,10 @@ $(function () {
   $('#assetStatisticsChart').on('click', '.item', function () {
     const code = $(this).data('code')
     const detail = dataList.find(item => item.code === code)
+    showDetail(detail)
+  })
+
+  function showDetail(detail) {
     let template = `
       <ul class="g-dialog-details">
         <li class="item">
@@ -123,5 +127,5 @@ $(function () {
     `
     $('#assetInfoModal').find('.modal-body').html($(template))
     $('#assetInfoModal').modal()
-  })
+  }
 })

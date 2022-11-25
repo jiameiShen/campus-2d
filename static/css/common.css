@@ -1,0 +1,38 @@
+@charset "UTF-8";
+.title-main {
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.icon {
+  width: 10px;
+  height: 10px;
+  background: linear-gradient(139deg, #24d6eb 0%, #1d4bd3 100%);
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.modular-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.line {
+  height: 1px;
+  background: linear-gradient(270deg, rgba(111, 127, 174, 0) 0%, #6F7FAE 52%, rgba(111, 127, 174, 0) 100%);
+  opacity: 0.5;
+}
+
+video {
+  width: 100%;
+}
+
+#gVideoModal .modal-body {
+  background: url("	https://www.thingjs.com/uploads/wechat/oLX7p0y-mbN…-hlSFOGzv_uQ/file/campus/static/image/loading.gif") no-repeat center center/48px 48px;
+}
+
+.table > tbody > tr > td {
+  border-top: 0;
+}

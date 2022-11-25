@@ -1,0 +1,308 @@
+.page-apartment-toolbar {
+  position: absolute;
+  left: 28%;
+  top: 66px;
+  z-index: 10;
+}
+
+.page-apartment-toolbar .legend-item {
+  display: inline-block;
+  margin-left: 20px;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.page-apartment-toolbar .legend-item .icon {
+  display: inline-block;
+  width: 14px;
+  height: 4px;
+  margin-right: 2px;
+  vertical-align: 2px;
+}
+
+.page-apartment-toolbar .vbtn {
+  display: inline-block;
+  margin-left: 20px;
+  margin-top: 10px;
+  padding: 8px 10px;
+  font-size: 12px;
+  line-height: 16px;
+  border-radius: 2px;
+  border: 2px solid rgba(80, 111, 151, 0.3);
+  cursor: pointer;
+  background: radial-gradient(rgba(89, 178, 255, 0) 0%, rgba(83, 171, 247, 0.4) 100%);
+}
+
+.page-apartment-toolbar .vbtn:hover {
+  border: 2px solid rgba(80, 111, 151, 0.42);
+  background: radial-gradient(rgba(89, 178, 255, 0) 0%, rgba(83, 171, 247, 0.6) 100%);
+}
+
+.page-apartment .chart-basic .chart-block__bd {
+  padding: 24px 0 34px;
+}
+
+.page-apartment .chart-basic .list {
+  overflow: hidden;
+}
+
+.page-apartment .chart-basic .item {
+  width: 50%;
+  float: left;
+  position: relative;
+  padding-left: 52px;
+  font-size: 13px;
+  box-sizing: border-box;
+}
+
+.page-apartment .chart-basic .item:nth-of-type(n + 3) {
+  margin-top: 30px;
+}
+
+.page-apartment .chart-basic .item::before {
+  position: absolute;
+  content: '';
+  left: 0;
+  top: 6px;
+  width: 40px;
+  height: 40px;
+  background-repeat: no-repeat;
+}
+
+.page-apartment .chart-basic .item .count {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.page-apartment .chart-basic .item .caption {
+  margin-top: 4px;
+  font-size: 14px;
+  color: #7eadc0;
+}
+
+.page-apartment .chart-basic .item-dormitory::before {
+  background-image: url("./../image/icon-dormitory.png");
+}
+
+.page-apartment .chart-basic .item-room::before {
+  background-image: url("./../image/icon-room.png");
+}
+
+.page-apartment .chart-basic .item-bed::before {
+  background-image: url("./../image/icon-bed.png");
+}
+
+.page-apartment .chart-basic .item-people::before {
+  background-image: url("./../image/icon-people.png");
+}
+
+.page-apartment .chart-not-return .chart-block__bd {
+  padding: 16px 0 15px;
+}
+
+.page-apartment .chart-room-usage .chart-block__bd {
+  padding: 36px 0 40px 20px;
+  display: flex;
+}
+
+.page-apartment .chart-room-usage .chart-block__bd .left {
+  width: 112px;
+  height: 112px;
+}
+
+.page-apartment .chart-room-usage .chart-block__bd .right {
+  flex: 1;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  margin-left: 35px;
+  justify-content: center;
+}
+
+.page-apartment .chart-pass .chart-block__bd {
+  padding: 10px 0 20px;
+}
+
+.page-apartment .chart-intercept .chart-block__bd {
+  padding: 20px 0;
+}
+
+.page-apartment .chart-room-count .chart-block__bd {
+  padding: 30px 0;
+  display: flex;
+  align-items: center;
+}
+
+.page-apartment .chart-room-count .chart-block__bd .room-count-wrapper {
+  position: relative;
+  width: 136px;
+  height: 136px;
+  background: url("./../image/chart-circle-bg.png") no-repeat center top/100% 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.page-apartment .chart-room-count .chart-block__bd .room-count-wrapper .inner {
+  position: absolute;
+}
+
+.page-apartment .chart-room-count .chart-block__bd .room-count-wrapper .count {
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: bold;
+}
+
+.page-apartment .chart-room-count .chart-block__bd .room-count-wrapper .desc {
+  margin-top: 3px;
+  font-size: 14px;
+  color: #7EADC0;
+  line-height: 19px;
+}
+
+.page-apartment .chart-room-count .chart-block__bd .right {
+  margin-left: 18px;
+  flex: 1;
+  height: auto;
+}
+
+.page-apartment .chart-check-statistics .chart-block__bd {
+  padding: 20px 0;
+}
+
+.page-apartment .chart-check-statistics .chart-block__bd .list {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.page-apartment .chart-check-statistics .chart-block__bd .item {
+  position: relative;
+  flex: 1;
+  display: flex;
+  padding: 0 16px;
+  background: #0B1931;
+  border: 1px solid #263752;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  line-height: 19px;
+  cursor: pointer;
+}
+
+.page-apartment .chart-check-statistics .chart-block__bd .item .glyphicon {
+  margin-left: 10px;
+  font-size: 12px;
+  transform: scale(0.9);
+  color: #D1D4D9;
+}
+
+.page-apartment .chart-check-statistics .chart-block__bd .item:nth-of-type(n+2) {
+  margin-top: 10px;
+}
+
+.page-apartment .chart-check-statistics .chart-block__bd .icon {
+  width: 26px;
+  height: 26px;
+  margin-right: 16px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0 0;
+}
+
+.page-apartment .chart-check-statistics .chart-block__bd .icon-1 {
+  background-image: url("./../image/icon-checkdata-1.png");
+}
+
+.page-apartment .chart-check-statistics .chart-block__bd .icon-2 {
+  background-image: url("./../image/icon-checkdata-2.png");
+}
+
+.page-apartment .chart-check-statistics .chart-block__bd .icon-3 {
+  background-image: url("./../image/icon-checkdata-3.png");
+}
+
+.page-apartment .chart-check-statistics .chart-block__bd .icon-4 {
+  background-image: url("./../image/icon-checkdata-4.png");
+}
+
+.page-apartment .chart-check-statistics .chart-block__bd .icon-5 {
+  background-image: url("./../image/icon-checkdata-5.png");
+}
+
+.page-apartment .chart-check-statistics .chart-block__bd .icon-6 {
+  background-image: url("./../image/icon-checkdata-6.png");
+}
+
+.page-apartment .chart-check-statistics .chart-block__bd .k {
+  flex: 1;
+}
+
+.page-apartment .chart-room-statistics .chart-block__bd {
+  padding: 20px 0;
+  margin-right: -30px;
+  overflow: hidden;
+}
+
+.page-apartment .chart-room-statistics .chart-block__bd .list {
+  height: 100%;
+  overflow: auto;
+}
+
+.page-apartment .chart-room-statistics .chart-block__bd .item {
+  margin-right: 20px;
+  padding: 16px;
+  background: #0B1931;
+  border: 1px solid #263752;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+.page-apartment .chart-room-statistics .chart-block__bd .item:nth-of-type(n+2) {
+  margin-top: 10px;
+}
+
+.page-apartment .chart-room-statistics .chart-block__bd .item .cell {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page-apartment .chart-room-statistics .chart-block__bd .item .cell .icon-door {
+  width: 18px;
+  height: 18px;
+  background: url("./../image/icon-door.png") no-repeat center top;
+}
+
+.page-apartment .chart-room-statistics .chart-block__bd .item .cell .name {
+  flex: 1;
+}
+
+.page-apartment .chart-room-statistics .chart-block__bd .item .cell .rate {
+  color: #2BD0E4;
+}
+
+.page-apartment .chart-room-statistics .chart-block__bd .item .cell-2 {
+  margin-top: 12px;
+  height: 8px;
+  background: #1D2A42;
+  border-radius: 5px;
+}
+
+.page-apartment .chart-room-statistics .chart-block__bd .item .cell-2 .inner {
+  width: 80%;
+  height: 100%;
+  background: linear-gradient(316deg, #228AE1 0%, #28BEE3 100%);
+  border-radius: 5px;
+}
+
+.page-apartment .chart-room-statistics .chart-block__bd .item .cell-3 {
+  margin-top: 10px;
+}
+
+.page-apartment-detail {
+  display: grid;
+  grid-template-rows: 36% 64%;
+}

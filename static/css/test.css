@@ -1,0 +1,93 @@
+.u-card-item {
+  position: relative;
+  padding: 16rpx;
+  display: flex;
+  background-color: #fff;
+}
+
+.u-card-item:not(:first-child) {
+  margin-top: 10rpx;
+}
+
+.u-card-item .streamer {
+  position: absolute;
+  right: 16rpx;
+  top: 16rpx;
+  text-align: right;
+}
+
+.u-card-item .streamer .date {
+  color: #999;
+  line-height: 20rpx;
+}
+
+.u-card-item .streamer .tag {
+  margin-top: 5rpx;
+  padding: 2rpx;
+}
+
+.u-card-item .avatar {
+  width: 64rpx;
+  height: 64rpx;
+  margin-right: 12rpx;
+  border-radius: 2rpx;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.u-card-item .avatar .van-image {
+  width: 100%;
+  height: 100%;
+}
+
+.u-card-item .avatar ~ .content .title {
+  width: 180rpx;
+}
+
+.u-card-item .avatar ~ .content .title + .info .info__v {
+  width: 112rpx;
+}
+
+.u-card-item .avatar ~ .content .info__v {
+  width: 190rpx;
+}
+
+.u-card-item .content {
+  flex: 1;
+}
+
+.u-card-item .content .title {
+  width: 260rpx;
+  font-size: 17rpx;
+  line-height: 24rpx;
+  font-weight: 700;
+  margin-bottom: 8rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.u-card-item .content .title + .info .info__v {
+  width: 188rpx;
+}
+
+.u-card-item .content .info {
+  margin-top: 5rpx;
+  display: flex;
+  font-size: 15rpx;
+  line-height: 21rpx;
+}
+
+.u-card-item .content .info__k {
+  width: 75rpx;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.u-card-item .content .info__v {
+  width: 266rpx;
+  color: #666;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

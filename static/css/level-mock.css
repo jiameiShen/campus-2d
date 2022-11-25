@@ -1,0 +1,47 @@
+.level-mock {
+  width: 800px;
+  margin: 0 auto;
+  color: #aaa;
+}
+
+.room-item {
+  float: left;
+  width: 200px;
+  height: 200px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  position: relative;
+  cursor: pointer;
+}
+
+.room-item .bed-group {
+  position: absolute;
+  top: 50px;
+  width: 100px;
+  height: 100px;
+}
+
+.room-item .bed-group-1 {
+  left: 0;
+}
+
+.room-item .bed-group-2 {
+  right: 0;
+}
+
+.room-item .bed-item {
+  position: absolute;
+  border-bottom: 1px solid transparent;
+}
+
+.room-item .bed-item:hover {
+  border-bottom: 1px solid;
+}
+
+.room-item .bed-item-0, .room-item .bed-item-2 {
+  top: 0;
+}
+
+.room-item .bed-item-1, .room-item .bed-item-3 {
+  bottom: 0;
+}

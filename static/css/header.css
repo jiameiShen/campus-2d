@@ -1,0 +1,72 @@
+.g-header {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  display: flex;
+  padding: 20px 30px 22px;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  color: #fff;
+  background: linear-gradient(90deg, #021131 0%, rgba(2, 17, 49, 0.76) 24%, rgba(3, 17, 49, 0) 50%, rgba(2, 17, 49, 0.76) 76%, #021131 100%);
+}
+
+.g-header .left {
+  font-size: 0;
+}
+
+.g-header .left .logo {
+  width: 125px;
+  height: 24px;
+  vertical-align: middle;
+}
+
+.g-header .left .name {
+  display: inline-block;
+  margin-left: 10px;
+  padding-left: 10px;
+  font-size: 18px;
+  line-height: 20px;
+  border-left: 1px solid #fff;
+  vertical-align: middle;
+}
+
+.g-header .dropdown {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.g-header .dropdown .dropdown-menu {
+  background-color: #02193f;
+}
+
+.g-header .dropdown .dropdown-menu-item {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.g-header .dropdown .dropdown-menu-item.active {
+  color: #01d5ed;
+}
+
+.g-header .dropdown .dropdown-menu-item:hover {
+  background-color: #132d56;
+}
+
+.g-header .full-screen {
+  margin-left: 10px;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-size: 100% 100%;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-image: url("./../image/full-screen.png");
+  vertical-align: -2px;
+  cursor: pointer;
+}
+
+.g-header .full-screen.full {
+  background-image: url("./../image/full-screen-close.png");
+}

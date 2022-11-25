@@ -56,15 +56,7 @@ $(function () {
           obj.setAttribute("userData/name", dormitory.dormitoryName)
           obj.setAttribute("userData/dormitoryName", dormitory.dormitoryName)
           obj.setAttribute("userData/dormitoryId", dormitory.tid)
-          // 创建标注
-          app.create({
-            type: 'UIAnchor',
-            parent: obj,
-            element: cloneBoardElement('buildingMarker', dormitory.tid), // 此参数填写要添加的Dom元素
-            localPosition: [0, 0, 0],
-            pivot: [0.5, 1], //[0,0]即以界面左上角定位，[1,1]即以界面右下角进行定位
-          })
-          $('#buildingMarker' + dormitory.tid + ' .caption').text(obj.userData.name)
+          appCreatMarker(obj)
         } else {
           obj.visible = false
         }
@@ -73,10 +65,8 @@ $(function () {
     }
   })
 
-  const buildings2 = buildings.filter(item => {
-    return item.getAttribute("userData/name")
-  }).forEach(function (obj) {
-    // 创建标注
+  // 创建标注
+  function appCreatMarker(obj) {
     app.create({
       type: 'UIAnchor',
       parent: obj,
@@ -85,6 +75,17 @@ $(function () {
       pivot: [0.5, 1], //[0,0]即以界面左上角定位，[1,1]即以界面右下角进行定位
     })
     $('#buildingMarker' + obj.id + ' .caption').text(obj.userData.name)
+  }
+
+  // 有模型的楼
+  buildings.forEach(function (obj) {
+    appCreatMarker(obj)
+  })
+
+  // 辅助楼
+  const buildings2 = app.query('建筑');
+  buildings2.forEach(function (obj) {
+    appCreatMarker(obj)
   })
 
   /* 修改层级背景 */
@@ -102,6 +103,8 @@ $(function () {
       const buildingType = object.getAttribute("userData/buildingType")
       curEnterBuildingType = currentTab === buildingType ? buildingType : ''
     }
+    window.$enterLevel = !!curEnterBuildingType
+    window.$background = curEnterBuildingType ? '#031432' : ''
     // 公寓管理、资产管理
     // 可以进入符合当前指定类型楼栋的层级
     if (currentTab === curEnterBuildingType) {

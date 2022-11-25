@@ -85,3 +85,72 @@
 .page-assets .total-assets-content {
   height: 185px;
 }
+
+// 新加楼层
+.page-aside-right.page-assets-detail {
+  display: grid;
+  grid-template-rows: 100%;
+  .chart-assets-statistics {
+    .chart-block__bd {
+      padding: 20px 0;
+      margin-right: -30px;
+      overflow: hidden;
+      .list {
+        height: 100%;
+        overflow: auto;
+      }
+      .item {
+        margin-right: 20px;
+        padding: 16px;
+        background: #0B1931;
+        border: 1px solid #263752;
+        font-size: 14px;
+        line-height: 19px;
+        cursor: pointer;
+        &:nth-of-type(n+2) {
+          margin-top: 10px;
+        }
+        .cell {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          .icon-door {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            background: url('./../image/icon-door.png') no-repeat center top; 
+          }
+          .name {
+            flex: 1;
+          }
+          .detail {
+            padding-left: 20px;
+            color: #2BD0E4;
+          }
+          .glyphicon {
+            font-size: 12px;
+            transform: scale(0.9);
+            vertical-align: -1px;
+          }
+        }
+
+        .cell-2 {
+          margin-top: 12px;
+          height: 8px;
+          background: #1D2A42;
+          border-radius: 5px;
+          .inner {
+            width: 80%;
+            height: 100%;
+            background: linear-gradient(316deg, #228AE1 0%, #28BEE3 100%);
+            border-radius: 5px;
+          }
+        }
+
+        .cell-3 {
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+}

@@ -40,6 +40,9 @@ $(function () {
   campus = app.query('.Campus')[0] // 获取园区对象
   createBoardHtml()
   const buildings = campus.buildings // 获取园区下的所有建筑，返回为 Selector 结构
+  const dormitorys = buildings.filter(item => {
+    return item.getAttribute("userData/buildingType") === 'Apartment'
+  })
   $_ajaxPromise({
     type: "get",
     url: `${window.$baseUrl}/queryDormitoryList`,
@@ -47,7 +50,7 @@ $(function () {
   }).then(res => {
     if (res.message) {
       const dormitoryList = res.message
-      buildings.forEach(function (obj, index) {
+      dormitorys.forEach(function (obj, index) {
         const dormitory = dormitoryList[index]
         if (dormitory) {
           obj.setAttribute("userData/name", dormitory.dormitoryName)
@@ -90,12 +93,17 @@ $(function () {
   app.pauseEvent(THING.EventType.EnterLevel, THING.EventTag.LevelSetBackground);
 
   /* 修改进入层级操作 */
+  let curEnterBuildingType = ''
   app.on(THING.EventType.DBLClick, function (ev) {
     const currentTab = ctrlGTabList.currentTab
     const object = ev.object
-    // 公寓管理--不能进入其他楼栋
-    // 其他--不能进入宿舍楼栋层级
-    if (currentTab === 'Apartment') {
+    if (object instanceof THING.Building) {
+      const buildingType = object.getAttribute("userData/buildingType")
+      curEnterBuildingType = currentTab === buildingType ? buildingType : ''
+    }
+    // 公寓管理、资产管理
+    // 可以进入符合当前指定类型楼栋的层级
+    if (currentTab === curEnterBuildingType) {
       if (object instanceof THING.Campus
         || object instanceof THING.Building
         || object instanceof THING.Floor
@@ -103,7 +111,11 @@ $(function () {
         object.app.level.change(object)
       }
     } else {
-      if (object instanceof THING.Thing && object.name === '建筑') {
+      // 公寓管理--不能进入其他楼栋
+      // 其他--不能进入楼栋层级
+      if (currentTab === 'Apartment') {
+        return
+      } else if (object instanceof THING.Thing && object.name === '建筑') {
         object.app.level.change(object)
       } else if (object instanceof THING.Campus || object instanceof THING.Building) {
         object.app.level.change(object)
@@ -119,7 +131,7 @@ $(function () {
       ctrlGTabList.showTab()
     }
     if (object instanceof THING.Campus) {
-      console.log('Campus: ' + object)
+      console.log('*Campus: ' + JSON.stringify(object))
       $('.u-building-marker').show()
       ctrlGBackNavigator.hide()
       ctrlGMockWarning.start()
@@ -130,16 +142,16 @@ $(function () {
     }
 
     if (object instanceof THING.Floor) {
-      console.log('Floor: ' + object)
+      console.log('*Floor: ' + JSON.stringify(object))
       ctrlGLevelSwitch.show()
     } else {
       ctrlGLevelSwitch.hide()
     }
 
     if (object instanceof THING.Building) {
-      console.log('Building: ' + object)
+      console.log('*Building: ' + JSON.stringify(object))
     } else if (object instanceof THING.Thing) {
-      console.log('Thing: ' + object)
+      console.log('*Thing: ' + JSON.stringify(object))
     }
   });
 

@@ -109,7 +109,7 @@ class CreatePageApartment {
       $(this).text(schoolOrClassName)
     })
 
-    
+
     if (this.buildingName) {
       $('#notReturnChartButton').hide()
       $('#abnormalWarningChartButton').hide()
@@ -529,7 +529,7 @@ class CreatePageApartment {
             todayAbnormalNumber: 55,
           }
         }
-        
+
         /* 基础信息 */
         this.changeChartBasicCaption(roomtInfo)
 

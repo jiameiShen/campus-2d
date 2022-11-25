@@ -103,3 +103,79 @@
 .page-assets .total-assets-content {
   height: 185px;
 }
+
+.page-aside-right.page-assets-detail {
+  display: grid;
+  grid-template-rows: 100%;
+}
+
+.page-aside-right.page-assets-detail .chart-assets-statistics .chart-block__bd {
+  padding: 20px 0;
+  margin-right: -30px;
+  overflow: hidden;
+}
+
+.page-aside-right.page-assets-detail .chart-assets-statistics .chart-block__bd .list {
+  height: 100%;
+  overflow: auto;
+}
+
+.page-aside-right.page-assets-detail .chart-assets-statistics .chart-block__bd .item {
+  margin-right: 20px;
+  padding: 16px;
+  background: #0B1931;
+  border: 1px solid #263752;
+  font-size: 14px;
+  line-height: 19px;
+  cursor: pointer;
+}
+
+.page-aside-right.page-assets-detail .chart-assets-statistics .chart-block__bd .item:nth-of-type(n+2) {
+  margin-top: 10px;
+}
+
+.page-aside-right.page-assets-detail .chart-assets-statistics .chart-block__bd .item .cell {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page-aside-right.page-assets-detail .chart-assets-statistics .chart-block__bd .item .cell .icon-door {
+  margin-right: 10px;
+  width: 18px;
+  height: 18px;
+  background: url("./../image/icon-door.png") no-repeat center top;
+}
+
+.page-aside-right.page-assets-detail .chart-assets-statistics .chart-block__bd .item .cell .name {
+  flex: 1;
+}
+
+.page-aside-right.page-assets-detail .chart-assets-statistics .chart-block__bd .item .cell .detail {
+  padding-left: 20px;
+  color: #2BD0E4;
+}
+
+.page-aside-right.page-assets-detail .chart-assets-statistics .chart-block__bd .item .cell .glyphicon {
+  font-size: 12px;
+  transform: scale(0.9);
+  vertical-align: -1px;
+}
+
+.page-aside-right.page-assets-detail .chart-assets-statistics .chart-block__bd .item .cell-2 {
+  margin-top: 12px;
+  height: 8px;
+  background: #1D2A42;
+  border-radius: 5px;
+}
+
+.page-aside-right.page-assets-detail .chart-assets-statistics .chart-block__bd .item .cell-2 .inner {
+  width: 80%;
+  height: 100%;
+  background: linear-gradient(316deg, #228AE1 0%, #28BEE3 100%);
+  border-radius: 5px;
+}
+
+.page-aside-right.page-assets-detail .chart-assets-statistics .chart-block__bd .item .cell-3 {
+  margin-top: 10px;
+}

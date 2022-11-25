@@ -70,7 +70,7 @@ function schoolAssetsChart(data) {
 }
 
 // 各学院资产统计
-function collegeAssetsChart(data,seriesData) {
+function collegeAssetsChart(data, seriesData) {
   let AssetsRanking = echarts.init(
     document.getElementById('college-assets-content')
   )

@@ -13,6 +13,8 @@ var app = new THING.App({
 window.$baseUrl = 'https://iot.szhtxx.com/platform/separate/3DVisualization/campus'
 /* 实时画面 */
 window.$videoUrl = 'https://open.ys7.com/v3/openlive/E24387991_1_1.m3u8?expire=1654329247&id=322765312709029888&t=951578e960971000d5b713e310d24fe964aeaf0a780570204771986e84943967&ev=100'
+/* 展示模式 */
+window.$modelType = localStorage.getItem('modelType') || 'DEFAULT'
 
 THING.Utils.dynamicLoad([
   '/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/index.js'

@@ -463,6 +463,7 @@ var assetsLevelTemplate = `
           </button>
           <p class="modal-title" id="assetInfoModalLabel">资产信息</p>
         </div>
+        <img  class="qrcode" style="position: absolute; right: 40px; top: 80px; width: 160px; height: 160px;" src="../../static/image/qrcode.png" alt="">
         <div class="modal-body">
           <ul class="g-dialog-details">
             <li class="item">

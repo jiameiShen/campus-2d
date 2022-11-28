@@ -48,7 +48,7 @@ app.on('load', function (ev) {
     '/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/global/GTabList/index.js',
     '/uploads/wechat/oLX7p0y-mbNfS0Mb-hlSFOGzv_uQ/file/campus/init.js',
   ])
-  app.background = '#031432';
+  //   app.background = '#031432';
   app.camera.xAngleLimitRange = [0, 90];  // 设置摄像机俯仰角度范围[最小值, 最大值]
 });
 

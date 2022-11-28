@@ -90,7 +90,13 @@ $(function () {
 
   /* 修改层级背景 */
   app.on(THING.EventType.EnterLevel, function (ev) {
-    app.background = '#031432';
+    const object = ev.object
+    if (object.getAttribute("userData/buildingType") || object instanceof THING.Floor) {
+      window.$enterLevel = true;
+      app.background = '#031432';
+    } else {
+      window.$enterLevel = false;
+    }
   }, 'customLevelSetBackground');
   app.pauseEvent(THING.EventType.EnterLevel, THING.EventTag.LevelSetBackground);
 
@@ -103,8 +109,6 @@ $(function () {
       const buildingType = object.getAttribute("userData/buildingType")
       curEnterBuildingType = currentTab === buildingType ? buildingType : ''
     }
-    window.$enterLevel = !!curEnterBuildingType
-    window.$background = curEnterBuildingType ? '#031432' : ''
     // 公寓管理、资产管理
     // 可以进入符合当前指定类型楼栋的层级
     if (currentTab === curEnterBuildingType) {
@@ -136,6 +140,7 @@ $(function () {
     }
     if (object instanceof THING.Campus) {
       console.log('*Campus: ' + JSON.stringify(object))
+      window.$enterLevel = false
       $('.u-building-marker').show()
       ctrlGBackNavigator.hide()
       ctrlGMockWarning.start()

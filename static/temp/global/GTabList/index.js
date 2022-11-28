@@ -14,7 +14,7 @@ const G_TAbLIST_ARR = [
   { name: '公寓管理', id: 'Apartment', func: CreatePageApartment, pageCtrl: null },
   { name: '能耗管理', id: 'Energy', func: CreatePageEnergy, pageCtrl: null },
   { name: '资产管理', id: 'Assets', func: CreatePageAssets, pageCtrl: null },
-  { name: '运维管理', id: 'Operations', func: CreatePageOperations, pageCtrl: null },
+  { name: '设备管理', id: 'Operations', func: CreatePageOperations, pageCtrl: null },
   { name: '安全管理', id: 'Security', func: CreatePageSecurity, pageCtrl: null },
 ]
 
